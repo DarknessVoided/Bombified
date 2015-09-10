@@ -17,18 +17,18 @@ local target = GetCurrentTarget() --Finds the target
  
 --Cast Q
  
-		if CanUseSpell(myHero,_Q) == READY and Tryndamere.c.Q:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.QT:Value()
-			then CastSpell(_Q)
+	if CanUseSpell(myHero,_Q) == READY and Tryndamere.c.Q:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.QT:Value()
+		then CastSpell(_Q)
 end
  
 --Cast W
-		if CanUseSpell(myHero,_W) == READY and Tryndamere.c.W.value() and not IsFacing(target, Tryndamere.c.WO.Value())
-			then CastSpell(_W)
+	if CanUseSpell(myHero,_W) == READY and Tryndamere.c.W.value() and not IsFacing(target, Tryndamere.c.WO.Value())
+		then CastSpell(_W)
 end
  
 --Cast R
-		if CanUseSpell(myHero,_R) == READY and Tryndamere.c.W:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.RP:Value()
-			then CastSpell(_R)
+	if CanUseSpell(myHero,_R) == READY and Tryndamere.c.W:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.RP:Value()
+		then CastSpell(_R)
 end
 
 PrintChat("Thanks to Cloud,Noddy,Foxy,Maxxel and D3ftsu and I")
