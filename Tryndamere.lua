@@ -33,4 +33,4 @@ end
 
 end) -- Ends the OnLoop
 
-PrintChat("Thanks to Cloud,Noddy,Foxy,Maxxel and D3ftsu and I")
+PrintChat("Thanks to Cloud,Noddy,Foxy,Maxxxel and D3ftsu and I")
