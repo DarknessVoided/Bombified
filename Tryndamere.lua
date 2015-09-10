@@ -12,7 +12,7 @@ Tryndamere.c:Slider("WO", " W when enemy from Range", 350, 1, 400, 1)
 Tryndamere.c:Boolean("R", "Use R", true)
 Tryndamere.c:Slider("RP", " R Health", 10, 1, 100, 1)
 
-OnLoop(function(myHero)) --Standard start
+OnLoop(function(myHero) --Standard start
 local target = GetCurrentTarget() --Finds the target
  
 --Cast Q
@@ -22,15 +22,15 @@ local target = GetCurrentTarget() --Finds the target
 end
  
 --Cast W
-	if CanUseSpell(myHero,_W) == READY and Tryndamere.c.W.value() and not IsFacing(target, Tryndamere.c.WO.Value()) and GoS:ValidTarget(target, 400)
+	if CanUseSpell(myHero,_W) == READY and Tryndamere.c.W:Value() and not IsFacing(target, Tryndamere.c.WO:Value()) and GoS:ValidTarget(target, 400)
 		then CastSpell(_W)
 end
  
 --Cast R
-	if CanUseSpell(myHero,_R) == READY and Tryndamere.c.W:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.RP:Value() and GoS:ValidTarget(target, 1000)
+	if CanUseSpell(myHero,_R) == READY and Tryndamere.c.R:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.RP:Value() and GoS:ValidTarget(target, 1000)
 		then CastSpell(_R)
 end
 
-PrintChat("Thanks to Cloud,Noddy,Foxy,Maxxxel and D3ftsu and I")
-
 end) -- Ends the OnLoop
+
+PrintChat("Thanks to Cloud,Noddy,Foxy,Maxxel and D3ftsu and I")
