@@ -50,10 +50,8 @@ CHANELLING SPELLS = {
     ["Pantheon"]                    = {_R},
     ["Warwick"]                     = {_R},
     ["Xerath"]                      = {_R},
-    ["Tristana"]                      = {_W},
+    ["Tristana"]                    = {_W},
 }
 OnLoop(function(myHero)
-
 OnProcessSpell(function(unit, spellProc)
-R},
     if not IsDead(myhero) and CanUseSpell(myhero, _E) and Trundle.Misc.ER:Value()
