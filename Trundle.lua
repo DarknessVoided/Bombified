@@ -1,7 +1,7 @@
-if GetObjectName(myhero) ~= "Trundle"  then else
+if GetObjectName(myhero) ~= "Trundle"  then else return end
 
-require('IOW')
-require('Inspired')
+require("IOW")
+require("Inspired")
 
 --------Main Menu--------
 TrundleMenu = Menu("Trundle", "Trundle")
@@ -50,8 +50,9 @@ CHANELLING SPELLS = {
     ["Pantheon"]                    = {_R},
     ["Warwick"]                     = {_R},
     ["Xerath"]                      = {_R},
-    ["Tristana"]                    = {_W},
+    ["Tristana"]                      = {_W},
 }
 OnLoop(function(myHero)
+
 OnProcessSpell(function(unit, spellProc)
-    if not IsDead(myhero) and CanUseSpell(myhero, _E) and Trundle.Misc.ER:Value()
+if not IsDead(myhero) and CanUseSpell(myhero, _E) and Trundle.Misc.ER:Value() and GoS:ValidTarget(target, 1000)
