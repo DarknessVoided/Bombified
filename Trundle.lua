@@ -1,30 +1,40 @@
-if GetObjectName(myhero) ~= "Poppy"  then return end
+if GetObjectName(myhero) ~= "Trundle"  then return
+end
 
 require("IOW")
 require("Inspired")
 
 --------Main Menu--------
-PoppyMenu = Menu("Poppy", "Poppy")
+TrundleMenu = Menu("Trundle", "Trundle")
 ------------------------
 
 --------Sub Menu-------
-PoppyMenu:SubMenu("Combo", "Combo")
-PoppyMenu:SubMenu("Misc", "Misc")
+TrundleMenu:SubMenu("Combo", "Combo")
+TrundleMenu:SubMenu("Misc", "Misc")
+TrundleMenu:SubMenu("Drawings", "Drawings")
 ------------------------
 
 
 
 --Menu within combo Menu--
-PoppyMenu.Combo:Boolean("Q", "Use Q", true)
-PoppyMenu.Combo:Boolean("W", "Use W", true)
-PoppyMenu.Combo:Boolean("E", "Use E", true)
-PoppyMenu.Combo:Boolean("R", "Use R", true)
+TrundleMenu.Combo:Boolean("Q", "Use Q", true)
+TrundleMenu.Combo:Boolean("W", "Use W", true)
+TrundleMenu.Combo:Boolean("E", "Use E", true)
+TrundleMenu.Combo:Boolean("R", "Use R", true)
 --------------------------
 
 -----Menu within Misc-----
-PoppyMenu.Misc:Boolean("ER", "Use E to interupt enemy Ulti", true)
+TrundleMenu.Misc:Boolean("ER", "Use E to interupt enemy Ulti", true)
+TrundleMenu.Misc:Boolean("QE", "Auto level Spell in QWER", false)
 --------------------------
 
+---Menu within Drawings---
+TrundleMenu.Drawings:Boolean("Q", "Enable Drawings for Q", false)
+TrundleMenu.Drawings:Boolean("W", "Enable Drawings for W", false)
+TrundleMenu.Drawinfs:Boolean("E", "Enable Drawings for E", false)
+TrundleMenu.Drawings:Boolean("R", false)
+
+--------------------------
 CHANELLING SPELLS = {
     ["Caitlyn"]                     = {_R},
     ["Katarina"]                    = {_R},
@@ -41,5 +51,6 @@ CHANELLING SPELLS = {
     ["Pantheon"]                    = {_R},
     ["Warwick"]                     = {_R},
     ["Xerath"]                      = {_R},
-
+    ["Tristana"]                      = {_W},
 }
+OnLoop(function(myHero)
