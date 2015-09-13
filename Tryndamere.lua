@@ -17,21 +17,20 @@ local target = GetCurrentTarget() --Finds the target
  
 --Cast Q
  
-	if CanUseSpell(myHero,_Q) == READY and Tryndamere.c.Q:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.QT:Value() and GoS:ValidTarget(target, 1000)
-		then CastSpell(_Q)
+  if CanUseSpell(myHero,_Q) == READY and Tryndamere.c.Q:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.QT:Value() and GoS:ValidTarget(target, 1000) and GotBuff(myHero, "UndyingRage") == 0
+    then CastSpell(_Q)
 end
  
 --Cast W
-	if CanUseSpell(myHero,_W) == READY and Tryndamere.c.W:Value() and not IsFacing(target, Tryndamere.c.WO:Value()) and GoS:ValidTarget(target, 400)
-		then CastSpell(_W)
+  if CanUseSpell(myHero,_W) == READY and Tryndamere.c.W:Value() and not IsFacing(target, Tryndamere.c.WO:Value()) and GoS:ValidTarget(target, 400)
+    then CastSpell(_W)
 end
  
 --Cast R
-	if CanUseSpell(myHero,_R) == READY and Tryndamere.c.R:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.RP:Value() and GoS:ValidTarget(target, 1000)
-		then CastSpell(_R)
+  if CanUseSpell(myHero,_R) == READY and Tryndamere.c.R:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Tryndamere.c.RP:Value() and GoS:ValidTarget(target, 1000)
+    then CastSpell(_R)
 end
 
 end) -- Ends the OnLoop
 
-PrintChat("Thanks to Cloud,Noddy,Foxy,Maxxxel and D3ftsu and I")
-Printchat("Salute to Einzbelm(Tester) and my sexy bae irl")
+PrintChat("Thanks to Cloud,Noddy,Foxy,Maxxxel,Einzbern and D3ftsu and I")
