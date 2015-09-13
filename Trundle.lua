@@ -13,6 +13,8 @@ TrundleMenu:SubMenu("Miscva", "Misc")
 TrundleMenu:SubMenu("Drawings", "Drawings")
 --------------------------
 
+
+
 --Menu within combo Menu--
 TrundleMenu.Combo:Boolean("Q", "Use Q", true)
 TrundleMenu.Combo:Boolean("W", "Use W", true)
@@ -30,16 +32,17 @@ TrundleMenu.Drawings:Boolean("Q", "Enable Drawings for Q", false)
 TrundleMenu.Drawings:Boolean("W", "Enable Drawings for W", false)
 TrundleMenu.Drawinfs:Boolean("E", "Enable Drawings for E", false)
 TrundleMenu.Drawings:Boolean("R", false)
-
 ----All my Local stuff----
 local myHero = GetMyHero();
---------------------------
+local CannotHitMe = IsImmune()
+local isTargetable = isTargetable()
 
-CHANELLING SPELLS = {
+--------------------------
+CHANELLING_SPELLS = {
     ["Caitlyn"]                     = {_R},
     ["Katarina"]                    = {_R},
     ["MasterYi"]                    = {_W},
-    ["FiddleSticks"]                = {_W, _R},
+    ["FiddleSticks"]                = {W, R},
     ["Galio"]                       = {_R},
     ["Lucian"]                      = {_R},
     ["MissFortune"]                 = {_R},
@@ -53,8 +56,17 @@ CHANELLING SPELLS = {
     ["Xerath"]                      = {_R},
     ["Tristana"]                      = {_W},
 }
-OnLoop(function(myHero)
 
-OnProcessSpell(function(unit, spellProc)
-if not IsDead(myhero) and CanUseSpell(myhero, _E) and Trundle.Misc.ER:Value() and GoS:ValidTarget(target, 1000) then
-CastTargetSpell(unit, _E);
+local callback = nil
+ ------------------------------Interrupter Part------------------------------
+OnProcessSpell(function(unit, spell)    
+    if not callback or not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == GetTeam(GetMyHero()) then return end
+    local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
+ 
+        if unitChanellingSpells then
+            for _, spellSlot in pairs(unitChanellingSpells) do
+                if spell.name == GetCastName(unit, spellSlot) then callback(unit, CHANELLING_SPELLS) end
+            end
+        end
+-----------------------------------------------------------------------------
+end) ---Ends the OnLoop
