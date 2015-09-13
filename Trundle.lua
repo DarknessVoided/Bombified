@@ -13,8 +13,6 @@ TrundleMenu:SubMenu("Miscva", "Misc")
 TrundleMenu:SubMenu("Drawings", "Drawings")
 --------------------------
 
-
-
 --Menu within combo Menu--
 TrundleMenu.Combo:Boolean("Q", "Use Q", true)
 TrundleMenu.Combo:Boolean("W", "Use W", true)
@@ -33,7 +31,10 @@ TrundleMenu.Drawings:Boolean("W", "Enable Drawings for W", false)
 TrundleMenu.Drawinfs:Boolean("E", "Enable Drawings for E", false)
 TrundleMenu.Drawings:Boolean("R", false)
 
+----All my Local stuff----
+local myHero = GetMyHero();
 --------------------------
+
 CHANELLING SPELLS = {
     ["Caitlyn"]                     = {_R},
     ["Katarina"]                    = {_R},
@@ -55,4 +56,5 @@ CHANELLING SPELLS = {
 OnLoop(function(myHero)
 
 OnProcessSpell(function(unit, spellProc)
-if not IsDead(myhero) and CanUseSpell(myhero, _E) and Trundle.Misc.ER:Value() and GoS:ValidTarget(target, 1000)
+if not IsDead(myhero) and CanUseSpell(myhero, _E) and Trundle.Misc.ER:Value() and GoS:ValidTarget(target, 1000) then
+CastTargetSpell(unit, _E);
