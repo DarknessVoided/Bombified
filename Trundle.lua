@@ -1,7 +1,7 @@
 if GetObjectName(myhero) ~= "Trundle"  then else
 
-require("IOW")
-require("Inspired")
+require('IOW')
+require('Inspired')
 
 --------Main Menu--------
 TrundleMenu = Menu("Trundle", "Trundle")
