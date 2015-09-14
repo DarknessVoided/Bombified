@@ -107,44 +107,45 @@ If TrundleMenu.Misc.QE:value() then
       end
 
 If TrundleMenu.Misc.WQ:value() then
-    if GetLevel(myHero) == 1 then
-      LevelSpell(_Q)
-      elseif GetLevel(myHero) == 2 then
-      LevelSpell(_W)
-      elseif GetLevel(myHero) == 3 then
-      LevelSpell(_E)
-      elseif GetLevel(myHero) == 4 then
-      LevelSpell(_W)
-      elseif GetLevel(myHero) == 5 then
-      LevelSpell(_W)
-      elseif GetLevel(myHero) == 6 then
-      LevelSpell(_R)
-      elseif GetLevel(myHero) == 7 then
-      LevelSpell(_W)
-      elseif GetLevel(myHero) == 8 then
-      LevelSpell(_Q)
-      elseif GetLevel(myHero) == 9 then
-      LevelSpell(_W)
-      elseif GetLevel(myHero) == 10 then
-      LevelSpell(_E)
-      elseif GetLevel(myHero) == 11 then
-      LevelSpell(_R)
-      elseif GetLevel(myHero) == 12 then
-      LevelSpell(_Q)
-      elseif GetLevel(myHero) == 13 then
-      LevelSpell(_Q)
-      elseif GetLevel(myHero) == 14 then
-      LevelSpell(_E)
-      elseif GetLevel(myHero) == 15 then
-      LevelSpell(_E)
-      elseif GetLevel(myHero) == 16 then
-      LevelSpell(_R)
-      elseif GetLevel(myHero) == 17 then
-      LevelSpell(_E)
-      elseif GetLevel(myHero) == 18 then
-      LevelSpell(_E)
-      end
-  end
+    
+ if level == 1 then
+   LevelSpell(_Q)
+ elseif level == 2 then
+   LevelSpell(_W)
+ elseif level == 3 then
+   LevelSpell(_E)
+ elseif level == 4 then
+   LevelSpell(_W)
+ elseif level == 5 then
+   LevelSpell(_W)
+ elseif level == 6 then
+   LevelSpell(_R)
+ elseif level == 7 then
+   LevelSpell(_W)
+ elseif level == 8 then
+   LevelSpell(_Q)
+ elseif level == 9 then
+   LevelSpell(_W)
+ elseif level == 10 then
+   LevelSpell(_E)
+ elseif level == 11 then
+   LevelSpell(_R)
+ elseif level == 12 then
+   LevelSpell(_Q)
+ elseif level == 13 then
+   LevelSpell(_Q)
+ elseif level == 14 then
+   LevelSpell(_E)
+ elseif level == 15 then
+   LevelSpell(_E)
+ elseif level == 16 then
+   LevelSpell(_R)
+ elseif level == 17 then
+   LevelSpell(_E)
+ elseif level == 18 then
+   LevelSpell(_E)
+ end
+end
 ---------------------------------------Combo IOW--------------------------------------
 function Combo()
 if IOW:Mode() == "Combo" then
