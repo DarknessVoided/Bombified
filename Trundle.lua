@@ -148,7 +148,7 @@ If TrundleMenu.Misc.WQ:value() then
 ---------------------------------------Combo IOW--------------------------------------
 function Combo()
 if IOW:Mode() == "Combo" then
-if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and GoS:ValidTarget(target, 300)
+if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and GoS:ValidTarget(target, 150)
 then CastSpell(_Q)
 end
 end
