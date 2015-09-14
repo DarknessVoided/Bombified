@@ -33,6 +33,7 @@ local isTargetable = isTargetable()
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
 local callback = Nil
 function AutoLevel()
+function Combo()
 -----------------------------------------------------------------------------------------------------------------------------
 CHANELLING_SPELLS = {
     ["Caitlyn"]                     = {_R},
@@ -144,4 +145,17 @@ If TrundleMenu.Misc.WQ:value() then
       LevelSpell(_E)
       end
   end
-------------------------------------------------------------------------------------------------------------------
+---------------------------------------Combo IOW--------------------------------------
+function Combo()
+if IOW:Mode() == "Combo" then
+if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and GoS:ValidTarget(target, 300)
+then CastSpell(_Q)
+end
+end
+
+if TrundleMenu.Combo.W:Value() and CanUseSpell(,_W) == READY and GoS:ValidTarget(target, rangeW)
+then CastSpell(_W)
+end
+end
+
+If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY
