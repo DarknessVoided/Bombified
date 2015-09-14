@@ -26,14 +26,11 @@ TrundleMenu.Drawings:Boolean("Q", "Enable Drawings for Q", false)
 TrundleMenu.Drawings:Boolean("W", "Enable Drawings for W", false)
 TrundleMenu.Drawinfs:Boolean("E", "Enable Drawings for E", false)
 TrundleMenu.Drawings:Boolean("R", false)
----------------------------------------------------All my Local stuff and Functions-------------------------------------------
+---------------------------------------------------All my Local stuff -------------------------------------------
 local myHero = GetMyHero();
-local CannotHitHim = IsImmune()
 local isTargetable = isTargetable()
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
 local callback = Nil
-function AutoLevel()
-function Combo()
 -----------------------------------------------------------------------------------------------------------------------------
 CHANELLING_SPELLS = {
     ["Caitlyn"]                     = {_R},
@@ -149,7 +146,7 @@ end
 ---------------------------------------Combo IOW--------------------------------------
 function Combo()
 if IOW:Mode() == "Combo" then
-if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and GoS:ValidTarget(target, 150)
+if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and IsTargetable and GoS:ValidTarget(target, 150)
 then CastSpell(_Q)
 end
 end
