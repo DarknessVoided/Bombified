@@ -3,24 +3,22 @@ if GetObjectName(myhero) ~= "Trundle"  then else return end
 require("IOW")
 require("Inspired")
 
---------Main Menu--------
+----------------------------------------------------------------Main Menu-----------------------------------------------------
 TrundleMenu = Menu("Trundle", "Trundle")
 ------------------------
 
---------Sub Menu----------
+----------------------------------------------------------------Sub Menu------------------------------------------------------
 TrundleMenu:SubMenu("Combo", "Combo")
 TrundleMenu:SubMenu("Miscva", "Misc")
 TrundleMenu:SubMenu("Drawings", "Drawings")
---------------------------
 
---Menu within combo Menu--
+-----------------------------------------------------------Menu within combo Menu--------------------------------------------
 TrundleMenu.Combo:Boolean("Q", "Use Q", true)
 TrundleMenu.Combo:Boolean("W", "Use W", true)
 TrundleMenu.Combo:Boolean("E", "Use E", true)
 TrundleMenu.Combo:Boolean("R", "Use R", true)
---------------------------
 
------Menu within Misc-----
+-------------------------------------------------------------Menu within Misc-------------------------------------------------
 TrundleMenu.Misc:Boolean("ER", "Use E to interupt enemy Ulti", true)
 TrundleMenu.Misc:Boolean("QE", "Auto level Spell in QWER", false)
 
@@ -54,7 +52,6 @@ CHANELLING_SPELLS = {
     ["Xerath"]                      = {_R},
     ["Tristana"]                      = {_W},
 }
------------------------------------------------------------------------------------------------------------------------------
 
 ---------------------------------------------All those interrupter   code goes under here------------------------------------
 -OnProcessSpell(function(unit, spell)    
@@ -64,6 +61,5 @@ CHANELLING_SPELLS = {
             for _, spellSlot in pairs(unitChanellingSpells) do
                 if spell.name == GetCastName(unit, spellSlot) then callback(unit, CHANELLING_SPELLS) end
             end
-        end
+    end
 -----------------------------------------------------------------------------------------------------------------------------
-end)
