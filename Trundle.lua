@@ -28,7 +28,7 @@ TrundleMenu.Drawinfs:Boolean("E", "Enable Drawings for E", false)
 TrundleMenu.Drawings:Boolean("R", false)
 ---------------------------------------------------All my Local stuff -------------------------------------------
 local myHero = GetMyHero();
-local isTargetable = isTargetable()
+local isTargetable = isTargetable(target)
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
 local callback = Nil
 -----------------------------------------------------------------------------------------------------------------------------
