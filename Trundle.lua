@@ -165,6 +165,6 @@ end
 end
 
 end)
-PrintChat("Thanks to Me,EzinBern, Cloud, Zypppy and Deftsu!")
+PrintChat("Thanks to Noddy,EzinBern, Cloud, Zypppy and Deftsu!")
 PrintChat("Not forgetting those people who created Library and the IOW")
 PrintChat("Have a good game!")
