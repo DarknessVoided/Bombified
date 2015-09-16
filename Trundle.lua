@@ -31,6 +31,7 @@ local myHero = GetMyHero();
 local isTargetable = isTargetable(target)
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
 local callback = Nil
+local target = GetCurrentTarget()
 AutoLevel()
 Combo()
 local botrk = GetItemSlot(myHero,3153)
@@ -164,7 +165,7 @@ end
 If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, 1000)
 then CastSkillShot(_E,EnemyPos.x,EnemyPos.y,EnemyPos.z)
 
-If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700) and GetCurrentTarget(target)
+If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700)
 then CastSpell(_R)
 end
 end
