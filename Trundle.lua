@@ -154,20 +154,20 @@ then CastSpell(_Q)
 end
 end
 
-if TrundleMenu.Combo.W:Value() and CanUseSpell(,_W) == READY and GoS:ValidTarget(target, rangeW)
+if TrundleMenu.Combo.W:Value() and CanUseSpell(,_W) == READY and GoS:ValidTarget(target, 900)
 then CastSpell(_W)
 end
 end
 
-If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, range)
+If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, 1000)
 then CastSkillShot(_E,EnemyPos.x,EnemyPos.y,EnemyPos.z)
 
-If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target,range)
+If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700) and GetCurrentTarget(target)
 then CastSpell(_R)
 end
 end
 
 end)
-PrintChat("Thanks to Noddy,EzinBern, Cloud, Zypppy and Deftsu!")
+PrintChat("Thanks to Noddy(Helped me a ShitLoad,EzinBern, Cloud, Zypppy and Deftsu!")
 PrintChat("Not forgetting those people who created Library and the IOW")
 PrintChat("Have a good game!")
