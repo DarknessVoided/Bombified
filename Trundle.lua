@@ -31,6 +31,7 @@ local myHero = GetMyHero();
 local isTargetable = isTargetable(target)
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
 local callback = Nil
+local target = GetCurrentTarget()
 AutoLevel()
 Combo()
 local botrk = GetItemSlot(myHero,3153)
