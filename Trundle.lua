@@ -63,6 +63,7 @@ CHANELLING_SPELLS = {
                 if spell.name == GetCastName(unit, spellSlot) then callback(unit, CHANELLING_SPELLS) end
             end
     end
+OnLoop(function(myHero)
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
 Function AutoLevel()
 If TrundleMenu.Misc.QE:value() then
