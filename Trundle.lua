@@ -24,7 +24,7 @@ TrundleMenu.Misc:Boolean("WQ", "Auto Level Spell in RWQE", false)
 -----------------------------------------------------------Menu within Drawings----------------------------------------------
 TrundleMenu.Drawings:Boolean("Q", "Enable Drawings for Q", false)
 TrundleMenu.Drawings:Boolean("W", "Enable Drawings for W", false)
-TrundleMenu.Drawinfs:Boolean("E", "Enable Drawings for E", false)
+TrundleMenu.Drawings:Boolean("E", "Enable Drawings for E", false)
 TrundleMenu.Drawings:Boolean("R", false)
 ---------------------------------------------------All my Local stuff -------------------------------------------
 local myHero = GetMyHero();
