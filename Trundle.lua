@@ -155,7 +155,7 @@ If TrundleMenu.Misc.WQ:value() then
 function Combo()
 if IOW:Mode() == "Combo" then
 
-local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,1000,SkillShotRange,SkillShotWidth,false,true);
+local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,250,1000,225,false,false);
 
 if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and IsTargetable and GoS:ValidTarget(target, 150)
 then CastSpell(_Q)
