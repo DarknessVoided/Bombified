@@ -53,6 +53,7 @@ CHANELLING_SPELLS = {
     ["Warwick"]                     = {_R},
     ["Xerath"]                      = {_R},
     ["Tristana"]                    = {_W},
+    ["Vi"]                          = {_Q}
 }
 
 ---------------------------------------------All those interrupter   code goes under here------------------------------------
@@ -64,7 +65,16 @@ CHANELLING_SPELLS = {
                 if spell.name == GetCastName(unit, spellSlot) then callback(unit, CHANELLING_SPELLS) end
             end
     end
------------------------------
+------------------------------------------------------All my tables for health-----------------------------------------------
+highesthp=0
+highestunit=nil
+for _,i into pairs(GetEnemyChamps())
+do
+if GetHP(i)>highesthp then
+highesthp=getHp(i)
+highestunit=i end
+end
+-----------------------------------------------------------------------------------------------------------------------------
 OnLoop(function(myHero)
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
 Function AutoLevel()
@@ -171,6 +181,6 @@ end
 end
 
 end)
-PrintChat("Thanks to Noddy(Helped me a ShitLoad,EzinBern, Cloud, Zypppy and Deftsu!")
+PrintChat("Thanks to Noddy(Helped me a ShitLoad),Logge(Helped me much too)EzinBern, Cloud, Zypppy and Deftsu!")
 PrintChat("Not forgetting those people who created Library and the IOW")
 PrintChat("Have a good game!")
