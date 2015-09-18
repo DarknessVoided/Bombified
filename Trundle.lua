@@ -30,7 +30,6 @@ TrundleMenu.Drawings:Boolean("R", false)
 local myHero = GetMyHero();
 local isTargetable = isTargetable(target)
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
---local callback = Nil
 local target = GetCurrentTarget()
 AutoLevel()
 Combo()
@@ -64,7 +63,6 @@ CHANELLING_SPELLS = {
                 if TrundleMenu.Misc.ER:Value() and spell.name == GetCastName(unit, spellSlot) and GoS:ValidTarget(unit,GetCastRange(myHero,_E)) then 
                   pos=GetOrigin(unit) --pos is a table!! :)
                   CastSkillShot(_E,pos.x,pos.y,pos.z)
-                  --callback(unit, CHANELLING_SPELLS) 
                 end
             end
     end
@@ -191,7 +189,6 @@ function findTank()
   end
 return tank
 end
-
 
 PrintChat("Thanks to Noddy(Helped me a ShitLoad),Logge(Helped me much too)EzinBern, Cloud, Zypppy and Deftsu!")
 PrintChat("Not forgetting those people who created Library and the IOW")
