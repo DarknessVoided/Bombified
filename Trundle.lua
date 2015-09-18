@@ -40,7 +40,7 @@ CHANELLING_SPELLS = {
     ["Caitlyn"]                     = {_R},
     ["Katarina"]                    = {_R},
     ["MasterYi"]                    = {_W},
-    ["FiddleSticks"]                = {W, R},
+    ["FiddleSticks"]                = {_W, _R},
     ["Galio"]                       = {_R},
     ["Lucian"]                      = {_R},
     ["MissFortune"]                 = {_R},
@@ -53,8 +53,7 @@ CHANELLING_SPELLS = {
     ["Warwick"]                     = {_R},
     ["Xerath"]                      = {_R},
     ["Tristana"]                    = {_W},
-    ["Vi"]                          = {_Q}
-}
+    ["Vi"]                          = {_Q},
 
 ---------------------------------------------All those interrupter   code goes under here------------------------------------
 -OnProcessSpell(function(unit, spell)    
