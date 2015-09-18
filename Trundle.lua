@@ -64,15 +64,6 @@ CHANELLING_SPELLS = {
                 if spell.name == GetCastName(unit, spellSlot) then callback(unit, CHANELLING_SPELLS) end
             end
     end
-------------------------------------------------------All my tables for health-----------------------------------------------
-highesthp=0
-highestunit=nil
-for _,i into pairs(GetEnemyChamps())
-do
-if GetHP(i)>highesthp then
-highesthp=getHp(i)
-highestunit=i end
-end
 -----------------------------------------------------------------------------------------------------------------------------
 OnLoop(function(myHero)
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
