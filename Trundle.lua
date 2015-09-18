@@ -9,7 +9,6 @@ TrundleMenu = Menu("Trundle", "Trundle")
 ----------------------------------------------------------------Sub Menu------------------------------------------------------
 TrundleMenu:SubMenu("Combo", "Combo")
 TrundleMenu:SubMenu("Misc", "Misc")
-TrundleMenu:SubMenu("Drawings", "Drawings")
 
 -----------------------------------------------------------Menu within combo Menu--------------------------------------------
 TrundleMenu.Combo:Boolean("Q", "Use Q", true)
@@ -33,7 +32,7 @@ local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
 local target = GetCurrentTarget()
 AutoLevel()
 Combo()
-local botrk = GetItemSlot(myHero,3153)
+local EPrediction = 
 -----------------------------------------------------------------------------------------------------------------------------
 CHANELLING_SPELLS = {
     ["Caitlyn"]                     = {_R},
@@ -63,13 +62,14 @@ CHANELLING_SPELLS = {
                 if TrundleMenu.Misc.ER:Value() and spell.name == GetCastName(unit, spellSlot) and GoS:ValidTarget(unit,GetCastRange(myHero,_E)) then 
                   pos=GetOrigin(unit) --pos is a table!! :)
                   CastSkillShot(_E,pos.x,pos.y,pos.z)
+                  --callback(unit, CHANELLING_SPELLS) 
                 end
             end
     end
 -----------------------------------------------------------------------------------------------------------------------------
 OnLoop(function(myHero)
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
-Function AutoLevel()
+function AutoLevel()
 If TrundleMenu.Misc.QE:value() then
 
 if level == 1 then
@@ -154,6 +154,9 @@ If TrundleMenu.Misc.WQ:value() then
 ---------------------------------------Combo IOW--------------------------------------
 function Combo()
 if IOW:Mode() == "Combo" then
+
+local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,1000,SkillShotRange,SkillShotWidth,false,true);
+
 if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and IsTargetable and GoS:ValidTarget(target, 150)
 then CastSpell(_Q)
 end
@@ -164,8 +167,8 @@ then CastSpell(_W)
 end
 end
 
-If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, 1000)
-then CastSkillShot(_E,EnemyPos.x,EnemyPos.y,EnemyPos.z) --Slow? THe slow cat yeah but you can do that alone ;)
+If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, 1000) and EPred.HitChance == 1
+then CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
 
 If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700) then 
   target=findTank() 
@@ -189,6 +192,7 @@ function findTank()
   end
 return tank
 end
+
 
 PrintChat("Thanks to Noddy(Helped me a ShitLoad),Logge(Helped me much too)EzinBern, Cloud, Zypppy and Deftsu!")
 PrintChat("Not forgetting those people who created Library and the IOW")
