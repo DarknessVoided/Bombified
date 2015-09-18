@@ -18,7 +18,7 @@ TrundleMenu.Combo:Boolean("E", "Use E", true)
 TrundleMenu.Combo:Boolean("R", "Use R", true)
 
 -------------------------------------------------------------Menu within Misc-------------------------------------------------
-TrundleMenu.Misc:Boolean("ER", "Use E to interupt enemy Ulti", true)
+TrundleMenu.Misc:Boolean("ER", "Use E to interupt enemy channels", true)
 TrundleMenu.Misc:Boolean("QE", "Auto level Spell in RQWE", false)
 TrundleMenu.Misc:Boolean("WQ", "Auto Level Spell in RWQE", false)
 -----------------------------------------------------------Menu within Drawings----------------------------------------------
@@ -30,7 +30,7 @@ TrundleMenu.Drawings:Boolean("R", false)
 local myHero = GetMyHero();
 local isTargetable = isTargetable(target)
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
-local callback = Nil
+--local callback = Nil
 local target = GetCurrentTarget()
 AutoLevel()
 Combo()
@@ -57,11 +57,15 @@ CHANELLING_SPELLS = {
 
 ---------------------------------------------All those interrupter   code goes under here------------------------------------
 -OnProcessSpell(function(unit, spell)    
-    if not callback or not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == GetTeam(GetMyHero()) then return end
+    if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == GetTeam(GetMyHero()) then return end
  
     if unitChanellingSpells then
-            for _, spellSlot in pairs(unitChanellingSpells) do
-                if spell.name == GetCastName(unit, spellSlot) then callback(unit, CHANELLING_SPELLS) end
+            for _, spellSlot in pairs(unitChanellingSpells) do  --AUTO E
+                if TrundleMenu.Misc.ER:Value() and spell.name == GetCastName(unit, spellSlot) and GoS:ValidTarget(unit,GetCastRange(myHero,_E)) then 
+                  pos=GetOrigin(unit) --pos is a table!! :)
+                  CastSkillShot(_E,pos.x,pos.y,pos.z)
+                  --callback(unit, CHANELLING_SPELLS) 
+                end
             end
     end
 -----------------------------------------------------------------------------------------------------------------------------
@@ -163,14 +167,32 @@ end
 end
 
 If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, 1000)
-then CastSkillShot(_E,EnemyPos.x,EnemyPos.y,EnemyPos.z)
+then CastSkillShot(_E,EnemyPos.x,EnemyPos.y,EnemyPos.z) --Slow? THe slow cat yeah but you can do that alone ;)
 
-If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700)
-then CastSpell(_R)
+If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700) then 
+  target=findTank() 
+  CastTargetedSpell(target,_R)
+
 end
 end
 
 end)
+
+function findTank()
+  local besttank=0 --resistance
+  local tank=nil --champ 
+  if GetEnemyHeroes() then --Can't be nil 
+   for _,k in pairs(GetEnemyHeroes()) do -- K means enemy just to remind myself
+     if GetArmor(k)+GetMagicResist(k)>besttank and GoS:ValidTarget(target,GetCastRange(myHero,_R)) then
+      besttank=GetArmor(k)+GetMagicResist(k)
+      tank=k
+     end
+   end
+  end
+return tank
+end
+
+
 PrintChat("Thanks to Noddy(Helped me a ShitLoad),Logge(Helped me much too)EzinBern, Cloud, Zypppy and Deftsu!")
 PrintChat("Not forgetting those people who created Library and the IOW")
 PrintChat("Have a good game!")
