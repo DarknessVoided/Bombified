@@ -54,7 +54,7 @@ CHANELLING_SPELLS = {
     ["Vi"]                          = {_Q},
 
 ---------------------------------------------All those interrupter   code goes under here------------------------------------
--OnProcessSpell(function(unit, spell)    
+OnProcessSpell(function(unit, spell)    
     if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == GetTeam(GetMyHero()) then return end
  
     if unitChanellingSpells then
