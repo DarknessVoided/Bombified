@@ -53,7 +53,7 @@ CHANELLING_SPELLS = {
     ["Xerath"]                      = {_R},
     ["Tristana"]                    = {_W},
     ["Vi"]                          = {_Q},
-
+}
 ---------------------------------------------All those interrupter   code goes under here------------------------------------
 OnProcessSpell(function(unit, spell)    
     if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == GetTeam(GetMyHero()) then return end
