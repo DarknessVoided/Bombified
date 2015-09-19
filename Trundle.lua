@@ -67,7 +67,7 @@ OnProcessSpell(function(unit, spell)
                 end
             end
     end
-------------------------------------------------------
+
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
 function AutoLevel()
 If TrundleMenu.Misc.QE:value() then
