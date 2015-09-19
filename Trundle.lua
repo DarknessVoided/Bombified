@@ -51,7 +51,7 @@ CHANELLING_SPELLS = {
     ["Warwick"]                     = {_R},
     ["Xerath"]                      = {_R},
     ["Tristana"]                    = {_W},
-    ["Vi"]                          = {_Q},
+    ["Vi"]                          = {_Q}
 }
 ---------------------------------------------All those interrupter   code goes under here------------------------------------
 OnProcessSpell(function(unit, spell)    
