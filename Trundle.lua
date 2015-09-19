@@ -33,7 +33,6 @@ local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
 local target = GetCurrentTarget()
 AutoLevel()
 Combo()
-local EPrediction = 
 -----------------------------------------------------------------------------------------------------------------------------
 CHANELLING_SPELLS = {
     ["Caitlyn"]                     = {_R},
