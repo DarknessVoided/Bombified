@@ -1,4 +1,4 @@
-if GetObjectName(myhero) ~= "Trundle"  then else return end
+if GetObjectName(myhero) ~= "Trundle"  then return end
 
 require("IOW")
 require("Inspired")
@@ -66,6 +66,48 @@ OnProcessSpell(function(unit, spell)
                 end
             end
     end
+
+---------------------------------------Combo IOW--------------------------------------
+function Combo()
+if IOW:Mode() == "Combo" then
+
+local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,250,1000,225,false,false)
+
+if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and IsTargetable and GoS:ValidTarget(target, 150)
+then CastSpell(_Q)
+end
+end
+
+if TrundleMenu.Combo.W:Value() and CanUseSpell(,_W) == READY and GoS:ValidTarget(target, 900)
+then CastSpell(_W)
+end
+end
+
+If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, 1000) and EPred.HitChance == 1
+then CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
+
+If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700) then 
+  target=findTank() 
+  CastTargetedSpell(target,_R)
+
+end
+end
+
+end)
+
+function findTank()
+  local besttank=0 --resistance
+  local tank=nil --champ 
+  if GetEnemyHeroes() then --Can't be nil 
+   for _,k in pairs(GetEnemyHeroes()) do -- K means enemy just to remind myself
+     if GetArmor(k)+GetMagicResist(k)>besttank and GoS:ValidTarget(target,GetCastRange(myHero,_R)) then
+      besttank=GetArmor(k)+GetMagicResist(k)
+      tank=k
+     end
+   end
+  end
+return tank
+end
 
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
 function AutoLevel()
@@ -150,48 +192,6 @@ If TrundleMenu.Misc.WQ:value() then
    LevelSpell(_E)
     end
     end
----------------------------------------Combo IOW--------------------------------------
-function Combo()
-if IOW:Mode() == "Combo" then
-
-local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,250,1000,225,false,false)
-
-if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and IsTargetable and GoS:ValidTarget(target, 150)
-then CastSpell(_Q)
-end
-end
-
-if TrundleMenu.Combo.W:Value() and CanUseSpell(,_W) == READY and GoS:ValidTarget(target, 900)
-then CastSpell(_W)
-end
-end
-
-If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, 1000) and EPred.HitChance == 1
-then CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
-
-If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700) then 
-  target=findTank() 
-  CastTargetedSpell(target,_R)
-
-end
-end
-
-end)
-
-function findTank()
-  local besttank=0 --resistance
-  local tank=nil --champ 
-  if GetEnemyHeroes() then --Can't be nil 
-   for _,k in pairs(GetEnemyHeroes()) do -- K means enemy just to remind myself
-     if GetArmor(k)+GetMagicResist(k)>besttank and GoS:ValidTarget(target,GetCastRange(myHero,_R)) then
-      besttank=GetArmor(k)+GetMagicResist(k)
-      tank=k
-     end
-   end
-  end
-return tank
-end
-
 
 PrintChat("Thanks to Noddy(Helped me a ShitLoad),Logge(Helped me much too)EzinBern, Cloud, Zypppy and Deftsu!")
 PrintChat("Not forgetting those people who created Library and the IOW")
