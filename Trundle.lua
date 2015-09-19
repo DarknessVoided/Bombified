@@ -26,6 +26,7 @@ TrundleMenu.Drawings:Boolean("W", "Enable Drawings for W", false)
 TrundleMenu.Drawings:Boolean("E", "Enable Drawings for E", false)
 TrundleMenu.Drawings:Boolean("R", false)
 ---------------------------------------------------All my Local stuff -------------------------------------------
+OnLoop(function(myHero)
 local myHero = GetMyHero();
 local isTargetable = isTargetable(target)
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
@@ -66,8 +67,7 @@ OnProcessSpell(function(unit, spell)
                 end
             end
     end
------------------------------------------------------------------------------------------------------------------------------
-OnLoop(function(myHero)
+------------------------------------------------------
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
 function AutoLevel()
 If TrundleMenu.Misc.QE:value() then
