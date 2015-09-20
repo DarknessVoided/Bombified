@@ -47,7 +47,7 @@ CHANELLING_SPELLS = {
 }
 
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
-local local playerTeam = GetTeam(GetMyHero())
+local playerTeam = GetTeam(myHero)
 
 OnProcessSpell(function(unit, spell)    --Starts of OnProcessSpell-Notice that the ) has not been closed.
     if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or playerTeam then return end
