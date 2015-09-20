@@ -1,4 +1,4 @@
-if GetObjectName(myhero) ~= "Trundle"  then return end
+if GetObjectName(myHero) ~= "Trundle"  then return end
 
 require("IOW")
 require("Inspired")
@@ -175,7 +175,7 @@ if IOW:Mode() == "Combo" then
 
 local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,250,1000,225,false,false)
 
-if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and IsTargetable and GoS:ValidTarget(target, 150)
+if TrundleMenu.Combo.Q:value() and CanUseSpell(myHero,_Q) == READY and IsTargetable and GoS:ValidTarget(target, 150)
 then CastSpell(_Q)
 end
 end
