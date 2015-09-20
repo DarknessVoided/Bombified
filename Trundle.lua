@@ -9,7 +9,6 @@ TrundleMenu = Menu("Trundle", "Trundle")
 ----------------------------------------------------------------Sub Menu------------------------------------------------------
 TrundleMenu:SubMenu("Combo", "Combo")
 TrundleMenu:SubMenu("Misc", "Misc")
---TrundleMenu:SubMenu("Drawings", "Drawings")
 
 -----------------------------------------------------------Menu within combo Menu--------------------------------------------
 TrundleMenu.Combo:Boolean("Q", "Use Q", true)
@@ -21,11 +20,7 @@ TrundleMenu.Combo:Boolean("R", "Use R", true)
 TrundleMenu.Misc:Boolean("ER", "Use E to interupt enemy channels", true)
 TrundleMenu.Misc:Boolean("QE", "Auto level Spell in RQWE", false)
 TrundleMenu.Misc:Boolean("WQ", "Auto Level Spell in RWQE", false)
------------------------------------------------------------Menu within Drawings----------------------------------------------
---TrundleMenu.Drawings:Boolean("Q", "Enable Drawings for Q", false)
---TrundleMenu.Drawings:Boolean("W", "Enable Drawings for W", false)
---TrundleMenu.Drawings:Boolean("E", "Enable Drawings for E", false)
---TrundleMenu.Drawings:Boolean("R", false)
+
 ---------------------------------------------------All my Local stuff -------------------------------------------
 local myHero = GetMyHero()
 local target = GetCurrentTarget()
@@ -52,9 +47,10 @@ CHANELLING_SPELLS = {
 }
 
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
+local local playerTeam = GetTeam(GetMyHero())
 
-OnProcessSpell(function(unit, spell)    
-    if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == GetTeam(GetMyHero()) then return end
+OnProcessSpell(function(unit, spell)    --Starts of OnProcessSpell-Notice that the ) has not been closed.
+    if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or playerTeam then return end
  
     if unitChanellingSpells then
             for _, spellSlot in pairs(unitChanellingSpells) do  --AUTO E
@@ -62,11 +58,10 @@ OnProcessSpell(function(unit, spell)
 				 print("Want to E")
                   pos=GetOrigin(unit) --pos is a table!! :)
                   CastSkillShot(_E,pos.x,pos.y,pos.z)
-                  --callback(unit, CHANELLING_SPELLS) 
                 end
             end
     end
-end)
+end) -- Marks the End of OnProcessSpell
 ----------------------------------------------All my OnLoop code goes here----------------------------------------------
 
 OnLoop(function(myHero)
