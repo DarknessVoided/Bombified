@@ -33,6 +33,7 @@ local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
 local target = GetCurrentTarget()
 AutoLevel()
 Combo()
+FindTank()
 -----------------------------------------------------------------------------------------------------------------------------
 CHANELLING_SPELLS = {
     ["Caitlyn"]                     = {_R},
@@ -67,34 +68,9 @@ OnProcessSpell(function(unit, spell)
             end
     end
 
----------------------------------------Combo IOW--------------------------------------
-function Combo()
-if IOW:Mode() == "Combo" then
-
-local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,250,1000,225,false,false)
-
-if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and IsTargetable and GoS:ValidTarget(target, 150)
-then CastSpell(_Q)
-end
-end
-
-if TrundleMenu.Combo.W:Value() and CanUseSpell(,_W) == READY and GoS:ValidTarget(target, 900)
-then CastSpell(_W)
-end
-end
-
-If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, 1000) and EPred.HitChance == 1
-then CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
-
-If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700) then 
-  target=findTank() 
-  CastTargetedSpell(target,_R)
-
-end
-end
 
 end)
-
+---------------------for ultimate---------------------
 function findTank()
   local besttank=0 --resistance
   local tank=nil --champ 
@@ -192,6 +168,33 @@ If TrundleMenu.Misc.WQ:value() then
    LevelSpell(_E)
     end
     end
+
+---------------------------------------Combo IOW--------------------------------------
+function Combo()
+if IOW:Mode() == "Combo" then
+
+local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,250,1000,225,false,false)
+
+if TrundleMenu.Combo.Q:value() and CanUseSpell(,_Q) == READY and IsTargetable and GoS:ValidTarget(target, 150)
+then CastSpell(_Q)
+end
+end
+
+if TrundleMenu.Combo.W:Value() and CanUseSpell(,_W) == READY and GoS:ValidTarget(target, 900)
+then if TrundleMenu.Combo.W:Value() and CanUseSpell(,_W) == READY and GoS:ValidTarget(target, 900)
+then myHeroPos =GetOrigin(myHero) CastSkillShot(_W,myHeroPos.x,myHeroPos.y,myHeroPos.z)
+end
+end
+
+If TrundleMenu.Combo.E:Value() and CanUseSpell(,_E) == READY and GoS:ValidTarget(target, 1000) and EPred.HitChance == 1
+then CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
+
+If TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget(target, 700) then 
+  target=findTank() 
+  CastTargetedSpell(target,_R)
+
+end
+end
 
 PrintChat("Thanks to Noddy(Helped me a ShitLoad),Logge(Helped me much too)EzinBern, Cloud, Zypppy and Deftsu!")
 PrintChat("Not forgetting those people who created Library and the IOW")
