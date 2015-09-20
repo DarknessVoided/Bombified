@@ -83,7 +83,7 @@ end
 
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
 function AutoLevel()
-If TrundleMenu.Misc.QE:value() then
+if TrundleMenu.Misc.QE:value() then
 
 if level == 1 then
    LevelSpell(_Q)
