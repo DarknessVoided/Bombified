@@ -20,11 +20,7 @@ TrundleMenu.Combo:Boolean("R", "Use R", true)
 TrundleMenu.Misc:Boolean("ER", "Use E to interupt enemy channels", true)
 TrundleMenu.Misc:Boolean("QE", "Auto level Spell in RQWE", false)
 TrundleMenu.Misc:Boolean("WQ", "Auto Level Spell in RWQE", false)
------------------------------------------------------------Menu within Drawings----------------------------------------------
-TrundleMenu.Drawings:Boolean("Q", "Enable Drawings for Q", false)
-TrundleMenu.Drawings:Boolean("W", "Enable Drawings for W", false)
-TrundleMenu.Drawings:Boolean("E", "Enable Drawings for E", false)
-TrundleMenu.Drawings:Boolean("R", false)
+------------------------------------------------------
 ---------------------------------------------------All my Local stuff -------------------------------------------
 OnLoop(function(myHero)
 local myHero = GetMyHero();
