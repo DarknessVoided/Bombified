@@ -86,9 +86,9 @@ if TrundleMenu.Combo.R:Value() and CanUseSpell(myHero,_R) == READY and GoS:Valid
   tank=findTank() 
   CastTargetSpell(tank,_R)
 end
-  
 end	--ends iow check
-end	--ends combo
+end
+end	--ends combo -- Four ifs
 
 AutoLevel()
 end)
