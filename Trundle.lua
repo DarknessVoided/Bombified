@@ -65,8 +65,33 @@ end) -- Marks the End of OnProcessSpell
 ----------------------------------------------All my OnLoop code goes here----------------------------------------------
 
 OnLoop(function(myHero)
-	AutoLevel()
-	Combo()
+AutoLevel()
+---------------------------------------Combo IOW--------------------------------------
+if IOW:Mode() == "Combo" then
+
+
+if TrundleMenu.Combo.Q:Value() and CanUseSpell(myHero,_Q) == READY and GoS:ValidTarget(target, 150) then
+CastSpell(_Q)
+end
+
+if TrundleMenu.Combo.W:Value() and CanUseSpell(myHero,_W) == READY and GoS:ValidTarget(target, 900) then
+CastSpell(_W)
+end
+
+EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,250,1000,225,false,false)
+
+if TrundleMenu.Combo.E:Value() and CanUseSpell(myHero,_E) == READY and GoS:ValidTarget(target, 1000) then
+CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
+end
+
+if TrundleMenu.Combo.R:Value() and CanUseSpell(myHero,_R) == READY and GoS:ValidTarget(target, 700) then 
+  tank=findTank() 
+  CastTargetSpell(tank,_R)
+end
+  
+end	--ends iow check
+end	--ends combo
+
 end)
 	
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
@@ -155,32 +180,6 @@ if TrundleMenu.Misc.WQ:Value() then
  end
 end
 end
----------------------------------------Combo IOW--------------------------------------
-function Combo()
-if IOW:Mode() == "Combo" then
-
-
-if TrundleMenu.Combo.Q:Value() and CanUseSpell(myHero,_Q) == READY and GoS:ValidTarget(target, 150) then
-CastSpell(_Q)
-end
-
-if TrundleMenu.Combo.W:Value() and CanUseSpell(myHero,_W) == READY and GoS:ValidTarget(target, 900) then
-CastSpell(_W)
-end
-
-EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,250,1000,225,false,false)
-
-if TrundleMenu.Combo.E:Value() and CanUseSpell(myHero,_E) == READY and GoS:ValidTarget(target, 1000) then
-CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
-end
-
-if TrundleMenu.Combo.R:Value() and CanUseSpell(myHero,_R) == READY and GoS:ValidTarget(target, 700) then 
-  tank=findTank() 
-  CastTargetSpell(tank,_R)
-end
-  
-end	--ends iow check
-end	--ends combo
 
 -- Function to find the highest resistance hero
 function findTank()
