@@ -65,8 +65,6 @@ end) -- Marks the End of OnProcessSpell
 ----------------------------------------------All my OnLoop code goes here----------------------------------------------
 
 OnLoop(function(myHero)
-AutoLevel()
----------------------------------------Combo IOW--------------------------------------
 if IOW:Mode() == "Combo" then
 
 
@@ -92,6 +90,7 @@ end
 end	--ends iow check
 end	--ends combo
 
+AutoLevel()
 end)
 	
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
