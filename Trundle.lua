@@ -47,10 +47,10 @@ CHANELLING_SPELLS = {
 }
 
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
-local playerTeam = GetTeam(myHero) --Because of line 25 there isn't any need to do local playerTeam = GetTeam(GetMyHero())
+local playerTeam = GetTeam(GetMyHero()) --Because of line 25 there isn't any need to do local playerTeam = GetTeam(GetMyHero())
 
 OnProcessSpell(function(unit, spell)    --Starts of OnProcessSpell-Notice that the ) has not been closed.
-    if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or playerTeam then return end
+    if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == playerTeam then return end
  
     if unitChanellingSpells then
             for _, spellSlot in pairs(unitChanellingSpells) do  --AUTO E
