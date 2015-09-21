@@ -194,7 +194,7 @@ function findTank()
      end
    end
   end
- print("Best Tank: "..GetObjectName(tank).." with "..besttank.." Points")
+ print("Best Tank: "..GetObjectName(tank).." with "..besttank.." Points") --This can be removed. This is a Debug message
 return tank
 end
 
