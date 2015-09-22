@@ -23,8 +23,10 @@ OnLoop(function(myHero) self:Loop(myHero) end)
 
 AhriMenu = Menu("Ahri", "Ahri")  --This is the main menu of the scripts
 
-AhriMenu:SubMenu("LaneClear", "LaneClear") --Line 24-25 is SubMenu within Ahri
+AhriMenu:SubMenu("LaneClear", "LaneClear/JungleClear") --Line 24-25 is SubMenu within Ahri
 AhriMenu:SubMenu("Combo", "Combo")
+AhriMenu:SubMenu("LastHit", "LastHit using Skills")
+AhriMenu:SubMenu("KS", "KS Options")
 
 
 AhriMenu.LaneClear:Boolean("LQ", "Use Q Laneclear", true)
@@ -32,10 +34,12 @@ AhriMenu.LaneClear:Boolean("LW", "Use W Laneclear", true)
 AhriMenu.LaneClear:Boolean("JQ", "Use Q JungleClear", true)
 AhriMenu.LaneClear:Boolean("JW", "Use W JungleClear", true)
 AhriMenu.LaneClear:Boolean("JE", "Use E JungleClear", true)
-AhriMenu.LaneClear:Boolean("F", "Use Q to LastHit Minions", false)
-AhriMenu.LaneClear:Boolean("KsQ", "Use Q to KS", false)
-AhriMenu.LaneClear:Boolean("KsE", "Use E to KS", false)
-AhriMenu.LaneClear:Boolean("KsW", "Use W to KS", false)
+
+AhriMenu.LastHit:Boolean("F", "Use Q to LastHit Minions", false)
+
+AhriMenu.KS:Boolean("KsQ", "Use Q to KS", false)
+AhriMenu.KS:Boolean("KsE", "Use E to KS", false)
+AhriMenu.KS:Boolean("KsW", "Use W to KS", false)
 Config.addParam("HQ", "Use H-Q", SCRIPT_PARAM_ONOFF, true)
 Config.addParam("HE", "Use H-E", SCRIPT_PARAM_ONOFF, true)
 Config.addParam("HW", "Use H-W", SCRIPT_PARAM_ONOFF, true)
@@ -406,7 +410,7 @@ end
 end
             if Combo.HW then
                 local WPred = GetPredictionForPlayer(GetMyHeroPos(),unit,GetMoveSpeed(unit),1700,250,550,50,true,true)
-                          if CanUseSpell(myHero, _W) == READY and IsInDistance(unit, 550) and ValidTarget(unit, 550) and WPred.HitChance == 1 then
+                          if CanUseSpell(myHero, _W) == READY and IsInDistance(unit, 550) and GoS:ValidTarget(unit, 550) and WPred.HitChance == 1 then
 CastSkillShot(_W,WPred.PredPos.x,WPred.PredPos.y,WPred.PredPos.z)
 end
 end
@@ -415,7 +419,7 @@ end
 addInterrupterCallback(function(unit, spellType)
   if IsInDistance(unit, 890) and CanUseSpell(myHero,_E) == READY then
     local EPred = GetPredictionForPlayer(GetMyHeroPos(),unit,GetMoveSpeed(unit),1200,250,GetCastRange(myHero, _E),60,true,true)
- if Config.EI and EPred.HitChance == 1 and ValidTarget(unit, 790) then
+ if Config.EI and EPred.HitChance == 1 and GoS:ValidTarget(unit, 790) then
     CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)   
 end
 end
