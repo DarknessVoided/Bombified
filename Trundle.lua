@@ -86,12 +86,12 @@ if TrundleMenu.Combo.R:Value() and CanUseSpell(myHero,_R) == READY and GoS:Valid
   tank=findTank() 
   CastTargetSpell(tank,_R)
 end
-end	--ends iow check
+end
 end
 end	--ends combo -- Four ifs
 
 AutoLevel()
-end)
+end) -- ends function
 	
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
 function AutoLevel()
