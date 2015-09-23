@@ -65,6 +65,7 @@ end) -- Marks the End of OnProcessSpell
 ----------------------------------------------All my OnLoop code goes here----------------------------------------------
 
 OnLoop(function(myHero)
+AutoLevel()
 if IOW:Mode() == "Combo" then
 
 
@@ -88,10 +89,7 @@ if TrundleMenu.Combo.R:Value() and CanUseSpell(myHero,_R) == READY and GoS:Valid
 end
 end
 end
-end	--ends combo -- Four ifs
-
-AutoLevel()
-end) -- ends function
+end)	--ends combo -- Four ifs
 	
 ----------------------------------------------All my Auto Level Code goes here----------------------------------------------
 function AutoLevel()
