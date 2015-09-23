@@ -1,4 +1,4 @@
-if GetObjectName(myHero) ~= "Trundle"  then return end
+if GetObjectName(myHero) ~= "Trundle" then return end
 
 require("IOW")
 require("Inspired")
