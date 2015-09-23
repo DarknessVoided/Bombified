@@ -21,9 +21,9 @@ TrundleMenu.Misc:Boolean("ER", "Use E to interupt enemy channels", true)
 TrundleMenu.Misc:Boolean("QE", "Auto level Spell in RQWE", false)
 TrundleMenu.Misc:Boolean("WQ", "Auto Level Spell in RWQE", false)
 
----------------------------------------------------All my Local stuff -------------------------------------------
-local myHero = GetMyHero()
-local target = GetCurrentTarget()
+---------------------------------------------------All my stuff -------------------------------------------
+myHero = GetMyHero()
+target = GetCurrentTarget()
 ---------------------------------------------All those interrupter code goes under here------------------------------------
 
 CHANELLING_SPELLS = {
