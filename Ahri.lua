@@ -62,15 +62,21 @@ local QPred = GetPredictionForPlayer(GetMyHeroPos(),unit,GetMoveSpeed(unit),1100
 local WPred = GetPredictionForPlayer(GetMyHeroPos(),unit,GetMoveSpeed(unit),1700,250,550,50,true,true)
 local EPred = GetPredictionForPlayer(GetMyHeroPos(),unit,GetMoveSpeed(unit),1200,250,GetCastRange(myHero,_E),60,true,true)
 
-	if CanUseSpell(myHero, _Q) == READY and AhriMenu.Combo.Q:Value() and AhriMenu.Combo.Co and QPred.HitChance == 1 and GotBuff(unit, "AhriSeduce") == 1 and GoS:ValidTarget(target, 790)
+	if CanUseSpell(myHero, _Q) == READY and AhriMenu.Combo.Q:Value() and AhriMenu.Combo.Co and QPred.HitChance == 1 and GotBuff(target, "AhriSeduce") == 1 and GoS:ValidTarget(target, 790)
 		then CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
 	end
 
-	if CanUseSpell(myHero, _W) == READY and AhriMenu.Combo.W:Value() and AhriMenu.Combo.co and WPred.HitChance == 1 and IsInDistance(target, 550) and GoS:ValidTarget(target, 550)
-		then CastSkillShot(_W,WPred.PredPos.x,WPred.PredPos.y,WPred.PredPos.z)
+	if CanUseSpell(myHero, _W) == READY and AhriMenu.Combo.W:Value() and AhriMenu.Combo.Co and WPred.HitChance == 1 and GoS:IsInDistance(target, 550) and GoS:ValidTarget(target, 550)
+		then CastSpell(_W)
 	end
 
-	if CanUseSpell(myHero)
+	if CanUseSpell(myHero, _E) == READY and AhriMenu.Combo.E:Value() and AhriMenu.Combo.Co and EPred.HitChance == 1 and GoS:IsInDistance(target, 870) and GoS:ValidTarget(target, 870)
+		then CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
+	end
+
+	if CanUseSpell(myHero, _R) == READY and AhriMenu.Combo.R:Value() and AhriMenu.Combo.Co and (GetCurrentHP(unit)/GetMaxHP(unit))<0.38 and GoS:ValidTarget(target ,450) and GoS:ValidTarget(target, 450)
+		then CastSkillShot(_R, GetMousePos().x, GetMousePos().y, GetMousePos().z)
+	end
 
 
 if AhriMenu.Misc.Level1:value()
