@@ -10,7 +10,7 @@ PrintChat(string.format("<font color='#FFFFFF'> Combo 2 = Fast Combo QWER R no l
 PrintChat(string.format("<font color='#FFFFFF'> Combo 3 = Fast Combo [Recommended] QWER R with HP logic.</font>"))
 PrintChat(string.format("<font color='#FFFFFF'> IF YOU HAVE <font color='#FF0000'>RED</font> CIRCLES [DRAWINGS] THEN RELOAD ASAP</font>"))
 -- End of print chat
-unit = GetCurrentTarget()
+target = GetCurrentTarget()
 mymouse = GetMousePos() 
 myIAC = IAC()
 supportedHero = {["Ahri"] = true}
@@ -27,7 +27,8 @@ AhriMenu:SubMenu("LaneClear", "LaneClear/JungleClear") --Line 24-25 is SubMenu w
 AhriMenu:SubMenu("Combo", "Combo")
 AhriMenu:SubMenu("LastHit", "LastHit using Skills")
 AhriMenu:SubMenu("KS", "KS Options")
-
+AhriMenu:SubMenu("Misc", "Misc")
+AhriMenu:SubMenu("Combo", "Combo")
 
 AhriMenu.LaneClear:Boolean("LQ", "Use Q Laneclear", true)
 AhriMenu.LaneClear:Boolean("LW", "Use W Laneclear", true)
@@ -37,17 +38,16 @@ AhriMenu.LaneClear:Boolean("JE", "Use E JungleClear", true)
 
 AhriMenu.LastHit:Boolean("F", "Use Q to LastHit Minions", false)
 
-AhriMenu.KS:Boolean("KsQ", "Use Q to KS", false)
-AhriMenu.KS:Boolean("KsE", "Use E to KS", false)
-AhriMenu.KS:Boolean("KsW", "Use W to KS", false)
-Config.addParam("HQ", "Use H-Q", SCRIPT_PARAM_ONOFF, true)
-Config.addParam("HE", "Use H-E", SCRIPT_PARAM_ONOFF, true)
-Config.addParam("HW", "Use H-W", SCRIPT_PARAM_ONOFF, true)
-Config.addParam("EI", "Interrupt With E", SCRIPT_PARAM_ONOFF, true)
-Config.addParam("Item", "Use Zhonya", SCRIPT_PARAM_ONOFF, true)
+AhriMenu.Misc:Boolean("KsQ", "Use Q to KS", true)
+AhriMenu.Misc:Boolean("KsE", "Use E to KS", true)
+AhriMenu.Misc:Boolean("KsW", "Use W to KS", true)
+AhriMenu.Misc:Boolean("IS", "Interrupter", true)
+AhriMenu.Misc:Boolean("Zhongya", "Use Zhongya", false)
 
+AhriMenu.Combo:Boolean("HQ", "Use H-Q", true)
+AhriMenu.Combo:Boolean("HE", "Use H-E", true)
+AhriMenu.Combo:Boolean("HW", "Use H-W", true)
 
-ComboMenu = Menu("Combo", "Combo")
 Combo.addParam("Co2", "Combo 2", SCRIPT_PARAM_ONOFF, false)
 Combo.addParam("Co3", "Combo 3", SCRIPT_PARAM_ONOFF, false)
 Combo.addParam("Co", "Combo 1", SCRIPT_PARAM_ONOFF, false)
@@ -68,7 +68,7 @@ end
 -- End of Ahri Intialize
 function Ahri:Loop(myHero)
   -- Since we declared Ahri we can use self: whish refers to Ahri!
-if _G.IWalkConfig.Combo and Combo.Co and ValidTarget(unit, 1500)  then
+if _G.IWalkConfig.Combo and Combo.Co and GoS:ValidTarget(target, 1500)  then
 -- This is used to execute the combo if the player is holding the key linked to "Combo"
 self:Combo()
 end
@@ -76,7 +76,7 @@ if _G.IWalkConfig.Combo and Combo.Co2 and ValidTarget(unit, 1500) then
 -- This is used to execute the combo if the player is holding the key linked to "Combo"
 self:Combo2()
 end
-if _G.IWalkConfig.Combo and Combo.Co3 and ValidTarget(unit, 1500)  then
+if _G.IWalkConfig.Combo and Combo.Co3 and GoS:ValidTarget(target, 1500)  then
 -- This is used to execute the combo if the player is holding the key linked to "Combo"
 self:Combo3()
 end
@@ -92,10 +92,10 @@ end
 if Config.KsQ or Config.KsE or Config.KsW then
   self:KillSteal()
 end
-if Config.Item and ValidTarget(unit, 1000) then
+if Config.Item and GoS:ValidTarget(target, 1000) then
   self:Items()
 end
-if Config.HQ or Config.HE or Config.HW and ValidTarget(unit, 1000) then
+if Config.HQ or Config.HE or Config.HW and GoS:ValidTarget(target, 1000) then
   self:Harass()
 end
 if LevelConfig.L1 then
