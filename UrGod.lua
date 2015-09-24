@@ -1,3 +1,5 @@
+if GetObjectName(myHero) ~= "Urgot" then return end
+
 require("Inspired")
 
 MainMenu = Menu("Furgot", "Urgot")
