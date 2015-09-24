@@ -39,7 +39,7 @@ else
 end
 
 --Use Q
-local QPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1800,250,1050+extraRange,80,collision,true)
+local QPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1800,250,1000+extraRange,80,collision,true)
 
 if CanUseSpell(myHero,_Q) == READY and GoS:ValidTarget(target,1000+extraRange) and Urgot.Combo.Q:Value() and Urgot.Combo.Combo1:Value() and if QPred.HitChance == 1 then
 CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,Qpred.PredPos.z)
