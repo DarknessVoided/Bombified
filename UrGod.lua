@@ -89,4 +89,5 @@ then CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
 end
 end) --Ends OnLoop@Line19
 PrintChat("Thanks Noddy for Q logic ._. ")
+PrintChat("FurGot | Version 3.141592654 Loaded")
 PrintChat("Standard Credits : Deftsu, Inspired")
