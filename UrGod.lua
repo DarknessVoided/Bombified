@@ -12,8 +12,8 @@ Urgot.Combo:Boolean("W", "Use W", true)
 Urgot.Combo:Boolean("E", "Use E", true)
 Urgot.Combo:Key("Combo1", "Combo", string.byte(" "))
 
-Urgot.Mana:Slider("ManaQ", "Q stop at %", 30, 0, 100, 1)
-Urgot.Mana:Slider("ManaW", "W stop at %", 30, 0, 100, 1)
+Urgot.Mana:Slider("ManaQ", "Stop Casting Q at % mana", 30, 0, 100, 1)
+Urgot.Mana:Slider("ManaW", "Stop casting W at % mana", 30, 0, 100, 1)
 Urgot.Mana:Slider("ManaE", "Stop casting E at % mana", 30, 0, 100, 1)
 
 
