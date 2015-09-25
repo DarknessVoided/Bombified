@@ -36,8 +36,8 @@ local botrk = GetItemSlot(myHero,3153)
 
 --Items Usage
 if Urgot.Combo.Combo1:value()
-	if Cutless >= 1 and GoS:ValidTarget(target, 550) and Urgot.Items.Cutless:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Urgot.Items.CHP:Value()
-		then CastTargetSpell(target, GetItemSlot(myHero,3144))
+	if Cutless >= 1 and GoS:ValidTarget(target, 550) and Urgot.Items.Cutless:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Urgot.Items.CHP:Value() then
+		CastTargetSpell(target, GetItemSlot(myHero,3144))
 
 	elseif botrk >= 1 and GoS:ValidTarget(target,550) and Urgot.Items.botrk:Value() and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 <= Urgot.Items.botrkHP:Value()
 		then CastTargetSpell(target, GetItemSlot(myHero,3153))
