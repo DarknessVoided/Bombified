@@ -30,7 +30,7 @@ local Murumana = GetItemSlot(myhero,3042)
 --Items Usage
 
 --Checks for Q Range
-if GotBuff(target, ) == 1 then
+if GotBuff(target, "UrgotCorrosiveDebuff") == 1 then
 	extraRange = 200
 	collision = false
 else
