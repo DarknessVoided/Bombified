@@ -56,7 +56,7 @@ end
 --Use E
 local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),0,875,1100,250,false,true)
 
-if CanUseSpell(myHero,_E) == READY and 100*GetCurrentMana(myHero)/GetMaxMana(myHero) >= Urgot.Mana.ManaE:Value() and Urgot.Combo.Combo1:Value() and Urgot.Combo.E:Value() and GoS:ValidTarget(target, idklatermecheck) and if EPred.HitChance == 1
+if CanUseSpell(myHero,_E) == READY and 100*GetCurrentMana(myHero)/GetMaxMana(myHero) >= Urgot.Mana.ManaE:Value() and Urgot.Combo.Combo1:Value() and Urgot.Combo.E:Value() and GoS:ValidTarget(target, 900) and if EPred.HitChance == 1
 then CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
 	end
 end
