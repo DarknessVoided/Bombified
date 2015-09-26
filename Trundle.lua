@@ -168,6 +168,7 @@ if TrundleMenu.Combo.R:Value() and CanUseSpell(,_R) == READY and GoS:ValidTarget
 unit=findTank() 
 CastTargetedSpell(unit,_R)
 end
+end
 
 function findTank()
   local besttank=0 --resistance
