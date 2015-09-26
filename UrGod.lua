@@ -2,7 +2,7 @@ if GetObjectName(myHero) ~= "Urgot" then return end
 
 require("Inspired")
 
-Urgot = Menu("Furgot", "Urgot")
+Urgot = Menu("Furgot", "Furgot")
 
 Urgot:SubMenu("Combo", "Combo")
 Urgot:SubMenu("Mana", "Mana Manager")
