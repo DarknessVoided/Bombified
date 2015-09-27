@@ -30,8 +30,8 @@ OnLoop (function (myHero)
 	local myHeroPos = GetOrigin(myHero)
 
 --Items / Stole from Noddy ezreal kek
-	local Muramana = GetItemSlot(myhero,3042)
-	local Cutless = GetItemSlot(myhero,3144)
+	local Muramana = GetItemSlot(myHero,3042)
+	local Cutless = GetItemSlot(myHero,3144)
 	local botrk = GetItemSlot(myHero,3153)
 
 --Items Usage
