@@ -58,12 +58,12 @@ if GotBuff(myHero,"Muramana") == 1 and not GoS:ValidTarget(target, 2500) then
 end
 
 --Checks for Q Range
-if GotBuff(target, "UrgotCorrosiveDebuff") == 1 then
-	extraRange = 200
-	collision = false
+if GotBuff(target, "UrgotCorrosiveDebuff") > 0 then
+	local extraRange = 200
+	local collision = false
 else
-	extraRange = 0
-	collision = true
+	local extraRange = 0
+	local collision = true
 end
 
 --Use Q
