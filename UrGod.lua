@@ -6,7 +6,7 @@ Urgot = Menu("Urgot", "Urgot")
 
 Urgot:SubMenu("Combo", "Combo")
 Urgot:SubMenu("Mana", "Mana Manager")
-Urgot.SubMenu("Items", "Items")
+Urgot:SubMenu("Items", "Items")
 
 Urgot.Items:Boolean("Cutless", "Bilgewater Cutlass", true)
 Urgot.Items:Boolean("botrk", "Blade of the Ruined King", true)
