@@ -88,6 +88,7 @@ if GotBuff(target, "urgotcorrosivedebuff") >= 1 then
 	local extraRange = 200
 	local collision = false
 else
+if GotBuff(target, "urgotcorrosivedebuff") == 0 then
 	local extraRange = 0
 	local collision = true
 end
