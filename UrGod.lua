@@ -7,6 +7,7 @@ Urgot = Menu("Urgot", "Urgot")
 Urgot:SubMenu("Combo", "Combo")
 Urgot:SubMenu("Mana", "Mana Manager")
 Urgot:SubMenu("Items", "Items")
+Urgot:SubMenu("Misc", "Misc")
 
 Urgot.Items:Boolean("Cutless", "Bilgewater Cutlass", true)
 Urgot.Items:Boolean("botrk", "Blade of the Ruined King", true)
@@ -23,7 +24,32 @@ Urgot.Mana:Slider("ManaQ", "Stop Casting Q at % mana", 30, 0, 100, 1)
 Urgot.Mana:Slider("ManaW", "Stop casting W at % mana", 30, 0, 100, 1)
 Urgot.Mana:Slider("ManaE", "Stop casting E at % mana", 30, 0, 100, 1)
 
+Urgot.Misc:Boolean("Interrupt", "Interrupt Dangerous spell (R) ", true)
 
+CHANELLING_SPELLS = {
+    ["Katarina"]                    = {_R},
+    ["FiddleSticks"]                = {_R},
+    ["VelKoz"]                      = {_R},
+    ["Malzahar"]                    = {_R},
+    ["Warwick"]                     = {_R},
+}
+
+local callback = nil
+ 
+OnProcessSpell(function(unit, spell)    
+    if not callback or not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == GetTeam(GetMyHero()) then return end
+    local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
+ 
+        if unitChanellingSpells then
+            for _, spellSlot in pairs(unitChanellingSpells) do
+                if spell.name == GetCastName(unit, spellSlot) then callback(unit, CHANELLING_SPELLS) end
+            end
+	end
+end)
+ 
+function addInterrupterCallback( callback0 )
+        callback = callback0
+end
 
 OnLoop (function (myHero)
 	local target = GetCurrentTarget()
