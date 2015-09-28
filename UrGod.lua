@@ -112,6 +112,11 @@ local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target)
 		CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
 	end
 
+addInterrupterCallback(function(target, spellType)
+  if CanUseSpell(myHero, _R) == READY and GoS:ValidTarget(target, 550) and Urgot.Misc.Interrupt:Value() and spellType == CHANELLING_SPELLS then
+  CastSpell(_R)
+  end
+end)
 end) --Ends OnLoop@Line19
 PrintChat("Thanks Noddy for Q logic ._. ")
 PrintChat("FurGot | Version 3.141592654 Loaded")
