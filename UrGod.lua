@@ -85,12 +85,12 @@ end
 
 --Checks for Q Range
 GotBuff(target, "urgotcorrosivedebuff") >= 1 then
-	local extraRange = 200
-	local collision = false
+	extraRange = 200
+	collision = false
 else
 GotBuff(target, "urgotcorrosivedebuff") == 0 then
-	local extraRange = 0
-	local collision = true
+	extraRange = 0
+	collision = true
 end
 
 --Use Q
