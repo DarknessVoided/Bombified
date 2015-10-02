@@ -1,4 +1,4 @@
-
+if GetObjectName(GetMyHero()) ~= "KogMaw" then return end
 
 require('Inspired')
 
