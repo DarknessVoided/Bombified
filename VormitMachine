@@ -31,7 +31,7 @@ OnLoop(function(myHero)
 	local QPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
 	local EPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
 	local RPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),math.huge,1200,1800,150,false,false)
-        local Mana = (GetCurrentMana(myHero)/GetTotalMana(myHero))*100 --This will get the mana percentage u current have
+        local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100 --This will get the mana percentage u current have
 	
                  	if CanUseSpell(myHero, _Q) == READY and IsObjectAlive(target) and GoS:ValidTarget(target, 1200) and QPred.HitChance == 1 and KogMawMenu.Combo.Q:Value() and KogMawMenu.Combo.Combo1:Value() then
                  	CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
