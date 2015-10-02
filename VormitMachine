@@ -4,7 +4,7 @@ local info = "Kogmaw_One_Key Reworked"
 local upv = "Upvote if you like it!"
 local sig = "Made by Snowbell, updated by Musti and DarknessVoided"
 local ver = "Version 3.0"
-local loaded = "KogMaw Loaded"
+local loaded = "VormitMachine Loaded"
 textTable = {info,upv,sig,ver,loaded} 
 PrintChat(textTable[1])
 PrintChat(textTable[2])
@@ -31,6 +31,7 @@ OnLoop(function(myHero)
 	local QPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
 	local EPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
 	local RPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),math.huge,1200,1800,150,false,false)
+        local Mana = (GetCurrentMana(myHero)/GetTotalMana(myHero))*100 --This will get the mana percentage u current have
 	
                  	if CanUseSpell(myHero, _Q) == READY and IsObjectAlive(target) and GoS:ValidTarget(target, 1200) and QPred.HitChance == 1 and KogMawMenu.Combo.Q:Value() and KogMawMenu.Combo.Combo1:Value() then
                  	CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
