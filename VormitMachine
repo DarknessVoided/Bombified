@@ -1,4 +1,6 @@
-if GetObjectName(myHero) ~= "KogMaw"  then else return end
+
+
+require('Inspired')
 
 local info = "Kogmaw_One_Key Reworked"
 local upv = "Upvote if you like it!"
@@ -20,33 +22,34 @@ KogMawMenu:SubMenu("Misc", "Misc")
 
 KogMawMenu.Combo:Boolean("Q", "Use Q", true)
 KogMawMenu.Combo:Boolean("W", "Use W", true)
+KogMawMenu.Combo:Boolean("E", "Use E", true)
 KogMawMenu.Combo:Key("Combo1", "Combo", string.byte(" "))
 
 KogMawMenu.Misc:Boolean("lvl", "AutoLevel RWQE")
 
 OnLoop(function(myHero)
-	local myHero = GetMyHero()
-	local target = GetCurrentTarget()
-	local myHeroPos = GetOrigin(myHero)
-	local QPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
-	local EPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
-	local RPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),math.huge,1200,1800,150,false,false)
-        local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100 --This will get the mana percentage u current have
+local myHero = GetMyHero()
+local target = GetCurrentTarget()
+local myHeroPos = GetOrigin(myHero)
+local QPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
+local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
+local RPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,1200,1800,150,false,false)
+local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100 --This will get the mana percentage u current have
 	
-                 	if CanUseSpell(myHero, _Q) == READY and IsObjectAlive(target) and GoS:ValidTarget(target, 1200) and QPred.HitChance == 1 and KogMawMenu.Combo.Q:Value() and KogMawMenu.Combo.Combo1:Value() then
-                 	CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
-end
+    if CanUseSpell(myHero,_Q) == READY and IsObjectAlive(target) and GoS:ValidTarget(target, 1200) and QPred.HitChance == 1 and KogMawMenu.Combo.Q:Value() and KogMawMenu.Combo.Combo1:Value() then
+        CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
+	end
 
-			if KogMawMenu.Combo.Combo1:Value() and if CanUseSpell(myHero, _W) == READY KogMawMenu.Combo.W:Value() and  GoS:ValidTarget(target, 600) and GoS:IsInDistance(target, 600) then
-			CastSpell(_W)
-end
+	if CanUseSpell(myHero,_W) == READY and KogMawMenu.Combo.Combo1:Value() and KogMawMenu.Combo.W:Value() and GoS:ValidTarget(target, 600) then
+		CastSpell(_W)
+	end
 
-		if CanUseSpell(myHero, _E) == READY and KogMawMenu.Combo.E:Value() and KogMawMenu.Combo.Combo1:Value() and GoS:ValidTarget(target, 1360) and EPred.HitChance == 1 then
-                 	CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
-end
+	if CanUseSpell(myHero,_E) == READY and KogMawMenu.Combo.E:Value() and KogMawMenu.Combo.Combo1:Value() and GoS:ValidTarget(target, 1360) and EPred.HitChance == 1 then
+		CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
+	end
 
-	        	if CanUseSpell(myHero, _R) == READY and RPred.HitChance == 1 and KogMawMenu.Combo.R:Value() and KogMawMenu.Combo.Combo1:Value() and GoS:ValidTarget(target, 1800) then
-                 	CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
-end
+	if CanUseSpell(myHero,_R) == READY and RPred.HitChance == 1 and KogMawMenu.Combo.R:Value() and KogMawMenu.Combo.Combo1:Value() and GoS:ValidTarget(target, 1800) then
+        CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
+	end
 
 end) --Ends the OnLoop
