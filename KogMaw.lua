@@ -78,9 +78,3 @@ function KS()
 		CastTargetSpell(enemy, _R)
 	end
 end -- Ends the FunctionKS
-
-function Level()
-if KogMawMenu.Misc.lvl:value()
-local leveltable = {_Q, _W, _E, _W, _W, _R, _W, _W, _Q, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E}
-LevelSpell(leveltable[GetLevel(myHero)])
-end --Ends Function Level
