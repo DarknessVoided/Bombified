@@ -77,4 +77,5 @@ function KS()
 	if CanUseSpell(myHero,_R) == READY and KogMawMenu.Misc.KSR:Value() and GoS:ValidTarget(enemy, 1800) and GetCurrentHP(enemy) < GoS:CalcDamage(myHero, enemy, 0, (40*GetCastLevel(myHero,_R) + 40 + 0.5*(GetBaseDamage(myHero) + GetBonusDmg(myHero) + 0.3*(GetBonusAP(myHero)))),0) then
 		CastTargetSpell(enemy, _R)
 	end
+end
 end -- Ends the FunctionKS
