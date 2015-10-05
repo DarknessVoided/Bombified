@@ -64,9 +64,9 @@ end) --Ends the OnLoop
 function KS()
 	local target = GetCurrentTarget()
 	for i,enemy in pairs(GoS:GetEnemyHeroes()) do
-		local QPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(enemy),1650,250,1200,70,true,true)
-		local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(enemy),1400,250,1360,120,false,true)
-		local RPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(enemy),math.huge,1200,1800,150,false,false)
+		local QPred = GetPredictionForPlayer(GoS:myHeroPos(),enemy,GetMoveSpeed(enemy),1650,250,1200,70,true,true)
+		local EPred = GetPredictionForPlayer(GoS:myHeroPos(),enemy,GetMoveSpeed(enemy),1400,250,1360,120,false,true)
+		local RPred = GetPredictionForPlayer(GoS:myHeroPos(),enemy,GetMoveSpeed(enemy),math.huge,1200,1800,150,false,false)
 		
 	if CanUseSpell(myHero,_Q) == READY and KogMawMenu.Misc.KSQ:Value() and GoS:ValidTarget(enemy, 1200) and GetCurrentHP(enemy) < GoS:CalcDamage(myHero, enemy, 0, (50*GetCastLevel(myHero,_Q) + 30+ 0.5*(GetBonusAP(myHero)))) then
 		CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
