@@ -60,8 +60,6 @@ local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100 --This will get the
         CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
 	end
 KS()
-Level()
-
 end) --Ends the OnLoop
 function KS()
 	local target = GetCurrentTarget()
