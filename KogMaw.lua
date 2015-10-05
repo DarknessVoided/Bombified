@@ -23,6 +23,7 @@ KogMawMenu:SubMenu("Misc", "Misc")
 KogMawMenu.Combo:Boolean("Q", "Use Q", true)
 KogMawMenu.Combo:Boolean("W", "Use W", true)
 KogMawMenu.Combo:Boolean("E", "Use E", true)
+KogMawMenu.Combo:Boolean("R", "Use R", true)
 KogMawMenu.Combo:Key("Combo1", "Combo", string.byte(" "))
 
 KogMawMenu.Mana:Slider("Q", "Stop Q when % MP", 40, 1, 100, 1)
