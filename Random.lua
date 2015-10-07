@@ -51,34 +51,31 @@ end
 end
  
 OnCreateObj(function(Object)
+
+	if GetObjectBaseName(Object) == 'Nidalee_Base_Q_Tar.Troy' then
+		objhunt1 = true
+	end
+	if GetObjectBaseName(Object) == 'Nidalee_Base_Q_Buf.Troy' then
+		objhunt2 = true
+	end
  
-if GetObjectBaseName(Object) == 'Nidalee_Base_Q_Tar.Troy' then
-objhunt1 = true
-end
- 
-if GetObjectBaseName(Object) == 'Nidalee_Base_Q_Buf.Troy' then
-objhunt2 = true
-end
- 
-if GetObjectBaseName(Object) == 'Nidalee_Base_P_Buf.Troy' then
-objhunt3 = true
-end
+	if GetObjectBaseName(Object) == 'Nidalee_Base_P_Buf.Troy' then
+		objhunt3 = true
+	end
 end) --End of function
  
 OnDeleteObj(function(Object)
- 
-if GetObjectBaseName(Object) == 'Nidalee_Base_Q_Tar.Troy' then
-objhunt1 = false
-end
- 
-if GetObjectBaseName(Object) == 'Nidalee_Base_Q_Buf.Troy' then
-objhunt2 = false
-end
- 
-if GetObjectBaseName(Object) == 'Nidalee_Base_P_Buf.Troy' then
-objhunt3 = false
 
-end
+	if GetObjectBaseName(Object) == 'Nidalee_Base_Q_Tar.Troy' then
+		objhunt1 = false
+	end
+
+	if GetObjectBaseName(Object) == 'Nidalee_Base_Q_Buf.Troy' then
+		objhunt2 = false
+	end
+	if GetObjectBaseName(Object) == 'Nidalee_Base_P_Buf.Troy' then
+		objhunt3 = false
+	end
 end) --End of function
  
 function hunted(target)
@@ -86,13 +83,14 @@ return
 GotBuff(target, "nidaleepassivehunted")
 end --End of function
 
+
 function extraPounce()
-	if huntedcheck then
-		extraRange=0
-	else
-		extraRange=375
-	end
+local extraRange = (huntedcheck and 375) or 0
+if GoS:ValidTarget(target, 400+extraRange) then
+    CastTargetSpell(target, _W)
 end
+end
+
 
 function huntedcheck()
 if hunted(target) and human and (objhunt1 or objhunt2 or objhunt3) then
@@ -104,7 +102,7 @@ end
 end
  
 function CastSpear(unit)
-	QPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
+	local QPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
 		if CanUseSpell(_Q) == READY and nidaslime.Combo.Q:Value() and nidaslime.Combo.Combo:Value() and GoS:ValidTarget(target, 1500) and human then
 			CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
 		end
@@ -118,4 +116,11 @@ function TakeDown(unit)
 end
 
 function Pounce(unit)
-	WPRED = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,false,true)
+	local extraRange = (huntedcheck and 375) or 0
+		if GoS:ValidTarget(target, 400+extraRange) then
+    CastTargetSpell(target, _W)
+end
+end
+
+function Swipe(unit)
+	local EPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target), math.huge, 50, 300, 300, false, true)
