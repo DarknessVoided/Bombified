@@ -86,7 +86,7 @@ end --End of function
 
 function extraPounce()
 local extraRange = (huntedcheck and 375) or 0
-if GoS:ValidTarget(target, 375+extraRange) then
+if GoS:ValidTarget(target, 400+extraRange) then
     CastTargetSpell(target, _W)
 end
 end
@@ -101,30 +101,30 @@ return
 end
 end
  
-function CastSpear()
+function CastSpear(target)
 	local QPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
 		if CanUseSpell(_Q) == READY and nidaslime.Combo.Q:Value() and nidaslime.Combo.Combo:Value() and GoS:ValidTarget(target, 1500) and human then
 			CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
 		end
 end
 
-function TakeDown()
+function TakeDown(target)
 	if CanUseSpell(_Q) and cougar and nidaslime.Combo.Q:Value() and nidaslime.Combo.Combo:Value() and GoS:ValidTarget(target, 375)
 		if CanUseSpell(_Q) == READY and Cougar and nidaslime.Combo.Combo:Value() and GoS:ValidTarget(target, 375) then
 			CastSpell(_Q)
 		end
 end
 
-function Pounce()
+function Pounce(target)
 	local extraRange = (huntedcheck and 375) or 0
 		if GoS:ValidTarget(target, 400+extraRange) then
     CastTargetSpell(target, _W)
 end
 end
 
-function Swipe()
+function Swipe(target)
 	local EPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target), math.huge, 50, 300, 300, false, true)
-       if CanUseSpell(_E) and cougar and nidaslime.Combo.E:Value() and nidaslime.Combo.Combo:Value() and GoS:ValidTarget(target, 300) then
-       CastSkillShot(_E, EPred.PredPos.x, EPred.PredPos.y, EPred.PredPos.z)
-       end
+	if cougar and CanUseSpell(_E) == READY and nidaslime.Combo.Combo:Value() and GoS:ValidTarget(target, 300) and if IsFacing(target, 300)
+		then CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
+	end
 end
