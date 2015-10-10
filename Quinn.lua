@@ -62,6 +62,4 @@ function Combo()
 			if EPred.Hitchance == 1 and hunted == 0 and human then
 			CastSkillShot(_E, EPred.PredPos.x,EPred.PredPos.y, EPred.PredPos.z)
 			end
-			
-
-		for i,GetCurrent
+end
