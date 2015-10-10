@@ -63,3 +63,15 @@ function Combo()
 			CastSkillShot(_E, EPred.PredPos.x,EPred.PredPos.y, EPred.PredPos.z)
 			end
 end
+
+addInterrupterCallback(function(target, spellType, spell)
+  --just remove spellType == GAPCLOSER_SPELLS if you want support all spell type
+  if IsInDistance(target, GetCastRange(myHero,_E)) and CanUseSpell(myHero,_E) == READY then
+    if tamo.key:value() and spellType == GAPCLOSER_SPELLS then
+      CastTargetSpell(target, _E)
+    end
+    if TIMO.KEY:value() and spellType == CHANELLING_SPELLS then
+      CastTargetSpell(target, _E)
+    end
+  end
+end)
