@@ -3,6 +3,7 @@
 if GetObjectName(myHero) ~= "Quinn" then return end
 
 require('DLib')
+require('Interrupter')
 
 local Main = menu.addItem(SubMenu.new("Quinn - The Cat Hunter"))
 
@@ -21,18 +22,46 @@ local Misc = Main.addItem(SubMenu.new("Misc"))
 --My local Stuff
 local ValidTarget = d.ValidTarget
 local IsInDistance = d.IsInDistance
+local Mana = (GetCurrentMana(myHero)/
 
 OnLoop(function(myHero)
 Combo()
 Interrupt()
 AutoLvL()
+check()
 end)
 
+function check()
+GetCastName(myHero,_Q) == "TakeDown" or
+GetCastName(myHero,_W) == "Pounce" or
+GetCastName(myHero,_E) == "Swipe" then
+Bird = true
+Human = false
+elseif
+GetCastName(myHero,_Q) == "JavelinToss" or
+GetCastName(myshero,_W) == "Bushwhack" or
+GetCastName(myHero,_E) == "PrimalSurge" then
+Bird = false
+Human = true
+end
+
+function hunted(target)
+return
+GotBuff(target, "quinnpassive")
+end --End of function
+	
 function Combo()
-	if 	if KeyIsDown(32) and ValidTarget(target) then
+	if KeyIsDown(32) and ValidTarget(target) then
 
-			----Parameters: CastStartPosVec,EnemyChampionPtr,EnemyMoveSpeed,YourSkillshotSpeed,SkillShotDelay,SkillShotRange,SkillShotWidth,MinionCollisionCheck,AddHitBox;
-
-			local QPred = GetPredictionForPlayer(origin,myTarget,GetMoveSpeed(myTarget),1700,250,castrange,1025,true,true)
-			if QPred.Hitchance == 1 and Combo.UseQ:Value() and ValidTarget(target, 1025) then
+			local QPred = GetPredictionForPlayer(GetOrigin(target),target,GetMoveSpeed(target),2000,250,GetCastRange(myHero,_Q),60,true,true)
+			if QPred.Hitchance == 1 and UseQ.getValue() and human then
 					CastSkillShot(_Q, QPred.PredPos.x,QPred.PredPos.y, QPred.PredPos.z)
+					end
+					
+			local EPred = GetPredictionForPlayer(GetOrigin(target),target,GetMoveSpeed(target),2000,250,GetCastRange(myHero,_E),60,false,false)
+			if EPred.Hitchance == 1 and hunted == 0 and human then
+			CastSkillShot(_E, EPred.PredPos.x,EPred.PredPos.y, EPred.PredPos.z)
+			end
+			
+
+		for i,GetCurrent
