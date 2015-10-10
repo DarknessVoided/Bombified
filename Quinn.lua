@@ -31,6 +31,8 @@ end)
 function Combo()
 	if 	if KeyIsDown(32) and ValidTarget(target) then
 
-			local QPred = GetPredictionForPlayer(GetOrigin(target),target,GetMoveSpeed(target),2000,250,GetCastRange(myHero,_Q),60,true,true)
-			if QPred.Hitchance == 1 and Combo.UseQ:Value() then
+			----Parameters: CastStartPosVec,EnemyChampionPtr,EnemyMoveSpeed,YourSkillshotSpeed,SkillShotDelay,SkillShotRange,SkillShotWidth,MinionCollisionCheck,AddHitBox;
+
+			local QPred = GetPredictionForPlayer(origin,myTarget,GetMoveSpeed(myTarget),1700,250,castrange,1025,true,true)
+			if QPred.Hitchance == 1 and Combo.UseQ:Value() and ValidTarget(target, 1025) then
 					CastSkillShot(_Q, QPred.PredPos.x,QPred.PredPos.y, QPred.PredPos.z)
