@@ -17,3 +17,20 @@ local Misc = Main.addItem(SubMenu.new("Misc"))
 	local Interrupt = Misc.addItem(MenuBool.net("Use E to Interrupt Spells", true))
 	local AutoLvL = Misc.addItem(MenuBool.net("Auto level IN RWEQ", false))
 	local FleeActive = Misc.addItem(MenuKeyBind.new("Flee using Ultimate", 0x56))
+
+--My local Stuff
+local ValidTarget = d.ValidTarget
+local IsInDistance = d.IsInDistance
+
+OnLoop(function(myHero)
+Combo()
+Interrupt()
+AutoLvL()
+end)
+
+function Combo()
+	if 	if KeyIsDown(32) and ValidTarget(target) then
+
+			local QPred = GetPredictionForPlayer(GetOrigin(target),target,GetMoveSpeed(target),2000,250,GetCastRange(myHero,_Q),60,true,true)
+			if QPred.Hitchance == 1 and Combo.UseQ:Value() then
+					CastSkillShot(_Q, QPred.PredPos.x,QPred.PredPos.y, QPred.PredPos.z)
