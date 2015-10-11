@@ -29,20 +29,29 @@ Combo()
 Interrupt()
 AutoLvL()
 check()
+escape()
 end)
 
+function escape()
+local mousePos = GetMousePos()
+if FleeActive.getValue() and and Bird then
+MoveToXYZ(mousePos.x,mousePos.y,mousePos.z)
+end
+elseif CanUseSpell(myHero,_R) == READY then
+CastSpell(_R)
+end
+end
+
 function check()
-GetCastName(myHero,_Q) == "TakeDown" or
-GetCastName(myHero,_W) == "Pounce" or
-GetCastName(myHero,_E) == "Swipe" then
-Bird = true
-Human = false
-elseif
-GetCastName(myHero,_Q) == "JavelinToss" or
-GetCastName(myshero,_W) == "Bushwhack" or
-GetCastName(myHero,_E) == "PrimalSurge" then
+
+QRange = 1025
 Bird = false
 Human = true
+elseif
+GotBuff(myHero, "QuinnRForm") and GotBuff(myHero, "quinnrtimeout") then
+QRange = 275
+Bird = true
+Human = false
 end
 
 function hunted(target)
@@ -75,3 +84,5 @@ addInterrupterCallback(function(target, spellType, spell)
     end
   end
 end)
+
+notification("Quinn - The Cat Hunter Loaded", 5000)
