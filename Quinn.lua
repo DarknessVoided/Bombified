@@ -22,7 +22,7 @@ local Misc = Main.addItem(SubMenu.new("Misc"))
 --My local Stuff
 local ValidTarget = d.ValidTarget
 local IsInDistance = d.IsInDistance
-local Mana = (GetCurrentMana(myHero)/
+local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))^100
 
 OnLoop(function(myHero)
 Combo()
@@ -30,7 +30,13 @@ Interrupt()
 AutoLvL()
 check()
 escape()
+hunted()
 end)
+
+function hunted(target)
+return
+GotBuff(target, "quinnw_cosmetic")
+end
 
 function escape()
 local mousePos = GetMousePos()
@@ -43,43 +49,56 @@ end
 end
 
 function check()
-
-QRange = 1025
+GetCastName(myHero,_Q) == "QuinnQ" or
+GetCastName(myHero,_W) == "QuinnW" or
+GetCastName(myHero,_E) == "QuinnE" then
 Bird = false
 Human = true
 elseif
-GotBuff(myHero, "QuinnRForm") and GotBuff(myHero, "quinnrtimeout") then
-QRange = 275
+GetCastName(myHero,_Q) == "QuinnValorQ" or
+GetCastName(myshero,_W) == "QuinnW" or
+GetCastName(myHero,_E) == "QuinnValorE" then
 Bird = true
 Human = false
 end
 
-function hunted(target)
-return
-GotBuff(target, "quinnpassive")
-end --End of function
-	
 function Combo()
-	if KeyIsDown(32) and ValidTarget(target) then
+	if ComboActive.getValue() then
 
-			local QPred = GetPredictionForPlayer(GetOrigin(target),target,GetMoveSpeed(target),2000,250,GetCastRange(myHero,_Q),60,true,true)
-			if QPred.Hitchance == 1 and UseQ.getValue() and human then
+			--CastStartPosVec,EnemyChampionPtr,EnemyMoveSpeed,YourSkillshotSpeed,SkillShotDelay,SkillShotRange,SkillShotWidth,MinionCollisionCheck,AddHitBox
+
+			local QPred = GetPredictionForPlayer(GetOrigin(target),target,GetMoveSpeed(target),1550,250,GetCastRange(myHero,_Q),80,true,true)
+			if CanUseSpell(myHero,_Q) and QPred.Hitchance == 1 and UseQ.getValue() and human and ValidTarget(target, 1050) and IsInDistance(target, 1050) then
 					CastSkillShot(_Q, QPred.PredPos.x,QPred.PredPos.y, QPred.PredPos.z)
 					end
-					
-			local EPred = GetPredictionForPlayer(GetOrigin(target),target,GetMoveSpeed(target),2000,250,GetCastRange(myHero,_E),60,false,false)
-			if EPred.Hitchance == 1 and hunted == 0 and human then
-			CastSkillShot(_E, EPred.PredPos.x,EPred.PredPos.y, EPred.PredPos.z)
+			elseif
+				if IsInDistance(target, 275) and Bird and and ValidTarget(target, 275) and CastUseSpell(myHero,_Q) then
+					CastSpell(_Q)
+				end
 			end
+
+				if hunted == 0 and human and CanUseSpell(myHero,_E) and ValidTarget(target, 700) and UseE.getValue() then
+					CastTargetSpell(target,_E)
+				end
+			elseif
+				if IsInDistance(target, 700) and Bird and and ValidTarget(target, 700) and CanUseSpell(myHero,_E) and UseE.getValue() then
+					CastTargetSpell(target,_E)
+				end
+			end
+
+			if CanUseSpell(myHero,_R) and useR.getValue() and human and GoS:EnemiesAround(myHero, 700) < 1 then
+				CastSpell(_R)
+			end
+
 end
 
 addInterrupterCallback(function(target, spellType, spell)
   --just remove spellType == GAPCLOSER_SPELLS if you want support all spell type
   if IsInDistance(target, GetCastRange(myHero,_E)) and CanUseSpell(myHero,_E) == READY then
-    if tamo.key:value() and spellType == GAPCLOSER_SPELLS then
+    if GapCloser.getValue() and spellType == GAPCLOSER_SPELLS then
       CastTargetSpell(target, _E)
     end
-    if TIMO.KEY:value() and spellType == CHANELLING_SPELLS then
+    if Interrupt.getValue() and spellType == CHANELLING_SPELLS then
       CastTargetSpell(target, _E)
     end
   end
