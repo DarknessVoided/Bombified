@@ -66,16 +66,16 @@ function Combo()
 			--CastStartPosVec,EnemyChampionPtr,EnemyMoveSpeed,YourSkillshotSpeed,SkillShotDelay,SkillShotRange,SkillShotWidth,MinionCollisionCheck,AddHitBox
 
 			local QPred = GetPredictionForPlayer(GetOrigin(target),target,GetMoveSpeed(target),1550,250,GetCastRange(myHero,_Q),80,true,true)
-			if CanUseSpell(myHero,_Q) and QPred.Hitchance == 1 and UseQ.getValue() and human and ValidTarget(target, 1050) and IsInDistance(target, 1050) then
+			if CanUseSpell(myHero,_Q) == READY and QPred.Hitchance == 1 and UseQ.getValue() and human and ValidTarget(target, 1050) and IsInDistance(target, 1050) then
 					CastSkillShot(_Q, QPred.PredPos.x,QPred.PredPos.y, QPred.PredPos.z)
 					end
 			elseif
-				if IsInDistance(target, 275) and Bird and and ValidTarget(target, 275) and CastUseSpell(myHero,_Q) then
+				if IsInDistance(target, 275) and Bird and and ValidTarget(target, 275) and CastUseSpell(myHero,_Q) == READY then
 					CastSpell(_Q)
 				end
 			end
 
-				if hunted == 0 and human and CanUseSpell(myHero,_E) and ValidTarget(target, 700) and UseE.getValue() then
+				if hunted == 0 and human and CanUseSpell(myHero,_E) == READY and ValidTarget(target, 700) and UseE.getValue() then
 					CastTargetSpell(target,_E)
 				end
 			elseif
@@ -84,7 +84,7 @@ function Combo()
 				end
 			end
 
-			if CanUseSpell(myHero,_R) and useR.getValue() and human and GoS:EnemiesAround(myHero, 700) < 1 then
+			if CanUseSpell(myHero,_R) == READY and useR.getValue() and human and GoS:EnemiesAround(myHero, 700) < 1 then
 				CastSpell(_R)
 			end
 
