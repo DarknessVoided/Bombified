@@ -50,13 +50,11 @@ end
 
 function check()
 GetCastName(myHero,_Q) == "QuinnQ" or
-GetCastName(myHero,_W) == "QuinnW" or
 GetCastName(myHero,_E) == "QuinnE" then
 Bird = false
 Human = true
 elseif
 GetCastName(myHero,_Q) == "QuinnValorQ" or
-GetCastName(myshero,_W) == "QuinnW" or
 GetCastName(myHero,_E) == "QuinnValorE" then
 Bird = true
 Human = false
