@@ -1,11 +1,5 @@
 if GetObjectName(myHero) ~= "Varus" then return end
 
-local function GoS:GetDistance(p1,p2)
-local Origin = GetOrigin(myHero)
-	p2 = p2 and p2 or Origin
-	return p1:DistanceTo(p2)
-end
-
 local VarusMenu = Menu("Varus", "Varus")
 
 VarusMenu:SubMenu("Combo", "Combo")
@@ -63,9 +57,7 @@ OnLoop(function(myHero)
 
 			if EREADY and GoS:ValidTarget(target, 925) and VarusMenu.Harass.E:Value() and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
 			CastSkillShot(_Q,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
-			end
---------------------------------------
-if GotBuff(myHero, "VarusQ") == 1 then
+----------------------------
 	Ticker = GetTickCount()
 
 if (global_ticks + 100) < Ticker then
