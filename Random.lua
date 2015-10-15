@@ -7,7 +7,11 @@ nidaslime.Combo:Boolean("Q", "Use Q", true)
 nidaslime.Combo:Boolean("W", "Use W", true)
 nidaslime.Combo:Boolean("E", "Use E", true)
 nidaslime.Combo:Boolean("R", "Use R", true)
-nidaslime.Combo.Key("Combo", "Combo", string.byte(" "))
+
+VarusMenu.SubMenu("KeyBinding", "KeyBinding")
+VarusMenu.KeyBinding:Key("Combo", "Combo", string.byte(" "))
+VarusMenu.KeyBinding:Key("Harass", "Harass", String.byte("V"))
+VarusMenu.KeyBinding:Key("LaneClear", "LaneClear", String.Byte("C"))
  
 nidaslime:SubMenu("Misc", "Misc")
 nidaslime.Misc:Boolean("lvl", "AutoLevel RQEW", true)
