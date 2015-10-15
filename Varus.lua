@@ -11,6 +11,7 @@ local VarusMenu = Menu("Varus", "Varus")
 VarusMenu:SubMenu("Combo", "Combo")
 VarusMenu.Combo:Boolean("Q", "Use Q", true)
 VarusMenu.Combo:Boolean("E", "Use E", true)
+VarusMenu.Combo:Boolean("R", "Use R", true)
 VarusMenu.Combo:Slider("RCount", "R min enemy to Hit", 1, 1, 5, 1)
 
 VarusMenu:SubMenu("ManaManager", "Mana Manager")
@@ -38,20 +39,20 @@ OnLoop(function(myHero)
 		local RPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
 		local target = GetCurrentTarget()
 
-			if EREADY and GoS:ValidTarget(target, 925) and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
+			if EREADY and GoS:ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
 			CastSkillShot(_Q,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
 			end
 
-			if RReady and GoS:ValidTarget(target, 1075) and RPred.HitChance == 1 and GoS:EnemiesAround(target, 550) = Varus.combo.Rcount:Value() then
+			if RReady and GoS:ValidTarget(target, 1075) and RPred.HitChance == 1 and VarusMenu.Combo.R:Value() and GoS:EnemiesAround(target, 550) = Varus.combo.Rcount:Value() then
 			CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
 			end
 
-			if QReady and GoS:ValidTarget(target, 1625) and MyMana >= VarusMenu.ManaManager.Q:Value() then
+			if QReady and GoS:ValidTarget(target, 1625) and VarusMenu.Combo.Q:Value() and MyMana >= VarusMenu.ManaManager.Q:Value() then
 			Blahblahblah
 			end
-		end
+	end --Ends IOW Combo
 
-    elseif IOW:Mode() == "Harass" then
+    if IOW:Mode() == "Harass" then
     	local QReady = CanUseSpell(myHero, _Q) == READY
 		local EReady = CanUseSpell(myHero, _E) == READY
 		local RReady = CanUseSpell(myHero, _R) == READY
@@ -60,25 +61,26 @@ OnLoop(function(myHero)
 		local RPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
 		local target = GetCurrentTarget()
 
+			if EREADY and GoS:ValidTarget(target, 925) and VarusMenu.Harass.E:Value() and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
+			CastSkillShot(_Q,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
+			end
 
+			if QReady and GoS:ValidTarget(target, 1625) and VarusMenu.Combo.Q:Value() and MyMana >= VarusMenu.ManaManager.Q:Value() then
+			Blahblahblah
+			end
+	end --Ends IOW Harass
 
-
-
-
-
-
-
-
-
-
-
-
-
-    elseif IOW:Mode() == "LaneClear" then
-    elseif IOW:Mode() == "LastHit" then
+	if IOW:Mode() == "LaneClear" then
+		local QReady = CanUseSpell(myHero, _Q) == READY
+		local EReady = CanUseSpell(myHero, _E) == READY
+		local MyMana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100
+		local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1500,100,925,235,false,false)
+		local RPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
+		local target = GetCurrentTarget()
     end
+    KS()
 
-if VarusMenu.Misc.Autolvl:Value() then
+if VarusMenu.Misc.AL:Value() then
    if VarusMenu.Misc.Autolvltable:Value() == 1 then leveltable = {_Q, _W, _E, _Q, _Q, _R, _Q, _E, _Q, _E, _R, _E, _E, _W, _W, _R, _W, _W}
    elseif VarusMenu.Misc.Autolvltable:Value() == 2 then leveltable = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E}
    end
@@ -86,4 +88,9 @@ LevelSpell(leveltable[GetLevel(myHero)])
 end
 end) --Ends the OnLoop at Line 163
 
-PrintChat("Credits to Ralphlol for Inspiring me to do Varus.")
+function KS()
+		local QReady = CanUseSpell(myHero, _Q) == READY
+		local EReady = CanUseSpell(myHero, _E) == READY
+		local RReady = CanUseSpell(myHero, _R) == READY
+
+PrintChat("Credits to RaphLoL for inspiring me to do Varus.")
