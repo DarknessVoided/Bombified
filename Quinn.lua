@@ -22,7 +22,7 @@ local Misc = Main.addItem(SubMenu.new("Misc"))
 --My local Stuff
 local ValidTarget = d.ValidTarget
 local IsInDistance = d.IsInDistance
-local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))^100
+local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100
 
 OnLoop(function(myHero)
 Combo()
