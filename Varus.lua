@@ -64,7 +64,23 @@ OnLoop(function(myHero)
 			if EREADY and GoS:ValidTarget(target, 925) and VarusMenu.Harass.E:Value() and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
 			CastSkillShot(_Q,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
 			end
+--------------------------------------
+if GotBuff(myHero, "VarusQ") == 1 then
+	Ticker = GetTickCount()
 
+if (global_ticks + 100) < Ticker then
+	GoS:DelayAction(function ()
+		if range ~= nil then
+			range = range + 80
+		end
+		if range >= 1700 then
+			range = 1700
+		end
+	end
+	,100)
+global_ticks = Ticker
+end
+----------------------------------
 			if QReady and GoS:ValidTarget(target, 1625) and VarusMenu.Combo.Q:Value() and MyMana >= VarusMenu.ManaManager.Q:Value() then
 			Blahblahblah
 			end
