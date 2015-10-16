@@ -38,7 +38,8 @@ KogMawMenu.Misc:Boolean("KSR", "KS with R", true)
 
 OnLoop(function(myHero)
 local myHero = GetMyHero()
-local target = GetCurrentTarget()
+target = GetCurrentTarget()
+local origin = GetOrigin(target)
 local myHeroPos = GetOrigin(myHero)
 local QPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
 local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
@@ -85,6 +86,6 @@ end
 end -- Ends the FunctionKS
 
 function AmIDead()
-	if IsDead(myHero) and KogMawMenu.Misc.DeathWalk:Value() then
-	MoveToXYZ(target.x,target.y,target.z)
+	if KogMawMenu.Misc.DeathWalk:Value() and GotBuff(myHero, "kogmawicathiansurprise") then
+	MoveToXYZ(origin.x,origin.y,origin.z)
 end
