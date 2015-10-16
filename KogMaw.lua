@@ -31,6 +31,7 @@ KogMawMenu.Mana:Slider("E", "Stop E when % MP", 40, 1, 100, 1)
 KogMawMenu.Mana:Slider("R", "Stop R when % MP", 40, 1, 100, 1)
 
 KogMawMenu.Misc:Boolean("lvl", "AutoLevel RWQE", true)
+KogMawMenu.Misc:Boolean("DeathWalk", "Auto Move to Target when Dead", false)
 KogMawMenu.Misc:Boolean("KSQ", "KS With Q", true)
 KogMawMenu.Misc:Boolean("KSE", "KS with E", true)
 KogMawMenu.Misc:Boolean("KSR", "KS with R", true)
@@ -60,6 +61,7 @@ local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100 --This will get the
         CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
 	end
 KS()
+AmIDead()
 end) --Ends the OnLoop
 function KS()
 	local target = GetCurrentTarget()
@@ -81,3 +83,8 @@ function KS()
 	end
 end
 end -- Ends the FunctionKS
+
+function AmIDead()
+	if IsDead(myHero) and KogMawMenu.Misc.DeathWalk:Value() then
+	MoveToXYZ(target.x,target.y,target.z)
+end
