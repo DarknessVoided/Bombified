@@ -86,6 +86,6 @@ end
 end -- Ends the FunctionKS
 
 function AmIDead()
-	if KogMawMenu.Misc.DeathWalk:Value() and GotBuff(myHero, "kogmawicathiansurprise") == 1 and IsTargetable(target) then
+	if KogMawMenu.Misc.DeathWalk:Value() and GotBuff(myHero, "kogmawicathiansurprise") == 1 and GoS:ValidTarget(target, 1000) then
 	MoveToXYZ(origin.x,origin.y,origin.z)
 end
