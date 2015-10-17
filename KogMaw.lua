@@ -95,4 +95,5 @@ end
 function Laugh()
    if IsDead(target) and KogMawMenu.Misc.Laugh:Value() then
       return CastEmote(EMOTE_LAUGH)
-   end -- End Laugh
+   end
+end -- End laugh
