@@ -35,6 +35,7 @@ KogMawMenu.Misc:Boolean("DeathWalk", "Auto Move to Target when Dead", false)
 KogMawMenu.Misc:Boolean("KSQ", "KS With Q", true)
 KogMawMenu.Misc:Boolean("KSE", "KS with E", true)
 KogMawMenu.Misc:Boolean("KSR", "KS with R", true)
+KogMawMenu.Misc:Boolean("Laugh", "Laugh when enemy died", false)
 
 OnLoop(function(myHero)
 local myHero = GetMyHero()
@@ -62,6 +63,7 @@ local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100 --This will get the
         CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
 	end
 KS()
+Laugh()
 AmIDead()
 end) --Ends the OnLoop
 function KS()
@@ -89,3 +91,8 @@ function AmIDead()
 	if KogMawMenu.Misc.DeathWalk:Value() and GotBuff(myHero, "kogmawicathiansurprise") == 1 and GoS:ValidTarget(target, 1000) then
 	MoveToXYZ(origin.x,origin.y,origin.z)
 end
+
+function Laugh()
+   if IsDead(target) and KogMawMenu.Misc.Laugh:Value() then
+      return CastEmote(EMOTE_LAUGH)
+   end -- End Laugh
