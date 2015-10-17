@@ -35,7 +35,8 @@ KogMawMenu.Misc:Boolean("DeathWalk", "Auto Move to Target when Dead", false)
 KogMawMenu.Misc:Boolean("KSQ", "KS With Q", true)
 KogMawMenu.Misc:Boolean("KSE", "KS with E", true)
 KogMawMenu.Misc:Boolean("KSR", "KS with R", true)
-KogMawMenu.Misc:Boolean("Laugh", "Laugh when enemy died", false)
+KogMawMenu.Misc:Boolean("Laugh", "Use Emote", false)
+KogMawMenu.Misc:List("EmotesTable", "Use which Emotes", 1, {"Dance", "Laugh", "Taunt", "Joke"})
 
 OnLoop(function(myHero)
 local myHero = GetMyHero()
@@ -94,7 +95,12 @@ end
 end --AmIDead
 
 function Laugh()
-   if IsDead(target) and KogMawMenu.Misc.Laugh:Value() then
-      return CastEmote(EMOTE_LAUGH)
-   end
-end -- End laugh
+   if IsDead(target) and KogMawMenu.Misc.Laugh:value() then
+      if KogMawMenu.Misc.EmotesTable:Value() == 1 then Emoticon = {EMOTE_DANCE}
+      elseif KogMawMenu.Misc.EmotesTable:Value() == 2 then Emoticon = {EMOTE_LAUGH}
+      elseif KogMawMenu.Misc.EmotesTable:Value() == 3 then Emoticon = {EMOTE_TAUNT}
+      elseif KogMawMenu.Misc.EmotesTable:Value() == 4 then Emoticon = {EMOTE_LAUGH}
+         return CastEmote(EMOTE_JOKE)
+      end
+then CastEmote(Emoticon)
+end
