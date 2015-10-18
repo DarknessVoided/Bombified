@@ -101,5 +101,5 @@ function Laugh()
       elseif KogMawMenu.Misc.EmotesTable:Value() == 3 then Emoticon = {EMOTE_TAUNT}
       elseif KogMawMenu.Misc.EmotesTable:Value() == 4 then Emoticon = {EMOTE_JOKE}
       end
-then CastEmote(Emoticon)
+CastEmote(Emoticon)
 end
