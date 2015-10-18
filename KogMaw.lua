@@ -99,8 +99,7 @@ function Laugh()
       if KogMawMenu.Misc.EmotesTable:Value() == 1 then Emoticon = {EMOTE_DANCE}
       elseif KogMawMenu.Misc.EmotesTable:Value() == 2 then Emoticon = {EMOTE_LAUGH}
       elseif KogMawMenu.Misc.EmotesTable:Value() == 3 then Emoticon = {EMOTE_TAUNT}
-      elseif KogMawMenu.Misc.EmotesTable:Value() == 4 then Emoticon = {EMOTE_LAUGH}
-         return CastEmote(EMOTE_JOKE)
+      elseif KogMawMenu.Misc.EmotesTable:Value() == 4 then Emoticon = {EMOTE_JOKE}
       end
 then CastEmote(Emoticon)
 end
