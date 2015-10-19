@@ -64,7 +64,7 @@ function check()
 
          --CastStartPosVec,EnemyChampionPtr,EnemyMoveSpeed,YourSkillshotSpeed,SkillShotDelay,SkillShotRange,SkillShotWidth,MinionCollisionCheck,AddHitBox
 
-         local QPred = GetPredictionForPlayer(GetOrigin(target),target,GetMoveSpeed(target),1550,250,GetCastRange(myHero,_Q),80,true,true)
+         local QPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1550,250,GetCastRange(myHero,_Q),80,true,true)
          if CanUseSpell(myHero,_Q) == READY and QPred.Hitchance == 1 and UseQ.getValue() and human and ValidTarget(target, 1050) and IsInDistance(target, 1050) then
             CastSkillShot(_Q, QPred.PredPos.x,QPred.PredPos.y, QPred.PredPos.z)
          end
