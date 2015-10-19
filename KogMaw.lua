@@ -106,9 +106,10 @@ function Laugh()
    end
 end
 
+LevelTables = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E,}
 function AutoLvL()
    if KogMawMenu.Misc.lvl:Value() then
-      LevelSpell({_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E,}[GetLevel(myHero)])
+      LevelSpell(LevelTables[GetLevel(myHero)])
       end
    end
    
