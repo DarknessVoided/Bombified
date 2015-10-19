@@ -30,7 +30,7 @@ KogMawMenu.Mana:Slider("Q", "Stop Q when % MP", 40, 1, 100, 1)
 KogMawMenu.Mana:Slider("E", "Stop E when % MP", 40, 1, 100, 1)
 KogMawMenu.Mana:Slider("R", "Stop R when % MP", 40, 1, 100, 1)
 
-KogMawMenu.Misc:Boolean("lvl", "AutoLevel R>W>Q>E", true)
+KogMawMenu.Misc:Boolean("lvl", "AutoLevel R>W>Q>E", false)
 KogMawMenu.Misc:Boolean("DeathWalk", "Auto Move to Target when Dead", false)
 KogMawMenu.Misc:Boolean("KSQ", "KS With Q", true)
 KogMawMenu.Misc:Boolean("KSE", "KS with E", true)
@@ -108,8 +108,7 @@ end
 
 function AutoLvL()
    if KogMawMenu.Misc.lvl:Value() then
-   levelTable = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E,}
-      LevelSpell(leveltable[GetLevel(myHero)])
+      LevelSpell({_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E,}[GetLevel(myHero)])
       end
    end
    
