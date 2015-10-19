@@ -30,7 +30,7 @@ KogMawMenu.Mana:Slider("Q", "Stop Q when % MP", 40, 1, 100, 1)
 KogMawMenu.Mana:Slider("E", "Stop E when % MP", 40, 1, 100, 1)
 KogMawMenu.Mana:Slider("R", "Stop R when % MP", 40, 1, 100, 1)
 
-KogMawMenu.Misc:Boolean("lvl", "AutoLevel RWQE", true)
+KogMawMenu.Misc:Boolean("lvl", "AutoLevel R>W>Q>E", true)
 KogMawMenu.Misc:Boolean("DeathWalk", "Auto Move to Target when Dead", false)
 KogMawMenu.Misc:Boolean("KSQ", "KS With Q", true)
 KogMawMenu.Misc:Boolean("KSE", "KS with E", true)
@@ -66,6 +66,7 @@ OnLoop(function(myHero)
    KS()
    Laugh()
    AmIDead()
+   AutoLvL()
 end) --Ends the OnLoop
 function KS()
    local target = GetCurrentTarget()
@@ -104,3 +105,11 @@ function Laugh()
       CastEmote(Emoticon)
    end
 end
+
+function AutoLvL()
+   if KogMawMenu.Misc.lvl:Value()
+   then then levelTable = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E,}
+      LevelSpell(leveltable[GetLevel(myHero)])
+      end
+   end
+   
