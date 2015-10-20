@@ -11,10 +11,10 @@ end)
 
 function Laugh()
    if IsDead(target) and Menu.Laugh.EmotesTable:value() then
-      if Menu.Laugh.EmotesTable:Value() == 1 then Emoticon = {EMOTE_DANCE}
-      elseif Menu.Laugh.EmotesTable:Value() == 2 then Emoticon = {EMOTE_LAUGH}
-      elseif Menu.Laugh.EmotesTable:Value() == 3 then Emoticon = {EMOTE_TAUNT}
-      elseif Menu.Laugh.EmotesTable:Value() == 4 then Emoticon = {EMOTE_JOKE}
+      if Menu.rofl.EmotesTable:Value() == 1 then Emoticon = {EMOTE_DANCE}
+      elseif Menu.rofl.EmotesTable:Value() == 2 then Emoticon = {EMOTE_LAUGH}
+      elseif Menu.rofl.EmotesTable:Value() == 3 then Emoticon = {EMOTE_TAUNT}
+      elseif Menu.rofl.EmotesTable:Value() == 4 then Emoticon = {EMOTE_JOKE}
       end
       CastEmote(Emoticon)
    end
