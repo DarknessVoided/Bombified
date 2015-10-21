@@ -1,4 +1,4 @@
-Menu = Menu("BM", "BM 2.0")
+local Menu = Menu("BM", "BM 2.0")
 
 Menu:SubMenu("rofl", "Settings")
 
