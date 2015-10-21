@@ -38,16 +38,21 @@ KogMawMenu.Misc:Boolean("KSR", "KS with R", true)
 KogMawMenu.Misc:Boolean("Laugh", "Use Emote", false)
 KogMawMenu.Misc:List("EmotesTable", "Use which Emotes", 1, {"Dance", "Laugh", "Taunt", "Joke"})
 
-OnLoop(function(myHero)
-   local myHero = GetMyHero()
+OnTick(function(myHero)
    target = GetCurrentTarget()
    origin = GetOrigin(target)
-   local myHeroPos = GetOrigin(myHero)
    local QPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
    local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
    local RPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,1200,1800,150,false,false)
    local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100 --This will get the mana percentage u current have
+   Combo()
+   KS()
+   Laugh()
+   AmIDead()
+   AutoLvL()
+end) --Ends the OnLoop
 
+function Combo()
    if CanUseSpell(myHero,_Q) == READY and Mana >= KogMawMenu.Mana.Q:Value() and IsObjectAlive(target) and GoS:ValidTarget(target, 1200) and QPred.HitChance == 1 and KogMawMenu.Combo.Q:Value() and KogMawMenu.Combo.Combo1:Value() then
       CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
    end
@@ -63,11 +68,8 @@ OnLoop(function(myHero)
    if CanUseSpell(myHero,_R) == READY and Mana >= KogMawMenu.Mana.R:Value() and RPred.HitChance == 1 and KogMawMenu.Combo.R:Value() and KogMawMenu.Combo.Combo1:Value() and GoS:ValidTarget(target, 1800) then
       CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
    end
-   KS()
-   Laugh()
-   AmIDead()
-   AutoLvL()
-end) --Ends the OnLoop
+end --Ends the Combo function
+
 function KS()
    local target = GetCurrentTarget()
    for i,enemy in pairs(GoS:GetEnemyHeroes()) do
@@ -111,5 +113,4 @@ function AutoLvL()
    if KogMawMenu.Misc.lvl:Value() then
       LevelSpell(LevelTables[GetLevel(myHero)])
       end
-   end
-   
+end
