@@ -24,7 +24,7 @@ function Laugh()
 end
 
 function Always()
-   if IOW:TimeToMove() and Menu.rofl.ALways:Value() then
+   if IOW:TimeToMove() and Menu.rofl.Always:Value() then
       if Menu.rofl.EmotesTable:Value() == 1 then Emoticon = {EMOTE_DANCE}
       elseif Menu.rofl.EmotesTable:Value() == 2 then Emoticon = {EMOTE_LAUGH}
       elseif Menu.rofl.EmotesTable:Value() == 3 then Emoticon = {EMOTE_TAUNT}
