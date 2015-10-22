@@ -14,10 +14,10 @@ end)
 
 function Laugh()
    if IsDead(target) and Menu.rofl.Laugh:value() then
-      if Menu.rofl.EmotesTable:Value() == 1 then Emoticon = {EMOTE_DANCE}
-      elseif Menu.rofl.EmotesTable:Value() == 2 then Emoticon = {EMOTE_LAUGH}
-      elseif Menu.rofl.EmotesTable:Value() == 3 then Emoticon = {EMOTE_TAUNT}
-      elseif Menu.rofl.EmotesTable:Value() == 4 then Emoticon = {EMOTE_JOKE}
+      if Menu.rofl.EmotesTable:Value() == 1 then Emoticon = EMOTE_DANCE
+      elseif Menu.rofl.EmotesTable:Value() == 2 then Emoticon = EMOTE_LAUGH
+      elseif Menu.rofl.EmotesTable:Value() == 3 then Emoticon = EMOTE_TAUNT
+      elseif Menu.rofl.EmotesTable:Value() == 4 then Emoticon = EMOTE_JOKE
       end
       CastEmote(Emoticon)
    end
@@ -25,10 +25,10 @@ end
 
 function Always()
    if IOW:TimeToMove() and Menu.rofl.Always:Value() then
-      if Menu.rofl.EmotesTable:Value() == 1 then Emoticon = {EMOTE_DANCE}
-      elseif Menu.rofl.EmotesTable:Value() == 2 then Emoticon = {EMOTE_LAUGH}
-      elseif Menu.rofl.EmotesTable:Value() == 3 then Emoticon = {EMOTE_TAUNT}
-      elseif Menu.rofl.EmotesTable:Value() == 4 then Emoticon = {EMOTE_JOKE}
+      if Menu.rofl.EmotesTable:Value() == 1 then Emoticon = EMOTE_DANCE
+      elseif Menu.rofl.EmotesTable:Value() == 2 then Emoticon = EMOTE_LAUGH
+      elseif Menu.rofl.EmotesTable:Value() == 3 then Emoticon = EMOTE_TAUNT
+      elseif Menu.rofl.EmotesTable:Value() == 4 then Emoticon = EMOTE_JOKE
       end
       CastEmote(Emoticon)
    end
