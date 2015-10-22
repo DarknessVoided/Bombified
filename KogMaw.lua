@@ -35,6 +35,7 @@ KogMawMenu = Menu("Kogmaw", "VormitMachine")
 KogMawMenu:SubMenu("Combo", "Combo")
 KogMawMenu:SubMenu("Mana", "Mana Manager")
 KogMawMenu:SubMenu("Misc", "Misc")
+KogMawMenu.subMenu("Items", "Items")
 
 KogMawMenu.Combo:Boolean("Q", "Use Q", true)
 KogMawMenu.Combo:Boolean("W", "Use W", true)
@@ -54,6 +55,11 @@ KogMawMenu.Misc:Boolean("KSR", "KS with R", true)
 KogMawMenu.Misc:Boolean("Laugh", "Use Emote", false)
 KogMawMenu.Misc:List("EmotesTable", "Use which Emotes", 1, {"Dance", "Laugh", "Taunt", "Joke"})
 
+KogMawMenu.Items:Boolean("Yomie", "Use Yomie")
+KogMawMenu.Items:Boolean("BoTrK", "Use Botrk", true)
+KogMawMenu.Items:Boolean("Cutlass", "Use Cutlass", true)
+KogMawMenu.Items:Slider("III", "Use BoTrk or Cutlass when Health", 40, 1, 100, 1)
+
 OnTick(function(myHero)
    target = GetCurrentTarget()
    origin = GetOrigin(target)
@@ -61,8 +67,12 @@ OnTick(function(myHero)
    local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
    local RPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),math.huge,1200,1800,150,false,false)
    local Mana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100 --This will get the mana percentage u current have
+   local botrk = GetItemSlot(myHero,3153)
+   local Cutlass = GetItemSlot(myHero,3144)
+   local Yomie = GetItemSlot(myHero, 3142)
    Combo()
    KS()
+   Items()
    Laugh()
    AmIDead()
    AutoLvL()
@@ -130,3 +140,25 @@ function AutoLvL()
       LevelSpell(LevelTables[GetLevel(myHero)])
       end
 end
+
+function Items()
+--For BoTrK
+if KogMawMenu.Combo.Combo1:Value() then
+
+	if botrk >= 1 and KogMawMenu.Items.BoTrK:Value() and GoS:ValidTarget(target,550) and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 >= KogMawMenu.Items.III:value() then
+		if CanUseSpell(myHero,GetItemSlot(myHero,3153)) == READY then
+		CastTargetSpell(target,GetItemSlot(myHero,3153))
+		end
+
+	elseif Cutlass >= 1 and KogMawMenu.Items.Cutlass.Value() and GoS:ValidTarget(target, 550) and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 >= KogMawMenu.Items.III:Value() then
+		if CanUseSpell(myHero, GetItemSlot(myHero,3144)) == READY then
+		CastTargetSpell(target, GetItemSlot(myHero, 3144))
+	end
+end
+
+if KogMawMenu.Combo.Combo1:Value() and Yomie >= 1 and GOS:ValidTarget(target, 500) and GoS:EnemiesAround(myHero, 500) >= 1 then
+	if CanUseSpell(myHero, GetItemSlot(myHero, 3142)) == READY then
+	CastSpell(GetItemSlot(myHero,3142))
+	end
+end
+end --Ends Function Items
