@@ -30,9 +30,7 @@ While Channeling, His speed is slowed by 20%. Do we need to calculate this? The 
 Okay lets get into the technical stuff. The arrow starts at 925- Without even channeling and ends at 1625-Channeling for 2 seconds.
 This means that in one second, the arrow increases by 350. Calculation part is not need. idgaf as i don't need to ks kappa
 ]]--
- 
-OnLoop(function(myHero)
--------------------------------------------------------------------------------------------------------------------
+ -------------------------------------------------------------------------------------------------------------------
 OnUpdateBuff(function(Object,buffProc)
         if Object == myHero and buffProc.Name == "VarusQ" then
                 VarusQ = true
@@ -45,6 +43,8 @@ OnRemoveBuff(function(Object,buffProc)
         end
 end)
 -------------------------------------------------------------------------------------------------------------------
+OnLoop(function(myHero)
+	
         if IOW:Mode() == "Combo" then
             local QReady = CanUseSpell(myHero, _Q) == READY
                 local MyMana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100
