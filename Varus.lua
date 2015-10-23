@@ -47,23 +47,21 @@ end)
 -------------------------------------------------------------------------------------------------------------------
         if IOW:Mode() == "Combo" then
             local QReady = CanUseSpell(myHero, _Q) == READY
-                local EReady = CanUseSpell(myHero, _E) == READY
-                local RReady = CanUseSpell(myHero, _R) == READY
                 local MyMana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100
                 local Check = GotBuff(target, "varuswdebuff")
                 local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1500,100,925,235,false,false)
                 local RPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
                 local target = GetCurrentTarget()
  
-                        if EREADY and Check >= VarusMenu.Combo.Check:Value() and GoS:ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
-                        CastSkillShot(_Q,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
+                        if CanUseSpell(myHero, _E) == READY and Check >= VarusMenu.Combo.Check:Value() and GoS:ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
+                        CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
                         end
  
-                        if RReady and Check >= VarusMenu.Combo.Check:Value() and GoS:ValidTarget(target, 1075) and RPred.HitChance == 1 and VarusMenu.Combo.R:Value() and GoS:EnemiesAround(target, 550) = Varus.combo.Rcount:Value() then
+                        if CanUseSpell(myHero, _R) and Check >= VarusMenu.Combo.Check:Value() and GoS:ValidTarget(target, 1075) and RPred.HitChance == 1 and VarusMenu.Combo.R:Value() and GoS:EnemiesAround(target, 550) = Varus.combo.Rcount:Value() then
                         CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
                         end
  
-                        if QReady and GoS:ValidTarget(target, 1625) and Check >= VarusMenu.Combo.Check:Value() and VarusMenu.Combo.Q:Value() and MyMana >= VarusMenu.ManaManager.Q:Value() then
+                        if CanUseSpell(myHero, _Q) and GoS:ValidTarget(target, 1625) and Check >= VarusMenu.Combo.Check:Value() and VarusMenu.Combo.Q:Value() and MyMana >= VarusMenu.ManaManager.Q:Value() then
                         Blahblahblah
                         end
                        
