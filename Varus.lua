@@ -30,6 +30,14 @@ While Channeling, His speed is slowed by 20%. Do we need to calculate this? The 
 Okay lets get into the technical stuff. The arrow starts at 925- Without even channeling and ends at 1625-Channeling for 2 seconds.
 This means that in one second, the arrow increases by 350. Calculation part is not need. idgaf as i don't need to ks kappa
 ]]--
+--------------------------------------------------------------------------------------------------------------------
+OnProcessSpellComplete(function(Object, SpellProc)
+        if Object == myHero and SpellProc.name == "varusqlaunch" then
+                 range  = 950
+                 qrange = 0
+                 startTime = GetGameTimer()
+        end
+end)
  -------------------------------------------------------------------------------------------------------------------
 OnUpdateBuff(function(Object,buffProc)
         if Object == myHero and buffProc.Name == "VarusQ" then
