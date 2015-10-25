@@ -30,38 +30,40 @@ PrintChat(textTable[3])
 PrintChat(textTable[4])
 PrintChat(textTable[5])
 
-KogMawMenu = Menu("Kogmaw", "VormitMachine")
+KogMawMenu = MenuConfig("VormitMachine", "KogMaw")
 
-KogMawMenu:SubMenu("Combo", "Combo")
-KogMawMenu:SubMenu("Mana", "Mana Manager")
-KogMawMenu:SubMenu("Misc", "Misc")
-KogMawMenu.subMenu("Items", "Items")
-
+KogMawMenu:Menu("Combo", "Combo")
 KogMawMenu.Combo:Boolean("Q", "Use Q", true)
 KogMawMenu.Combo:Boolean("W", "Use W", true)
 KogMawMenu.Combo:Boolean("E", "Use E", true)
 KogMawMenu.Combo:Boolean("R", "Use R", true)
 KogMawMenu.Combo:Key("Combo1", "Combo", string.byte(" "))
 
+KogMawMenu:Menu("Mana", "Mana Manager")
 KogMawMenu.Mana:Slider("Q", "Stop Q when % MP", 40, 1, 100, 1)
 KogMawMenu.Mana:Slider("E", "Stop E when % MP", 40, 1, 100, 1)
 KogMawMenu.Mana:Slider("R", "Stop R when % MP", 40, 1, 100, 1)
 
+KogMawMenu:Menu("Misc", "Misc")
 KogMawMenu.Misc:Boolean("lvl", "AutoLevel R>W>Q>E", false)
 KogMawMenu.Misc:Boolean("DeathWalk", "Auto Move to Target when Dead", false)
 KogMawMenu.Misc:Boolean("KSQ", "KS With Q", true)
 KogMawMenu.Misc:Boolean("KSE", "KS with E", true)
 KogMawMenu.Misc:Boolean("KSR", "KS with R", true)
 KogMawMenu.Misc:Boolean("Laugh", "Use Emote", false)
-KogMawMenu.Misc:List("EmotesTable", "Use which Emotes", 1, {"Dance", "Laugh", "Taunt", "Joke"})
+KogMawMenu.Misc:DropDown("EmotesTable", "Use which Emotes", 1, {"Dance", "Laugh", "Taunt", "Joke"})
 
+KogMawMenu:Menu("Items", "Items")
 KogMawMenu.Items:Boolean("Yomie", "Use Yomie")
 KogMawMenu.Items:Boolean("BoTrK", "Use Botrk", true)
 KogMawMenu.Items:Boolean("Cutlass", "Use Cutlass", true)
 KogMawMenu.Items:Slider("III", "Use BoTrk or Cutlass when Health", 40, 1, 100, 1)
 
+KogMawMenu:Menu("Target", "Target Selector")
+KogMawMenu.Target:TargetSelector("ts", "Target Selector",  DAMAGE_MAGICAL, 1200, TARGET_LESS_CAST)
+
 OnTick(function(myHero)
-   target = GetCurrentTarget()
+   target = KogMawMenu.Target.ts:GetTarget()
    origin = GetOrigin(target)
    local QPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
    local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
@@ -145,20 +147,20 @@ function Items()
 --For BoTrK
 if KogMawMenu.Combo.Combo1:Value() then
 
-	if botrk >= 1 and KogMawMenu.Items.BoTrK:Value() and GoS:ValidTarget(target,550) and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 >= KogMawMenu.Items.III:value() then
-		if CanUseSpell(myHero,GetItemSlot(myHero,3153)) == READY then
-		CastTargetSpell(target,GetItemSlot(myHero,3153))
-		end
+    if botrk >= 1 and KogMawMenu.Items.BoTrK:Value() and GoS:ValidTarget(target,550) and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 >= KogMawMenu.Items.III:value() then
+        if CanUseSpell(myHero,GetItemSlot(myHero,3153)) == READY then
+        CastTargetSpell(target,GetItemSlot(myHero,3153))
+        end
 
-	elseif Cutlass >= 1 and KogMawMenu.Items.Cutlass.Value() and GoS:ValidTarget(target, 550) and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 >= KogMawMenu.Items.III:Value() then
-		if CanUseSpell(myHero, GetItemSlot(myHero,3144)) == READY then
-		CastTargetSpell(target, GetItemSlot(myHero, 3144))
-	end
+    elseif Cutlass >= 1 and KogMawMenu.Items.Cutlass.Value() and GoS:ValidTarget(target, 550) and (GetCurrentHP(myHero)/GetMaxHP(myHero))*100 >= KogMawMenu.Items.III:Value() then
+        if CanUseSpell(myHero, GetItemSlot(myHero,3144)) == READY then
+        CastTargetSpell(target, GetItemSlot(myHero, 3144))
+    end
 end
 
 if KogMawMenu.Combo.Combo1:Value() and Yomie >= 1 and GOS:ValidTarget(target, 500) and GoS:EnemiesAround(myHero, 500) >= 1 then
-	if CanUseSpell(myHero, GetItemSlot(myHero, 3142)) == READY then
-	CastSpell(GetItemSlot(myHero,3142))
-	end
+    if CanUseSpell(myHero, GetItemSlot(myHero, 3142)) == READY then
+    CastSpell(GetItemSlot(myHero,3142))
+    end
 end
 end --Ends Function Items
