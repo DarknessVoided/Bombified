@@ -54,11 +54,12 @@ qRange = 0
 -------------------------------------------------------------------------------------------------------------------
 OnTick(function(myHero)
 
-   if IOW:Mode() == "Combo" then
+    if IOW:Mode() == "Combo" then
       local MyMana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100
       local Check = GotBuff(target, "varuswdebuff")
       local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1500,100,925,235,false,false)
       local RPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
+      local QPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1900,250,qRange,70,false,false)
       local target = GetCurrentTarget()
 
       if CanUseSpell(myHero, _E) == READY and Check >= VarusMenu.Combo.Check:Value() and GoS:ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
@@ -69,22 +70,23 @@ OnTick(function(myHero)
          CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
       end
       -------------------------------------------------------------------------------------------------------------------
-	if varusQ ~= nil then
-		if varusQ == true then
-			--We know the Q start at the point of 925 and ends at 1625 in 2 seconds.
-			timepassed = (GetGameTimer() - startTime)*1000 --This is mainly because 1 seconds = 1000 milliseconds
-				if qRange < 1625 then
-					qRange = range + timepassed*0.35 + GetHitBox(myHero)
-				end
-		end
-	end     -------------------------------------------------------------------------------------------------------------------
-      if CanUseSpell(myHero, _Q) and GoS:ValidTarget(target, 1625) and Check >= VarusMenu.Combo.Check:Value() and VarusMenu.Combo.Q:Value() and MyMana >= VarusMenu.ManaManager.Q:Value() then
-         CastSkillShot(_Q, GetMousePos()) then
-				if QPred == 1 then
-					CastSkillShot2(_Q, QPred.PredPos.x, QPred.PredPos.y, QPred.PredPos.z)
-      end
-
-   end --Ends IOW Combo
+        if varusQ ~= nil then
+            if varusQ == true then
+                --We know the Q start at the point of 925 and ends at 1625 in 2 seconds.
+                timepassed = (GetGameTimer() - startTime)*1000 --This is mainly because 1 seconds = 1000 milliseconds
+                    if qRange < 1625 then
+                        qRange = range + timepassed*0.35 + GetHitBox(myHero)
+                    end
+            end
+        end
+    -------------------------------------------------------------------------------------------------------------------
+        if CanUseSpell(myHero, _Q) and GoS:ValidTarget(target, 1625) and Check >= VarusMenu.Combo.Check:Value() and VarusMenu.Combo.Q:Value() and MyMana >= VarusMenu.ManaManager.Q:Value() then
+            CastSkillShot(_Q, GetMousePos()) then
+                if QPred == 1 then
+                    CastSkillShot2(_Q, QPred.PredPos.x, QPred.PredPos.y, QPred.PredPos.z)
+                end
+        end
+end --Ends IOW Combo
 
    Level()
 end) --Ends OnTick
