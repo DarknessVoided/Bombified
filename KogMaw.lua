@@ -59,11 +59,10 @@ KogMawMenu.Items:Boolean("BoTrK", "Use Botrk", true)
 KogMawMenu.Items:Boolean("Cutlass", "Use Cutlass", true)
 KogMawMenu.Items:Slider("III", "Use BoTrk or Cutlass when Health", 40, 1, 100, 1)
 
-KogMawMenu:Menu("Target", "Target Selector")
-KogMawMenu.Target:TargetSelector("ts", "Target Selector",  DAMAGE_MAGICAL, 1200, TARGET_LESS_CAST)
+KogMawMenu:TargetSelector("ts", "Target Selector",  DAMAGE_MAGICAL, 1200, TARGET_LESS_CAST)
 
 OnTick(function(myHero)
-   target = KogMawMenu.Target.ts:GetTarget()
+   target = KogMawMenu.ts:GetTarget()
    origin = GetOrigin(target)
    local QPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
    local EPred = GetPredictionForPlayer(GoS:myHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
