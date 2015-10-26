@@ -19,7 +19,7 @@ VarusMenu.Misc:Boolean("KSE", "Use E to KS", true)
 VarusMenu.Misc:Boolean("AL", "Use Auto Level", false)
 VarusMenu.Misc:DropDown("Autolvltable", "Priority", 1, {"R-Q-E-W", "R-W-Q-E"})
 
-VarusMenu:TargetSelector("ts", "Target Selector",  DAMAGE_MAGICAL, 1200, TARGET_LESS_CAST)
+VarusMenu:TargetSelector("ts", "Target Selector",  DAMAGE_MAGICAL, 1450, TARGET_LESS_CAST)
 --[[
 Okay lets do the thought process here.
 From what we can see, Varus Q increases in a speed 2 seconds. The other one seconds just hold the arrow in it's maximum length.
