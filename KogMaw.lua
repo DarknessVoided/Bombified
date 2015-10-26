@@ -118,7 +118,7 @@ function KS()
 end -- Ends the FunctionKS
 
 function AmIDead()
-   if KogMawMenu.Misc.DeathWalk:Value() and GotBuff(myHero, "kogmawicathiansurprise") == 1 and GoS:ValidTarget(target, 1000) then
+   if KogMawMenu.Misc.DeathWalk:Value() and GotBuff(myHero, "kogmawicathiansurprise") == 1 and ValidTarget(target, 1000) then
       MoveToXYZ(origin.x,origin.y,origin.z)
    end
 end --AmIDead
@@ -138,7 +138,7 @@ LevelTables = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _
 function AutoLvL()
    if KogMawMenu.Misc.lvl:Value() then
       LevelSpell(LevelTables[GetLevel(myHero)])
-      end
+    end
 end
 
 function Items()
