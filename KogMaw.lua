@@ -16,8 +16,6 @@
 
 if GetObjectName(GetMyHero()) ~= "KogMaw" then return end
 
-require('Inspired')
-
 local info = "Kogmaw_One_Key Reworked"
 local upv = "Upvote if you like it!"
 local sig = "Made by Snowbell, updated by Musti and DarknessVoided"
