@@ -1,4 +1,6 @@
-if GetObjectName(myHero) ~= "Varus" then return end
+if GetObjectName(GetMyHero()) ~= "Varus" then return end
+
+if not pcall( require, "Inspired" ) then PrintChat("You are missing Inspired.lua - Go download it and save it in Common!") return end
 
 VarusMenu = MenuConfig("Varus", "Varus")
 
