@@ -19,6 +19,7 @@ VarusMenu.Misc:Boolean("KSE", "Use E to KS", true)
 VarusMenu.Misc:Boolean("AL", "Use Auto Level", false)
 VarusMenu.Misc:DropDown("Autolvltable", "Priority", 1, {"R-Q-E-W", "R-W-Q-E"})
 
+VarusMenu:TargetSelector("ts", "Target Selector",  DAMAGE_MAGICAL, 1200, TARGET_LESS_CAST)
 --[[
 Okay lets do the thought process here.
 From what we can see, Varus Q increases in a speed 2 seconds. The other one seconds just hold the arrow in it's maximum length.
@@ -55,7 +56,7 @@ OnTick(function(myHero)
         local RPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
         local QPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1900,250,qRange,70,false,false)
         local mymouse = GetMousePos()
-        local target = GetCurrentTarget()
+        local target = VarusMenu.ts:GetTarget()
 
             if CanUseSpell(myHero, _E) == READY and ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and GetPercentMP(myHero) >= VarusMenu.ManaManager.E:Value() then
                 CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
