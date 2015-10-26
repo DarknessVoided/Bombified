@@ -51,47 +51,48 @@ qRange = 0
 -------------------------------------------------------------------------------------------------------------------
 OnTick(function(myHero)
 
-    if IOW:Mode() == "Combo" then
-        local EPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1500,100,925,235,false,false)
-        local RPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
-        local QPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1900,250,qRange,70,false,false)
-        local mymouse = GetMousePos()
-        local target = VarusMenu.ts:GetTarget()
+   if IOW:Mode() == "Combo" then
+      local EPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1500,100,925,235,false,false)
+      local RPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
+      local QPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1900,250,qRange,70,false,false)
+      local mousePos = GetMousePos()
+      local target = VarusMenu.ts:GetTarget()
 
-            if CanUseSpell(myHero, _E) == READY and ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and GetPercentMP(myHero) >= VarusMenu.ManaManager.E:Value() then
-                CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
-            end
-
-            if CanUseSpell(myHero, _R) and GetPercentMP(myHero) >= VarusMenu.ManaManager.R:Value() and ValidTarget(target, 1075) and RPred.HitChance == 1 and VarusMenu.Combo.R:Value() and EnemiesAround(target, 550) >= Varus.combo.Rcount:Value() then
-                CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
-            end
-      -------------------------------------------------------------------------------------------------------------------
-        if varusQ ~= nil then
-            if varusQ == true then
-                --We know the Q start at the point of 925 and ends at 1625 in 2 seconds.
-                timepassed = (GetGameTimer() - startTime)*1000 --This is mainly because 1 seconds = 1000 milliseconds
-                    if qRange < 1625 then
-                        qRange = range + timepassed*0.35 + GetHitBox(myHero)
-                    end
-            end
-        end
-    -------------------------------------------------------------------------------------------------------------------
-        if CanUseSpell(myHero, _Q) and ValidTarget(target, 1625) and VarusMenu.Combo.Q:Value() and GetPercentMP(myHero) >= VarusMenu.ManaManager.Q:Value() then
-            CastSkillShot(_Q, mousePos.x, mousePos.y, mousePos.z) then
-                if QPred == 1 then
-                    CastSkillShot2(_Q, QPred.PredPos.x, QPred.PredPos.y, QPred.PredPos.z)
-                end
-    end
-end --Ends IOW Combo
-
-   Level()
-end) --Ends OnTick
-
-function Level()
-   if VarusMenu.Misc.AL:Value() then
-      if VarusMenu.Misc.Autolvltable:Value() == 1 then leveltable = {_Q, _W, _E, _Q, _Q, _R, _Q, _E, _Q, _E, _R, _E, _E, _W, _W, _R, _W, _W}
-      elseif VarusMenu.Misc.Autolvltable:Value() == 2 then leveltable = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E}
+      if CanUseSpell(myHero, _E) == READY and ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and GetPercentMP(myHero) >= VarusMenu.ManaManager.E:Value() then
+         CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
       end
-      LevelSpell(leveltable[GetLevel(myHero)])
-   end
-end)
+
+      if CanUseSpell(myHero, _R) and GetPercentMP(myHero) >= VarusMenu.ManaManager.R:Value() and ValidTarget(target, 1075) and RPred.HitChance == 1 and VarusMenu.Combo.R:Value() and EnemiesAround(target, 550) >= Varus.combo.Rcount:Value() then
+         CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
+      end
+      -------------------------------------------------------------------------------------------------------------------
+      if varusQ ~= nil then
+         if varusQ == true then
+            --We know the Q start at the point of 925 and ends at 1625 in 2 seconds.
+            timepassed = (GetGameTimer() - startTime)*1000 --This is mainly because 1 seconds = 1000 milliseconds
+            if qRange < 1625 then
+               qRange = range + timepassed*0.35 + GetHitBox(myHero)
+            end
+         end
+      end
+      -------------------------------------------------------------------------------------------------------------------
+      if CanUseSpell(myHero, _Q) and ValidTarget(target, 1625) and VarusMenu.Combo.Q:Value() and GetPercentMP(myHero) >= VarusMenu.ManaManager.Q:Value() then
+         CastSkillShot(_Q,mousePos.x,mousePos.y,mousePos.z) then
+
+            if QPred == 1 then
+               CastSkillShot2(_Q, QPred.PredPos.x, QPred.PredPos.y, QPred.PredPos.z)
+            end
+         end
+      end --Ends IOW Combo
+
+      Level()
+   end) --Ends OnTick
+
+   function Level()
+      if VarusMenu.Misc.AL:Value() then
+         if VarusMenu.Misc.Autolvltable:Value() == 1 then leveltable = {_Q, _W, _E, _Q, _Q, _R, _Q, _E, _Q, _E, _R, _E, _E, _W, _W, _R, _W, _W}
+         elseif VarusMenu.Misc.Autolvltable:Value() == 2 then leveltable = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E}
+         end
+         LevelSpell(leveltable[GetLevel(myHero)])
+      end
+   end)
