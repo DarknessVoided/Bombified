@@ -1,3 +1,7 @@
+
+--Not updated for Inspired newest version
+
+
 local Menu = Menu("BM", "BM 2.0")
 
 Menu:SubMenu("rofl", "Settings")
