@@ -136,27 +136,28 @@ LevelTables = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _
 function AutoLvL()
    if KogMawMenu.Misc.lvl:Value() then
       LevelSpell(LevelTables[GetLevel(myHero)])
-    end
+   end
 end
 
 function Items()
---For BoTrK
-if KogMawMenu.Combo.Combo1:Value() then
+   --For BoTrK
+   if KogMawMenu.Combo.Combo1:Value() then
 
-    if botrk >= 1 and KogMawMenu.Items.BoTrK:Value() and ValidTarget(target,550) and GetPercentHP(myHero) >= KogMawMenu.Items.III:value() then
-        if CanUseSpell(myHero,GetItemSlot(myHero,3153)) == READY then
-        CastTargetSpell(target,GetItemSlot(myHero,3153))
-        end
+      if botrk >= 1 and KogMawMenu.Items.BoTrK:Value() and ValidTarget(target,550) and GetPercentHP(myHero) >= KogMawMenu.Items.III:value() then
+         if CanUseSpell(myHero,GetItemSlot(myHero,3153)) == READY then
+            CastTargetSpell(target,GetItemSlot(myHero,3153))
+         end
 
-    elseif Cutlass >= 1 and KogMawMenu.Items.Cutlass.Value() and ValidTarget(target, 550) and GetPercentHP(myHero) >= KogMawMenu.Items.III:Value() then
-        if CanUseSpell(myHero, GetItemSlot(myHero,3144)) == READY then
-        CastTargetSpell(target, GetItemSlot(myHero, 3144))
-    end
+      elseif Cutlass >= 1 and KogMawMenu.Items.Cutlass.Value() and ValidTarget(target, 550) and GetPercentHP(myHero) >= KogMawMenu.Items.III:Value() then
+         if CanUseSpell(myHero, GetItemSlot(myHero,3144)) == READY then
+            CastTargetSpell(target, GetItemSlot(myHero, 3144))
+         end
+      end
+
+      if KogMawMenu.Combo.Combo1:Value() and Yomie >= 1 and ValidTarget(target, 500) and EnemiesAround(myHero, 500) >= 1 then
+         if CanUseSpell(myHero, GetItemSlot(myHero, 3142)) == READY then
+            CastSpell(GetItemSlot(myHero,3142))
+         end
+      end
+   end --Ends Function Items
 end
-
-if KogMawMenu.Combo.Combo1:Value() and Yomie >= 1 and ValidTarget(target, 500) and EnemiesAround(myHero, 500) >= 1 then
-    if CanUseSpell(myHero, GetItemSlot(myHero, 3142)) == READY then
-    CastSpell(GetItemSlot(myHero,3142))
-    end
-end
-end --Ends Function Items
