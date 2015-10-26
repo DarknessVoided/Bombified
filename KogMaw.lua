@@ -16,7 +16,7 @@
 
 if GetObjectName(GetMyHero()) ~= "KogMaw" then return end
 
-if not pcall( require, "Inspired" ) then PrintChat("You are missing Inspired.lua - Go download it and save it Common!") return end
+if not pcall( require, "Inspired" ) then PrintChat("You are missing Inspired.lua - Go download it and save it in Common!") return end
 
 local info = "Kogmaw_One_Key Reworked"
 local upv = "Upvote if you like it!"
