@@ -54,6 +54,7 @@ OnTick(function(myHero)
         local EPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1500,100,925,235,false,false)
         local RPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
         local QPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1900,250,qRange,70,false,false)
+        local mymouse = GetMousePos()
         local target = GetCurrentTarget()
 
             if CanUseSpell(myHero, _E) == READY and ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and GetPercentMP(myHero) >= VarusMenu.ManaManager.E:Value() then
@@ -75,7 +76,7 @@ OnTick(function(myHero)
         end
     -------------------------------------------------------------------------------------------------------------------
         if CanUseSpell(myHero, _Q) and ValidTarget(target, 1625) and VarusMenu.Combo.Q:Value() and GetPercentMP(myHero) >= VarusMenu.ManaManager.Q:Value() then
-            CastSkillShot(_Q, GetMousePos()) then
+            CastSkillShot(_Q, mousePos.x, mousePos.y, mousePos.z) then
                 if QPred == 1 then
                     CastSkillShot2(_Q, QPred.PredPos.x, QPred.PredPos.y, QPred.PredPos.z)
                 end
