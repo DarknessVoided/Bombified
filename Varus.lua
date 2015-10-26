@@ -76,10 +76,10 @@ OnTick(function(myHero)
          end
       end
       -------------------------------------------------------------------------------------------------------------------
-      if CanUseSpell(myHero, _Q) and ValidTarget(target, 1625) and VarusMenu.Combo.Q:Value() and GetPercentMP(myHero) >= VarusMenu.ManaManager.Q:Value() then
-         CastSkillShot(_Q,mousePos.x,mousePos.y,mousePos.z) then
-
-            if QPred == 1 then
+      if CanUseSpell(myHero, _Q) and ValidTarget(target, QRange) and VarusMenu.Combo.Q:Value() and GetPercentMP(myHero) >= VarusMenu.ManaManager.Q:Value() then
+         CastSkillShot(_Q, mousePos.x,mousePos.y,mousePos.z) then
+            if QPred.HitChance == 1
+            then
                CastSkillShot2(_Q, QPred.PredPos.x, QPred.PredPos.y, QPred.PredPos.z)
             end
          end
