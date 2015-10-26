@@ -62,7 +62,7 @@ OnTick(function(myHero)
                 CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
             end
 
-            if CanUseSpell(myHero, _R) and and GetPercentMP(myHero) >= VarusMenu.ManaManager.R:Value() and ValidTarget(target, 1075) and RPred.HitChance == 1 and VarusMenu.Combo.R:Value() and EnemiesAround(target, 550) >= Varus.combo.Rcount:Value() then
+            if CanUseSpell(myHero, _R) and GetPercentMP(myHero) >= VarusMenu.ManaManager.R:Value() and ValidTarget(target, 1075) and RPred.HitChance == 1 and VarusMenu.Combo.R:Value() and EnemiesAround(target, 550) >= Varus.combo.Rcount:Value() then
                 CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
             end
       -------------------------------------------------------------------------------------------------------------------
