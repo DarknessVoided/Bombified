@@ -77,22 +77,22 @@ OnTick(function(myHero)
       end
       -------------------------------------------------------------------------------------------------------------------
       if CanUseSpell(myHero, _Q) and ValidTarget(target, QRange) and VarusMenu.Combo.Q:Value() and GetPercentMP(myHero) >= VarusMenu.ManaManager.Q:Value() then
-         CastSkillShot(_Q, mousePos.x,mousePos.y,mousePos.z) then
-            if QPred.HitChance == 1
-            then
-               CastSkillShot2(_Q, QPred.PredPos.x, QPred.PredPos.y, QPred.PredPos.z)
-            end
+         CastSkillShot(_Q, mousePos.x,mousePos.y,mousePos.z)
+         if QPred.HitChance == 1
+         then
+            CastSkillShot2(_Q, QPred.PredPos.x, QPred.PredPos.y, QPred.PredPos.z)
          end
-      end --Ends IOW Combo
-
-      Level()
-   end) --Ends OnTick
-
-   function Level()
-      if VarusMenu.Misc.AL:Value() then
-         if VarusMenu.Misc.Autolvltable:Value() == 1 then leveltable = {_Q, _W, _E, _Q, _Q, _R, _Q, _E, _Q, _E, _R, _E, _E, _W, _W, _R, _W, _W}
-         elseif VarusMenu.Misc.Autolvltable:Value() == 2 then leveltable = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E}
-         end
-         LevelSpell(leveltable[GetLevel(myHero)])
       end
-   end)
+   end --Ends IOW Combo
+
+   Level()
+end) --Ends OnTick
+
+function Level()
+   if VarusMenu.Misc.AL:Value() then
+      if VarusMenu.Misc.Autolvltable:Value() == 1 then leveltable = {_Q, _W, _E, _Q, _Q, _R, _Q, _E, _Q, _E, _R, _E, _E, _W, _W, _R, _W, _W}
+      elseif VarusMenu.Misc.Autolvltable:Value() == 2 then leveltable = {_Q, _W, _E, _W, _W, _R, _W, _Q, _W, _Q, _R, _Q, _Q, _E, _E, _R, _E, _E}
+      end
+      LevelSpell(leveltable[GetLevel(myHero)])
+   end
+end
