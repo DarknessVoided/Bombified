@@ -6,7 +6,6 @@ VarusMenu:Menu("Combo", "Combo")
 VarusMenu.Combo:Boolean("Q", "Use Q", true)
 VarusMenu.Combo:Boolean("E", "Use E", true)
 VarusMenu.Combo:Boolean("R", "Use R", true)
-VarusMenu.Combo:Slider("Check", "Stacks of W before Using Skill to Explode it ", 1, 0, 3, 1)
 VarusMenu.Combo:Slider("RCount", "R min enemy to Hit", 1, 1, 5, 1)
 
 VarusMenu:Menu("Mana", "Mana Manager")
@@ -52,17 +51,16 @@ OnTick(function(myHero)
 
     if IOW:Mode() == "Combo" then
         local MyMana = (GetCurrentMana(myHero)/GetMaxMana(myHero))*100
-        local Check = GotBuff(target, "varuswdebuff")
         local EPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1500,100,925,235,false,false)
         local RPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
         local QPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1900,250,qRange,70,false,false)
         local target = GetCurrentTarget()
 
-            if CanUseSpell(myHero, _E) == READY and Check >= VarusMenu.Combo.Check:Value() and ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
+            if CanUseSpell(myHero, _E) == READY and ValidTarget(target, 925) and VarusMenu.Combo.E:Value() and EPred.HitChance == 1 and MyMana >= VarusMenu.ManaManager.E:Value() then
                 CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
             end
 
-            if CanUseSpell(myHero, _R) and Check >= VarusMenu.Combo.Check:Value()  and ValidTarget(target, 1075) and RPred.HitChance == 1 and VarusMenu.Combo.R:Value() and EnemiesAround(target, 550) >= Varus.combo.Rcount:Value() then
+            if CanUseSpell(myHero, _R) and ValidTarget(target, 1075) and RPred.HitChance == 1 and VarusMenu.Combo.R:Value() and EnemiesAround(target, 550) >= Varus.combo.Rcount:Value() then
                 CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
             end
       -------------------------------------------------------------------------------------------------------------------
@@ -76,7 +74,7 @@ OnTick(function(myHero)
             end
         end
     -------------------------------------------------------------------------------------------------------------------
-        if CanUseSpell(myHero, _Q) and ValidTarget(target, 1625) and Check >= VarusMenu.Combo.Check:Value() and VarusMenu.Combo.Q:Value() and MyMana >= VarusMenu.ManaManager.Q:Value() then
+        if CanUseSpell(myHero, _Q) and ValidTarget(target, 1625) and VarusMenu.Combo.Q:Value() and MyMana >= VarusMenu.ManaManager.Q:Value() then
             CastSkillShot(_Q, GetMousePos()) then
                 if QPred == 1 then
                     CastSkillShot2(_Q, QPred.PredPos.x, QPred.PredPos.y, QPred.PredPos.z)
