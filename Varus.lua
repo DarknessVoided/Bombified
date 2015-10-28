@@ -21,7 +21,7 @@ VarusMenu.Misc:Boolean("KSE", "Use E to KS", true)
 VarusMenu.Misc:Boolean("AL", "Use Auto Level", false)
 VarusMenu.Misc:DropDown("Autolvltable", "Priority", 1, {"R-Q-E-W", "R-W-Q-E"})
 
-VarusMenu:TargetSelector("ts", "Target Selector",  DAMAGE_MAGICAL, 1450, TARGET_LESS_CAST)
+--[[ VarusMenu:TargetSelector("ts", "Target Selector",  DAMAGE_MAGICAL, 1450, TARGET_LESS_CAST) ]]--
 --[[
 Okay lets do the thought process here.
 From what we can see, Varus Q increases in a speed 2 seconds. The other one seconds just hold the arrow in it's maximum length.
@@ -52,7 +52,7 @@ end)
 qRange = 0
 -------------------------------------------------------------------------------------------------------------------
 OnTick(function(myHero)
-
+   target = GetCurrentTarget
    if IOW:Mode() == "Combo" then
       local EPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1500,100,925,235,false,false)
       local RPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1950,25,1075,100,false,true)
