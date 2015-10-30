@@ -1,19 +1,3 @@
---[[                _   _ _ _                   __  __            _     _            
-     /\        | | (_) | |                 |  \/  |          | |   (_)           
-    /  \   _ __| |_ _| | | ___ _ __ _   _  | \  / | __ _  ___| |__  _ _ __   ___ 
-   / /\ \ | '__| __| | | |/ _ \ '__| | | | | |\/| |/ _` |/ __| '_ \| | '_ \ / _ \
-  / ____ \| |  | |_| | | |  __/ |  | |_| | | |  | | (_| | (__| | | | | | | |  __/
- /_/ __ \_\_|   \__|_|_|_|\___|_|   \__, | |_|  |_|\__,_|\___|_| |_|_|_| |_|\___|
- | |/ /            |  \/  |          __/ |                                       
- | ' / ___   __ _  | \  / | __ ___  |___/_                                       
- |  < / _ \ / _` | | |\/| |/ _` \ \ /\ / /                                       
- | . \ (_) | (_| | | |  | | (_| |\ V  V /                                        
- |_|\_\___/ \__, | |_|  |_|\__,_| \_/\_/                                         
-             __/ |                                                               
-            |___/                                    
- ]]--
-
-
 if GetObjectName(GetMyHero()) ~= "KogMaw" then return end
 
 if not pcall( require, "Inspired" ) then PrintChat("You are missing Inspired.lua - Go download it and save it in Common!") return end
@@ -59,10 +43,11 @@ KogMawMenu.Items:Boolean("BoTrK", "Use Botrk", true)
 KogMawMenu.Items:Boolean("Cutlass", "Use Cutlass", true)
 KogMawMenu.Items:Slider("III", "Use BoTrk or Cutlass when Health", 40, 1, 100, 1)
 
---[[KogMawMenu:TargetSelector("ts", "Target Selector", DAMAGE_PHYSICAL, 1200, TARGET_LESS_CAST) ]]--
+ts = TargetSelector(GetRange(myHero), TARGET_LESS_CAST, DAMAGE_PHYSICAL)
+KogMawMenu:TargetSelector("ts", "Target Selector", ts)
 
 OnTick(function(myHero)
-   local target = GetCurrentTarget()
+   local target = ts:GetTarget()
    origin = GetOrigin(target)
    local QPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1650,250,1200,70,true,true)
    local EPred = GetPredictionForPlayer(myHeroPos(),target,GetMoveSpeed(target),1400,250,1360,120,false,true)
@@ -97,7 +82,7 @@ function Combo()
 end --Ends the Combo function
 
 function KS()
-   local target = GetCurrentTarget()
+   local target = ts:GetTarget()
    for i,enemy in pairs(GetEnemyHeroes()) do
       local QPred = GetPredictionForPlayer(myHeroPos(),enemy,GetMoveSpeed(enemy),1650,250,1200,70,true,true)
       local EPred = GetPredictionForPlayer(myHeroPos(),enemy,GetMoveSpeed(enemy),1400,250,1360,120,false,true)
@@ -161,5 +146,5 @@ function Items()
             CastSpell(GetItemSlot(myHero,3142))
          end
       end
-   end --Ends Function Items
-end
+   end
+end --End function Items
