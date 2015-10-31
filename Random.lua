@@ -1,57 +1,29 @@
-Udyr = MenuConfig("Udyr", "Udyr")
+if GetObjectName(GetMyHero()) ~= "Irelia" then return end
 
-Udyr:Menu("Combo", "Combo")
-Udyr.Combo:Boolean("Q", "Use Q", true)
-Udyr.Combo:Boolean("W", "Use W", true)
-Udyr.Combo:Boolean("E", "Use E", true)
-Udyr.Combo:Boolean("R", "Use R", true)
-
-Udyr:Menu("Misc", "Misc")
-Udyr.Misc.KeyBinding:("Flee", "Swiftly", false)
+if not pcall( require, "Inspired" ) then PrintChat("You are missing Inspired.lua - Go download it and save it in Common!") return end
 
 OnTick(function(myHero)
-target = GetCurrentTarget()
-Flee()
-Combo()
-AutoLvL()
-end)
-
-function Combo()
-	if CanUseSpell(_E) and if not GotBuff(target, "udyrbearstuncheck") and ValidTarget(target, 400) then
-	CastSpell(_E)
-		end
-		
-	if CanUseSpell(_Q) then
-	CastSpell(_Q)
+	if IOW:mode == 'Combo' then
+		Combo()
 	end
 	
-end --This marks the end of the function Combo()
-
-OnProcessSpellComplete(function(Object,spellProc)
-	if Object == myHero and spellProc.name == ("Udyr_PhoenixBreath_cas.troy" or "Udyr_Sprit_Phoenix_Breath_cas.troy") then
-	Turtle = false
-	Bear = false
-	Tiger = false
-	Phoenix = true
-	end
-end)
-
-OnCreateObj(function(Object)
-	if Object == ("Udyr_PhoenixBreath_cas.troy" or "Udyr_Sprit_Phoenix_Breath_cas.troy") then
-	Flame = true
+	if IOW:mode == 'LaneClear' then
+		LaneClear()
 	end
 	
-	if Object == ("udyr_tiger_claw_tar.troy" or "Udyr_Spirit_Tiger_Claw_tar.troy") then
-	Tiger = true
+	if IOW:mode == "Harass" then
+	Harass()
 	end
 end)
 
-OnDeleteObj(function(Object)
-	if Object == ("Udyr_PhoenixBreath_cas.troy" or "Udyr_Sprit_Phoenix_Breath_cas.troy") then
-	Flame = false
+function Harass()
+	if IreliaMenu.Harass.UseQ:value and ValidTarget(target) and GetPercentMP(myHero) >= IreliaMenu.Mana.ManagerQ:value() then
+		CastQHarass(unit)
 	end
 	
-	if Object == ("udyr_tiger_claw_tar.troy" or "Udyr_Spirit_Tiger_Claw_tar.troy") then
-	Tiger = false
-	end
-end)
+	if IreliaMenu.Harass.UseE:value() and ValidTarget(target) and GetPercentMP(myHero) >= IreliaMenu.Mana.ManagerE:value() then
+		CastEHarass(unit)
+	end	
+end
+
+function CastQHarass(unit)
