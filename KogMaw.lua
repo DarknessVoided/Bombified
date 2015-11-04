@@ -55,12 +55,14 @@ OnTick(function(myHero)
    local botrk = GetItemSlot(myHero,3153)
    local Cutlass = GetItemSlot(myHero,3144)
    local Yomie = GetItemSlot(myHero, 3142)
-   Combo()
-   KS()
-   Items()
-   Laugh()
-   AmIDead()
-   AutoLvL()
+   if target then
+      Combo()
+      KS()
+      Items()
+      Laugh()
+      AmIDead()
+      AutoLvL()
+   end
 end) --Ends the OnLoop
 
 function Combo()
