@@ -1,6 +1,7 @@
 if GetObjectName(GetMyHero()) ~= "KogMaw" then return end
 
 if not pcall( require, "Inspired" ) then PrintChat("You are missing Inspired.lua - Go download it and save it in Common!") return end
+AutoUpdate("/DarknessVoided/Bombified/blob/master/KogMaw.lua","/DarknessVoided/Bombified/blob/master/KogMaw.Version","KogMaw.lua",1)
 
 local info = "Kogmaw_One_Key Reworked"
 local upv = "Upvote if you like it!"
