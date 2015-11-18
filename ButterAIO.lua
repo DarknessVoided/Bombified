@@ -7,10 +7,15 @@ AutoUpdate("/DarknessVoided/Bombified/blob/master/ButterAIO.lua","/DarknessVoide
 SupportedHero = {["Akali"] = true}
 Class = "Akali"
 
-OnProcessSpellComplete(function
 function Akali:__init()
 OnTick(function(myHero) self:OnLoad(myHero) end)
 OnDraw(function(myHero) self:On_Draw(myHero) end)
+
+  OnProcessSpellComplete(function(Object, spell)
+    if Object == GetMyHero() and spell.name == AkaliR then
+      CastTargetSpell(_W,myHeroPos())
+    end
+  end)
 end)
 
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
