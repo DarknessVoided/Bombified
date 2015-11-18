@@ -62,8 +62,7 @@ OnTick(function(myHero)
       Laugh()
       AmIDead()
       AutoLvL()
-   end
-end) --Ends the OnLoop
+end) --Ends the OnTick
 
 function Combo()
    if isReady(_Q) and GetPercentMP(myHero) >= KogMawMenu.Mana.Q:Value() and IsObjectAlive(target) and ValidTarget(target, 1200) and QPred.HitChance == 1 and KogMawMenu.Combo.Q:Value() and KogMawMenu.Combo.Combo1:Value() then
