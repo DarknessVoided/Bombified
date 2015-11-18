@@ -16,7 +16,6 @@ function Akali:__init()
         CastTargetSpell(_W,GetOrigin(myHero))
       end
     end)
-end)
 
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
 
@@ -33,6 +32,6 @@ Akali.Drawings:Boolean("Q", "Show Q range", false)
 Akali.Drawings;Boolean("WSpots", "Draw W Spots which gives extra range(For Escaping)", false)
 Akali.Drawings:Boolean("E", "Show E range", false)
 Akali.Drawings:Boolean("R", "Show R range", false)
-end
+end --Ends Init function
 
 function Akali:OnLoad()
