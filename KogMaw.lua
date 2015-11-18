@@ -65,19 +65,19 @@ OnTick(function(myHero)
 end) --Ends the OnTick
 
 function Combo()
-   if isReady(_Q) and GetPercentMP(myHero) >= KogMawMenu.Mana.Q:Value() and IsObjectAlive(target) and ValidTarget(target, 1200) and QPred.HitChance == 1 and KogMawMenu.Combo.Q:Value() and KogMawMenu.Combo.Combo1:Value() then
+   if IsReady(_Q) and GetPercentMP(myHero) >= KogMawMenu.Mana.Q:Value() and IsObjectAlive(target) and ValidTarget(target, 1200) and QPred.HitChance == 1 and KogMawMenu.Combo.Q:Value() and KogMawMenu.Combo.Combo1:Value() then
       CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
    end
 
-   if isReady(_W) and KogMawMenu.Combo.Combo1:Value() and KogMawMenu.Combo.W:Value() and ValidTarget(target, 600) then
+   if IsReady(_W) and KogMawMenu.Combo.Combo1:Value() and KogMawMenu.Combo.W:Value() and ValidTarget(target, 600) then
       CastSpell(_W)
    end
 
-   if isReady(_E) and GetPercentMP(myHero) >= KogMawMenu.Mana.E:Value() and KogMawMenu.Combo.E:Value() and KogMawMenu.Combo.Combo1:Value() and ValidTarget(target, 1360) and EPred.HitChance == 1 then
+   if IsReady(_E) and GetPercentMP(myHero) >= KogMawMenu.Mana.E:Value() and KogMawMenu.Combo.E:Value() and KogMawMenu.Combo.Combo1:Value() and ValidTarget(target, 1360) and EPred.HitChance == 1 then
       CastSkillShot(_E,EPred.PredPos.x,EPred.PredPos.y,EPred.PredPos.z)
    end
 
-   if isReady(_R) and GetPercentMP(myHero) >= KogMawMenu.Mana.R:Value() and RPred.HitChance == 1 and KogMawMenu.Combo.R:Value() and KogMawMenu.Combo.Combo1:Value() and ValidTarget(target, 1800) then
+   if IsReady(_R) and GetPercentMP(myHero) >= KogMawMenu.Mana.R:Value() and RPred.HitChance == 1 and KogMawMenu.Combo.R:Value() and KogMawMenu.Combo.Combo1:Value() and ValidTarget(target, 1800) then
       CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
    end
 end --Ends the Combo function
@@ -89,15 +89,15 @@ function KS()
       local EPred = GetPredictionForPlayer(myHeroPos(),enemy,GetMoveSpeed(enemy),1400,250,1360,120,false,true)
       local RPred = GetPredictionForPlayer(myHeroPos(),enemy,GetMoveSpeed(enemy),math.huge,1200,1800,150,false,false)
 
-      if isReady(_Q) == READY and KogMawMenu.Misc.KSQ:Value() and ValidTarget(enemy, 1200) and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, 0, (50*GetCastLevel(myHero,_Q) + 30+ 0.5*(GetBonusAP(myHero)))) then
+      if IsReady(_Q) == READY and KogMawMenu.Misc.KSQ:Value() and ValidTarget(enemy, 1200) and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, 0, (50*GetCastLevel(myHero,_Q) + 30+ 0.5*(GetBonusAP(myHero)))) then
          CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
       end
 
-      if isReady(_E) and KogMawMenu.Misc.KSE:Value() and ValidTarget(enemy, 1360) and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, 0, (50*GetCastLevel(myHero,_E) + 10 + 0.7*(GetBonusAP(myHero)))) then
+      if IsReady(_E) and KogMawMenu.Misc.KSE:Value() and ValidTarget(enemy, 1360) and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, 0, (50*GetCastLevel(myHero,_E) + 10 + 0.7*(GetBonusAP(myHero)))) then
          CastSpell(_W)
       end
 
-      if isReady(_R) and KogMawMenu.Misc.KSR:Value() and ValidTarget(enemy, 1800) and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, 0, (40*GetCastLevel(myHero,_R) + 40 + 0.5*(GetBaseDamage(myHero) + GetBonusDmg(myHero) + 0.3*(GetBonusAP(myHero)))),0) then
+      if IsReady(_R) and KogMawMenu.Misc.KSR:Value() and ValidTarget(enemy, 1800) and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, 0, (40*GetCastLevel(myHero,_R) + 40 + 0.5*(GetBaseDamage(myHero) + GetBonusDmg(myHero) + 0.3*(GetBonusAP(myHero)))),0) then
          CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
       end
    end
