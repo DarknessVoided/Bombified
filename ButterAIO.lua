@@ -7,6 +7,7 @@ AutoUpdate("/DarknessVoided/Bombified/blob/master/ButterAIO.lua","/DarknessVoide
 SupportedHero = {["Akali"] = true}
 Class = "Akali"
 
+OnProcessSpellComplete(function
 function Akali:__init()
 OnTick(function(myHero) self:OnLoad(myHero) end)
 OnDraw(function(myHero) self:On_Draw(myHero) end)
@@ -15,4 +16,15 @@ end)
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
 
 Akali:Menu("Combo", "Combo")
+Akali:Menu("Drawings", "Drawings")
 Akali:Menu("Misc", "Misc")
+
+Akali.Combo:Boolean("Q", "Use Q", true)
+Akali.Combo:Boolean("W", "Use W immediately after R", true)
+Akali.Combo:Boolean("E", "Use E", true)
+Akali.Combo:Boolean("R", "Use R", true)
+
+Akali.Drawings:Boolean("Q", "Show Q range", false)
+Akali.Drawings;Boolean("WSpots", "Draw W Spots which gives extra range(For Escaping)", false)
+Akali.Drawings:Boolean("E", "Show E range", false)
+Akali.Drawings:Boolean("R", "Show R range", false)
