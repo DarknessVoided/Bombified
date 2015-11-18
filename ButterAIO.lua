@@ -8,14 +8,14 @@ SupportedHero = {["Akali"] = true}
 Class = "Akali"
 
 function Akali:__init()
-OnTick(function(myHero) self:OnLoad(myHero) end)
-OnDraw(function(myHero) self:On_Draw(myHero) end)
-
-  OnProcessSpellComplete(function(Object, spell)
-    if Object == GetMyHero() and spell.name == AkaliR and Akali.Combo.W:Value() and Ready(_W) then
-      CastTargetSpell(_W,GetOrigin(myHero))
-    end
-  end)
+  OnTick(function(myHero) self:OnLoad(myHero) end)
+  OnDraw(function(myHero) self:On_Draw(myHero) end)
+  
+    OnProcessSpellComplete(function(Object, spell)
+      if Object == GetMyHero() and spell.name == AkaliR and Akali.Combo.W:Value() and Ready(_W) then
+        CastTargetSpell(_W,GetOrigin(myHero))
+      end
+    end)
 end)
 
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
@@ -33,3 +33,6 @@ Akali.Drawings:Boolean("Q", "Show Q range", false)
 Akali.Drawings;Boolean("WSpots", "Draw W Spots which gives extra range(For Escaping)", false)
 Akali.Drawings:Boolean("E", "Show E range", false)
 Akali.Drawings:Boolean("R", "Show R range", false)
+end
+
+function Akali:OnLoad()
