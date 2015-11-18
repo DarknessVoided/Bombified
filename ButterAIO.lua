@@ -12,8 +12,8 @@ OnTick(function(myHero) self:OnLoad(myHero) end)
 OnDraw(function(myHero) self:On_Draw(myHero) end)
 
   OnProcessSpellComplete(function(Object, spell)
-    if Object == GetMyHero() and spell.name == AkaliR then
-      CastTargetSpell(_W,myHeroPos())
+    if Object == GetMyHero() and spell.name == AkaliR and Akali.Combo.W:Value() and Ready(_W) then
+      CastTargetSpell(_W,GetOrigin(myHero))
     end
   end)
 end)
