@@ -52,6 +52,8 @@ Akali.Combo:Boolean("E", "Use E", true)
 Akali.Combo:Boolean("R", "Use R", true)
 Akali.Combo:Boolean("Dive", "Do not Dive under turret", true)
 
+Akali.Misc:Slider("W", "Use W when health below", 
+
 Akali.Drawings:Boolean("Q", "Show Q range", false)
 Akali.Drawings;Boolean("WSpots", "Draw W Spots which gives extra range(For Escaping)", false)
 Akali.Drawings:Boolean("E", "Show E range", false)
@@ -60,12 +62,19 @@ end --Ends Init function
 
 function Akali:OnLoad()
   self:CallCombo()
+	self:CallMisc()
 end
 
 function self:CallCombo()
   if IOW:MODE() == "Combo" then
     self:Combo()
   end
+end
+
+function self:CallMisc()
+	if GetPercentHP(myHero) <= Akali.Misc.W:Value() and not isRecalling() then
+		CastTargetSpell(_W,getOrigin(myHero))
+	end
 end
 
 function Akali:Combo()
@@ -89,6 +98,7 @@ function Akali:Combo()
 end
 
 function Akali:KS()
+
 end
 
 Class = "Fizz"
