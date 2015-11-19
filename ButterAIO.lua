@@ -2,9 +2,24 @@
 V1.0 - Initial Commit
 V1.1 - Fixed some bugs]]--
 
-if not pcall( require, "Inspired" ) then PrintChat("You are missing Inspired.lua - Go download it and save it in Common!") return end
-if not pcall( require, "DamageLib" ) then PrintChat("You are missing DamageLib.lua - Go download it and save it in Common!") return end
-if not pcall( require, "DeftLib" ) then PrintChat("You are missing DeftLib.lua - Go download it and save it in Common!") return end
+DeftLib_PATH = COMMON_PATH.."DeftLib.lua"
+DamageLib_PATH = COMMON_PATH.."DamageLib.lua"
+Inspired_PATH = COMMON_PATH.."Inspired.lua"
+
+	if FileExist(DeftLib_PATH) then
+	require('DeftLib')
+	else PrintChat("You are missing DeftLib in your Common folder - Install it") then
+	return end
+	
+	if FileExist(DamageLib_PATH) then
+	require('DamageLib')
+	else PrintChat("You are missing DamageLib in your Common folder - Install it") then
+	return end
+	
+	if FileExist(Inspired_PATH) then
+	require('Inspired')
+	else PrintChat("You are missing Inspired in your Common folder - Install it") then
+	return end
 
 AutoUpdate("/DarknessVoided/Bombified/blob/master/ButterAIO.lua","/DarknessVoided/Bombified/blob/master/ButterAIO.Version","ButterAIO.lua",1)
 
@@ -16,11 +31,14 @@ function Akali:__init()
   OnDraw(function(myHero) self:On_Draw(myHero) end)
   
     OnProcessSpellComplete(function(Object, spell)
-      if Object == GetMyHero() and spell.name == "AkaliR" and Akali.Combo.W:Value() and Ready(_W) then
+      if Object == GetMyHero() and spell.name == "AkaliShadowDance" and Akali.Combo.W:Value() and Ready(_W) then
         CastTargetSpell(_W,GetOrigin(myHero))
       end
     end)
 
+--[[OnProcessRecall(function(Object, RecallProc)
+	if Onject == myHero and RecallProc.isFalse]]--
+	
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
 
 Akali:Menu("Combo", "Combo")
@@ -71,3 +89,7 @@ end
 
 function Akali:KS()
 end
+
+Class = "Fizz"
+
+function Fizz:__init()
