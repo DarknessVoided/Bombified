@@ -35,11 +35,7 @@ function Akali:__init()
       if Object == GetMyHero() and spell.name == "AkaliShadowDance" and Akali.Combo.W:Value() and Ready(_W) then
         CastTargetSpell(_W,GetOrigin(myHero))
       end
-    end)
 
---[[OnProcessRecall(function(Object, RecallProc)
-	if Onject == myHero and RecallProc.isFalse]]--
-	
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
 
 Akali:Menu("Combo", "Combo")
