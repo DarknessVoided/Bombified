@@ -72,7 +72,7 @@ function self:CallCombo()
 end
 
 function self:CallMisc()
-	if GetPercentHP(myHero) <= Akali.Misc.W:Value() and not isRecalling() then
+	if GetPercentHP(myHero) <= Akali.Misc.W:Value() and not IsRecalling() then
 		CastTargetSpell(_W,getOrigin(myHero))
 	end
 end
