@@ -1,6 +1,7 @@
 --[[
 V1.0 - Initial Commit
-V1.1 - Fixed some bugs]]--
+V1.1 - Fixed some bugs
+v1.1.1 - Added FileExist style. Cleaned up some codes]]--
 
 DeftLib_PATH = COMMON_PATH.."DeftLib.lua"
 DamageLib_PATH = COMMON_PATH.."DamageLib.lua"
