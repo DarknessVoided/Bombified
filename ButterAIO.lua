@@ -60,3 +60,6 @@ function Akali:Combo()
         CastTargetSpell(_R,target)
       end
 end
+
+function Akali:KS()
+end
