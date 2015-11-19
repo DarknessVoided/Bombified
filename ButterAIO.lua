@@ -35,3 +35,28 @@ Akali.Drawings:Boolean("R", "Show R range", false)
 end --Ends Init function
 
 function Akali:OnLoad()
+  self:CallCombo()
+end
+
+function self:CallCombo()
+  if IOW:MODE() == "Combo" then
+    self:Combo()
+  end
+end
+
+function Akali:Combo()
+    local target = GetCurrentTarget()
+    
+      if Ready(_Q) and ValidTarget(target,600) and Akali.Combo.Q:value() then
+        CastTargetSpell(_Q,target)
+        AttackUnit(target)
+      end
+      
+      if Ready(_E) and ValidTarget(target,300) and Akali.COmbo.Q:Value() then
+        CastSpell(_E)
+      end
+      
+      if Ready(_R) and ValidTarget(target) >= Akali.Combo.QW:Value() then
+        CastTargetSpell(_R,target)
+      end
+end
