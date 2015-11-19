@@ -16,7 +16,7 @@ function Akali:__init()
   OnDraw(function(myHero) self:On_Draw(myHero) end)
   
     OnProcessSpellComplete(function(Object, spell)
-      if Object == GetMyHero() and spell.name == AkaliR and Akali.Combo.W:Value() and Ready(_W) then
+      if Object == GetMyHero() and spell.name == "AkaliR" and Akali.Combo.W:Value() and Ready(_W) then
         CastTargetSpell(_W,GetOrigin(myHero))
       end
     end)
@@ -51,7 +51,8 @@ end
 
 function Akali:Combo()
     local target = GetCurrentTarget()
-    
+    local UnderTurret = blahblah
+
       if Ready(_Q) and ValidTarget(target,600) and Akali.Combo.Q:value() then
         CastTargetSpell(_Q,target)
         AttackUnit(target)
