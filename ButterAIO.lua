@@ -45,6 +45,7 @@ OnProcessSpell(function(Object, spell)
 			CastTargetSpell(_Q,target) then
 				AttackUnit(target)
 		end
+end)
 		
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
 
