@@ -33,19 +33,19 @@ Class = "Akali"
 function Akali:__init()
   OnTick(function(myHero) self:OnLoad(myHero) end)
   OnDraw(function(myHero) self:On_Draw(myHero) end)
-  
-    OnProcessSpellComplete(function(Object, spell)
-      if Object == GetMyHero() and spell.name == "AkaliShadowDance" and Akali.Combo.W:Value() and Ready(_W) then
-        CastTargetSpell(_W,GetOrigin(myHero))
-      end
-    end)
 
-    OnProcessSpell(function(Object, spell)
-			if Object == myHero and spell.name == "AkaliShadowDance" and Akali.Combo.Q:value() and IsInDistance(600) then
+OnProcessSpellComplete(function(Object, spell)
+	if Object == GetMyHero() and spell.name == "AkaliShadowDance" and Akali.Combo.W:Value() and Ready(_W) then
+        CastTargetSpell(_W,GetOrigin(myHero))
+	end
+end)
+
+OnProcessSpell(function(Object, spell)
+	if Object == myHero and spell.name == "AkaliShadowDance" and Akali.Combo.Q:value() and IsInDistance(600) then
 			CastTargetSpell(_Q,target) then
 				AttackUnit(target)
-			end
-	 end)
+	end
+end)
 		
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
 
