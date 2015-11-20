@@ -45,7 +45,7 @@ function Akali:__init()
 			CastTargetSpell(_Q,target) then
 				AttackUnit(target)
 			end
-	end)
+	   end)
 		
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
 
