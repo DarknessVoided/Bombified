@@ -43,8 +43,8 @@ end)
 OnProcessSpell(function(Object, spell)
 	if Object == myHero and spell.name == "AkaliShadowDance" and Akali.Combo.Q:value() and IsInDistance(600) then
 
-		CastTargetSpell(_Q,target) then
-	AttackUnit(target)
+CastTargetSpell(_Q,target) then
+		AttackUnit(target)
 	end
 end)
 		
