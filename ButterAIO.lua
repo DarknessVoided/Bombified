@@ -41,11 +41,10 @@ OnProcessSpellComplete(function(Object, spell)
 end)
 
 OnProcessSpell(function(Object, spell)
-	if Object == myHero and spell.name == "AkaliShadowDance" and Akali.Combo.Q:value() and IsInDistance(600) then
-
-CastTargetSpell(_Q,target) then
+    if Object == myHero and spell.name == "AkaliShadowDance" and Akali.Combo.Q:value() and IsInDistance(600) then
+	CastTargetSpell(_Q,target) then
 		AttackUnit(target)
-	end
+    end
 end)
 		
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
@@ -81,7 +80,7 @@ function Akali:OnLoad()
 end
 
 function self:CallKS()
---Haven't done
+   if Akali.KS.Q:value() 
 end
 
 function self:CallCombo()
