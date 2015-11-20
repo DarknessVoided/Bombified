@@ -9,6 +9,7 @@ local DeftLib_PATH = COMMON_PATH.."DeftLib.lua"
 local DamageLib_PATH = COMMON_PATH.."DamageLib.lua"
 local Inspired_PATH = COMMON_PATH.."Inspired.lua"
 local Version = 1.1.3
+
 	if FileExist(DeftLib_PATH) then
 	require('DeftLib')
 	else PrintChat("You are missing DeftLib in your Common folder - Install it") then
