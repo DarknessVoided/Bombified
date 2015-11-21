@@ -36,7 +36,7 @@ function Akali:__init()
 
 OnProcessSpellComplete(function(Object, spell)
 	if Object == GetMyHero() and spell.name == "AkaliShadowDance" and Akali.Combo.W:Value() and Ready(_W) then
-        CastTargetSpell(_W,GetOrigin(myHero))
+        CastTargetSpell(_W,GetOrigin(target))
 	end
 end)
 
