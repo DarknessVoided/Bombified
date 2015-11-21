@@ -3,12 +3,13 @@ V1.0 - Initial Commit
 V1.1 - Fixed some bugs
 v1.1.1 - Added FileExist style. Cleaned up some codes
 V1.1.2 - Added Q in MidAir that would trigger once detected akali is using ulti
-V1.1.3 - Deleted some stuff]]--
+V1.1.3 - Deleted some stuff
+V1.1.4 - Added check for QReady at OnProcessSpell ulti]]--
 
 local DeftLib_PATH = COMMON_PATH.."DeftLib.lua"
 local DamageLib_PATH = COMMON_PATH.."DamageLib.lua"
 local Inspired_PATH = COMMON_PATH.."Inspired.lua"
-local Version = 1.1.3
+local Version = 1.1.4
 
 	if FileExist(DeftLib_PATH) then
 	require('DeftLib')
@@ -36,15 +37,16 @@ function Akali:__init()
 
 OnProcessSpellComplete(function(Object, spell)
 	if Object == GetMyHero() and spell.name == "AkaliShadowDance" and Akali.Combo.W:Value() and Ready(_W) then
-        CastTargetSpell(_W,GetOrigin(target))
+        CastTargetSpell(_W,GetOrigin(myHero))
 	end
 end)
 
 OnProcessSpell(function(Object, spell)
-    if Object == myHero and spell.name == "AkaliShadowDance" and Akali.Combo.Q:value() and IsInDistance(600) then
-	CastTargetSpell(_Q,target) then
+	if Object == myHero and spell.name == "AkaliShadowDance" and Akali.Combo.Q:value() and Ready(_Q) and IsInDistance(600) then
+
+CastTargetSpell(_Q,target) then
 		AttackUnit(target)
-    end
+	end
 end)
 		
 Akali = MenuConfig("[ButterAIO", "ButterAIO")
@@ -80,7 +82,7 @@ function Akali:OnLoad()
 end
 
 function self:CallKS()
-   if Akali.KS.Q:value() 
+	if getdmg("Q",target,myHero,3) >= GetHP(target)
 end
 
 function self:CallCombo()
@@ -111,10 +113,6 @@ function Akali:Combo()
       if Ready(_R) and ValidTarget(target) >= Akali.Combo.R:Value() then
         CastTargetSpell(_R,target)
       end
-end
-
-function Akali:KS()
-
 end
 
 Class = "Fizz"
