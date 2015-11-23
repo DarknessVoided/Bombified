@@ -12,7 +12,7 @@ local Inspired_PATH = COMMON_PATH.."Inspired.lua"
 local Version = 1.1.4
 
 	if FileExist(DeftLib_PATH) then
-	require('DeftLib')
+		require('DeftLib')
 	else PrintChat("You are missing DeftLib in your Common folder - Install it") then
 	return end
 	
@@ -22,7 +22,7 @@ local Version = 1.1.4
 	return end
 	
 	if FileExist(Inspired_PATH) then
-	require('Inspired')
+		require('Inspired')
 	else PrintChat("You are missing Inspired in your Common folder - Install it") then
 	return end
 
@@ -82,7 +82,9 @@ function Akali:OnLoad()
 end
 
 function self:CallKS()
-	if getdmg("Q",target,myHero,3) >= GetHP(target)
+	if getdmg("Q",target,myHero,3) >= GetHP(target) and Akali.KS.Q:Value() and CanUseSpell(_Q)
+		then
+	CastTargetSpell(_Q,target)
 end
 
 function self:CallCombo()
