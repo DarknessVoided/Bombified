@@ -17,7 +17,7 @@ local Version = 1.1.4
 	return end
 	
 	if FileExist(DamageLib_PATH) then
-	require('DamageLib')
+		require('DamageLib')
 	else PrintChat("You are missing DamageLib in your Common folder - Install it") then
 	return end
 	
@@ -37,7 +37,7 @@ function Akali:__init()
 
 OnProcessSpellComplete(function(Object, spell)
 	if Object == GetMyHero() and spell.name == "AkaliShadowDance" and Akali.Combo.W:Value() and Ready(_W) then
-        CastTargetSpell(_W,GetOrigin(myHero))
+		CastTargetSpell(_W,GetOrigin(myHero))
 	end
 end)
 
