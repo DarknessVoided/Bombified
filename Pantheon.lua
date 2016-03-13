@@ -10,10 +10,9 @@ local version = 0.1
 
 --AutoUpdate("/DarknessVoided/Bombified/master/Pantheon.lua)
 
-	function hello()
-		PrintChat("Panties loaded. Have a good game.")
-		end
-	end
+
+PrintChat("Panties loaded. Have a good game.")
+
 
 --Menu--
 PMenu = Menu("Pantheon, "Pantheon")
