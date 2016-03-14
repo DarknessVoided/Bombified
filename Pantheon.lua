@@ -114,3 +114,9 @@ function Harass(unit)
 		end
 	end
 end
+
+--25+40(n)
+fuction KS(unit)
+	local QDamage = CalcDamage(myHero,target,(25+40*(GetCastLevel(myHero, _Q))
+	for i,enemy in pairs(GetEnemyHeroes()) do
+		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage
