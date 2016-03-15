@@ -26,9 +26,49 @@ end
 
 GetWebResultAsync("https://raw.githubusercontent.com/DarknessVoided/Bombified/master/Pantheon.version", AutoUpdate)
 
+local items = {["3074"] = "Ravenous"
+			   ["3077"] = "Tiamat"
+			   ["3142"] = "Yomuu"
+			   ["3144"] = "BligeWater"
+			   ["3153"] = "Botrk"
+			   ["3053"] = "TitanicHydra"
+			  }
+
+CHANELLING_SPELLS = {
+    ["Caitlyn"]                     = {_R},
+    ["Katarina"]                    = {_R},
+    ["MasterYi"]                    = {_W},
+    ["FiddleSticks"]                = {_W, _R},
+    ["Galio"]                       = {_R},
+    ["Lucian"]                      = {_R},
+    ["MissFortune"]                 = {_R},
+    ["VelKoz"]                      = {_R},
+    ["Nunu"]                        = {_R},
+    ["Shen"]                        = {_R},
+    ["Karthus"]                     = {_R},
+    ["Malzahar"]                    = {_R},
+    ["Pantheon"]                    = {_R},
+    ["Warwick"]                     = {_R},
+    ["Xerath"]                      = {_R},
+    ["Tristana"]                    = {_W},
+    ["Vi"]                          = {_Q}
+}
+
+local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
+local playerTeam = GetTeam(GetMyHero())
+	OnProcessSpell(function(unit, spell)
+		if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == playerTeam then return end
+  
+    if unitChanellingSpells then
+            for _, spellSlot in pairs(unitChanellingSpells)
+                if PMenu.Misc.I:Value() and spell.name == GetCastName(unit, spellSlot) and ValidTarget(unit, 600) then
+                	CastTargetSpell(unit, _W)
+                end
+            end
+    end
+end)
 
 PrintChat("Panties loaded. Have a good game.")
-
 
 --Menu--
 PMenu = Menu("Pantheon, "Pantheon")
@@ -64,6 +104,7 @@ PMenu.Items:Info("Kappa", "Tiamat, Ravenous,Yomuu GhostBlade")
 
 PMenu = SubMenu("Misc", "Misc")
 PMenu.Misc:Boolean("AutoLevel", "Use AutoLevel", false)
+PMenu.Misc:Boolean("I", "Use W to interrupt", true)
 
 	OnTick(function(myHero)
 	local unit = GetCurrentTarget()
@@ -115,7 +156,6 @@ function Harass(unit)
 	end
 end
 
---25+40(n)
 fuction KS(unit)
 	local QDamage = CalcDamage(myHero,target,(25+40*(GetCastLevel(myHero, _Q))
 	for i,enemy in pairs(GetEnemyHeroes()) do
