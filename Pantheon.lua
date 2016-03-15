@@ -81,17 +81,17 @@ PMenu.Combo:Boolean("E", "Use E", true)
 PMenu = SubMenu("Harass", "Harass")
 PMenu.Harass:Boolean("Q", "Use Q", true)
 PMenu.Harass:Boolean("TQ", "Don't use Q under turret", true)
-PMenu.Harass:Slider("ManaQ", "Stop Q when mana below", 0, 0, 0, 1)
+PMenu.Harass:Slider("ManaQ", "Stop Q when mana below", 40, 1, 100, 1)
 
 PMenu = SubMenu("LastHit", "Last Hit")
 PMenu.LastHit:Boolean("Q", "Use Q", true)
-PMenu.LastHit:Slider("ManaQ", "Stop using Q when mana below", 0, 0, 0, 1)
+PMenu.LastHit:Slider("ManaQ", "Stop using Q when mana below", 40, 1, 100, 1)
 
 PMenu = SubMenu("LaneClear", "Lane Clear")
 PMenu.LaneClear:Boolean("Q", "Use Q", false)
 PMenu.LaneClear:Boolean("W", "Use W", false)
 PMenu.LaneClear:Boolean("E", "Use E", false)
-PMenu.LaneClear:Slider("LaneMana", "Stop using skill when mana below", 0, 100, 0, 1)
+PMenu.LaneClear:Slider("LaneMana", "Stop using skill when mana below", 40, 1, 100, 1)
 
 PMenu = SubMenu("KS", "KS")
 PMenu.KS:Boolean("Q", "Use Q", true)
@@ -156,7 +156,9 @@ function Harass(unit)
 	end
 end
 
+function QDmg()
+	local base = 25+40*(GetCastLevel(myHero, _Q))+
+
 fuction KS(unit)
-	local QDamage = CalcDamage(myHero,target,(25+40*(GetCastLevel(myHero, _Q))
 	for i,enemy in pairs(GetEnemyHeroes()) do
 		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage
