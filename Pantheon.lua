@@ -27,12 +27,12 @@ end
 GetWebResultAsync("https://raw.githubusercontent.com/DarknessVoided/Bombified/master/Pantheon.version", AutoUpdate)
 
 local items = {["3074"] = "Ravenous"
-			   ["3077"] = "Tiamat"
-			   ["3142"] = "Yomuu"
-			   ["3144"] = "BligeWater"
-			   ["3153"] = "Botrk"
-			   ["3053"] = "TitanicHydra"
-			  }
+		["3077"] = "Tiamat"
+		["3142"] = "Yomuu"
+		["3144"] = "BligeWater"
+		["3153"] = "Botrk"
+		["3053"] = "TitanicHydra"
+	       }
 
 CHANELLING_SPELLS = {
     ["Caitlyn"]                     = {_R},
