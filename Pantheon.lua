@@ -70,6 +70,7 @@ local playerTeam = GetTeam(GetMyHero())
 end)
 
 PrintChat("Panties loaded. Have a good game.")
+PrintChat("Thanks [TheLittleNug] for testing.")
 
 --Menu--
 PMenu = Menu("Pantheon", "Pantheon")
