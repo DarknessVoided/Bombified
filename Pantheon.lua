@@ -12,7 +12,7 @@ if not pcall(require, "Inspired") then
 	PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
 
-local version = 0.2
+local version = 0.21
 
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -61,7 +61,7 @@ local playerTeam = GetTeam(GetMyHero())
 		if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == playerTeam then return end
   
     if unitChanellingSpells then
-            for _, spellSlot in pairs(unitChanellingSpells)
+            for _, spellSlot in pairs(unitChanellingSpells) do
                 if PMenu.Misc.I:Value() and spell.name == GetCastName(unit, spellSlot) and ValidTarget(unit, 600) then
                 	CastTargetSpell(unit, _W)
                 end
