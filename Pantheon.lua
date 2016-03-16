@@ -12,7 +12,7 @@ if not pcall(require, "Inspired") then
 	PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
 
-local version = 0.21
+local version = 0.22
 
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -72,7 +72,7 @@ end)
 PrintChat("Panties loaded. Have a good game.")
 
 --Menu--
-PMenu = Menu("Pantheon, "Pantheon")
+PMenu = Menu("TheUglyShield, "TheUglyShield")
 
 PMenu = SubMenu("Combo", "Combo")
 PMenu.Combo:Boolean("Q", "Use Q", true)
