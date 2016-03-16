@@ -1,4 +1,4 @@
---[[ 1)Harass Mana Manager is not implemented.
+--[[1)Harass Mana Manager is not implemented.
     2)KS is not done yet.
     3)Items is not done yet.
     4)Most of it is broken.
