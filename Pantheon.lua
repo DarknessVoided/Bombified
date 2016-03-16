@@ -12,7 +12,7 @@ if not pcall(require, "Inspired") then
 	PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
 
-local version = 0.231
+local version = 0.232
 
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -70,7 +70,6 @@ local playerTeam = GetTeam(GetMyHero())
 end)
 
 PrintChat("Panties loaded. Have a good game.")
-PrintChat("Thanks [TheLittleNug] for testing.")
 
 --Menu--
 PMenu = Menu("Pantheon", "Pantheon")
@@ -121,14 +120,8 @@ PMenu.Misc:Boolean("I", "Use W to interrupt", true)
 
 --CallBacks
 OnUpdateBuff(function(unit,buffProc)
-	if unit == GetCurrentTarget() then
-		if buffProc.Type == 5 then
-			CC = true
-		elseif buffProc.Type == 8 then
-			CC = true
-		elseif buffProc.Type == 10 then
-			CC = true
-		end
+	if unit == GetCurrentTarget() and (buffProc.Type == 5 or buffProc.Type == 8 or buffProc.Type == 10) then
+		DontUseStun = true
 	end
 end)
 
