@@ -132,15 +132,15 @@ end)
 
 function Combo(unit)
 	if IOW:Mode() == "Combo" then
-		if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() then
+		if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Combo.Q:Value() then
 			CastTargetSpell(unit, _Q)
 		end
 
-		if Ready(_W) and ValidTarget(unit, 600) and PMenu.Harass.W:Value() and if not CC then
+		if Ready(_W) and ValidTarget(unit, 600) and PMenu.Combo.W:Value() and if not CC then
 			CastTargetSpell(unit, _W)
 		end
 
-		if pI and pI.hitChance >= 0.25 and PMenu.Harass.E:Value() then
+		if pI and pI.hitChance >= 0.25 and PMenu.Combo.E:Value() then
 			CastSkillShot(_E, pI.castPos)
 		end
 	end
@@ -148,9 +148,9 @@ end
 
 function Harass(unit)
 	if IOW:Mode() == "Harass" then
-		if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() then
+		if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value()then
 			CastTargetSpell(unit, _Q)
-		elseif Ready(_Q) and ValudTarget(unit, 600) and PMenu.Harass.Q:Value() and PMenu.Harass.TQ:Value() and if not UnderTurret(unit, enemyTurret) then
+		elseif Ready(_Q) and ValudTarget(unit, 600) and PMenu.Harass.Q:Value() and PMenu.Harass.TQ:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value() and if not UnderTurret(unit, enemyTurret) then
 			CastTargetSpell(unit, _Q)
 		end
 	end
