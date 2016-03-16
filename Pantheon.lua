@@ -12,7 +12,7 @@ if not pcall(require, "Inspired") then
 	PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
 
-local version = 0.1
+local version = 0.2
 
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -26,13 +26,14 @@ end
 
 GetWebResultAsync("https://raw.githubusercontent.com/DarknessVoided/Bombified/master/Pantheon.version", AutoUpdate)
 
-local items = {["3074"] = "Ravenous"
-		["3077"] = "Tiamat"
-		["3142"] = "Yomuu"
-		["3144"] = "BligeWater"
-		["3153"] = "Botrk"
+local items = {
+		["3074"] = "Ravenous",
+		["3077"] = "Tiamat",
+		["3142"] = "Yomuu",
+		["3144"] = "BligeWater",
+		["3153"] = "Botrk",
 		["3053"] = "TitanicHydra"
-	       }
+}
 
 CHANELLING_SPELLS = {
     ["Caitlyn"]                     = {_R},
@@ -158,12 +159,7 @@ end
 
 function QDmg()
 	local base = Cal25+40*(GetCastLevel(myHero, _Q))+(1.4*(GetBonusDMG(myHero))) --Normally if Enemy Health is not below 15%
-end
 
 fuction KS(unit)
 	for i,enemy in pairs(GetEnemyHeroes()) do
-		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage then
-			CastTargetSpell(enemy, _Q)
-		end
-	end
-end
+		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage
