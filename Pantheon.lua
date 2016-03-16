@@ -152,7 +152,7 @@ function Harass(unit)
 end
 
 function QDmg()
-	local base = Cal25+40*(GetCastLevel(myHero, _Q))+(1.4*(GetBonusDMG(myHero))) --Normally if Enemy Health is not below 15%
+	local base = 25+40*(GetCastLevel(myHero, _Q))+(1.4*(GetBonusDMG(myHero))) --Normally if Enemy Health is not below 15%
 
 fuction KS(unit)
 	for i,enemy in pairs(GetEnemyHeroes()) do
