@@ -12,7 +12,7 @@ if not pcall(require, "Inspired") then
 	PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
 
-local version = 0.22
+local version = 0.23
 
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -72,33 +72,33 @@ end)
 PrintChat("Panties loaded. Have a good game.")
 
 --Menu--
-PMenu = Menu("TheUglyShield, "TheUglyShield")
+PMenu = Menu("Pantheon", "Pantheon")
 
-PMenu = SubMenu("Combo", "Combo")
+PMenu:Menu("Combo", "Combo")
 PMenu.Combo:Boolean("Q", "Use Q", true)
 PMenu.Combo:Boolean("W", "Use W", true)
 PMenu.Combo:Boolean("E", "Use E", true)
 
-PMenu = SubMenu("Harass", "Harass")
+PMenu:Menu("Harass", "Harass")
 PMenu.Harass:Boolean("Q", "Use Q", true)
 PMenu.Harass:Boolean("TQ", "Don't use Q under turret", true)
 PMenu.Harass:Slider("ManaQ", "Stop Q when mana below", 40, 1, 100, 1)
 
-PMenu = SubMenu("LastHit", "Last Hit")
+PMenu:Menu("LastHit", "Last Hit")
 PMenu.LastHit:Boolean("Q", "Use Q", true)
 PMenu.LastHit:Slider("ManaQ", "Stop using Q when mana below", 40, 1, 100, 1)
 
-PMenu = SubMenu("LaneClear", "Lane Clear")
+PMenu:Menu("LaneClear", "Lane Clear")
 PMenu.LaneClear:Boolean("Q", "Use Q", false)
 PMenu.LaneClear:Boolean("W", "Use W", false)
 PMenu.LaneClear:Boolean("E", "Use E", false)
 PMenu.LaneClear:Slider("LaneMana", "Stop using skill when mana below", 40, 1, 100, 1)
 
-PMenu = SubMenu("KS", "KS")
+PMenu:Menu("KS", "KS")
 PMenu.KS:Boolean("Q", "Use Q", true)
 PMenu.KS:Boolean("W", "Use W", true)
 
-PMenu = SubMenu("Items", "Items")
+PMenu:Menu("Items", "Items")
 PMenu.Items:Boolean("Items", "Use Items in Combo", true)
 PMenu.Items:Info("List", Currently supported items")
 PMenu.Items:Info("Kappa", "Tiamat, Ravenous,Yomuu GhostBlade")
@@ -162,4 +162,8 @@ function QDmg()
 
 fuction KS(unit)
 	for i,enemy in pairs(GetEnemyHeroes()) do
-		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage
+		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage then
+			CastTargetSpell(enemy, _Q)
+		end
+	end
+end
