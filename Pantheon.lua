@@ -12,7 +12,7 @@ if not pcall(require, "Inspired") then
 	PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
 
-local version = 0.23
+local version = 0.231
 
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -100,7 +100,7 @@ PMenu.KS:Boolean("W", "Use W", true)
 
 PMenu:Menu("Items", "Items")
 PMenu.Items:Boolean("Items", "Use Items in Combo", true)
-PMenu.Items:Info("List", Currently supported items")
+PMenu.Items:Info("List", "Currently supported items")
 PMenu.Items:Info("Kappa", "Tiamat, Ravenous,Yomuu GhostBlade")
 
 PMenu = SubMenu("Misc", "Misc")
