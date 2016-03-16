@@ -150,15 +150,19 @@ function Harass(unit)
 	if IOW:Mode() == "Harass" then
 		if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value()then
 			CastTargetSpell(unit, _Q)
-		elseif Ready(_Q) and ValudTarget(unit, 600) and PMenu.Harass.Q:Value() and PMenu.Harass.TQ:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value() and if not UnderTurret(unit, enemyTurret) then
+		elseif Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and PMenu.Harass.TQ:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value() and if not UnderTurret(unit, enemyTurret) then
 			CastTargetSpell(unit, _Q)
 		end
 	end
 end
 
 function QDmg()
-	local base = 25+40*(GetCastLevel(myHero, _Q))+
+	local base = Cal25+40*(GetCastLevel(myHero, _Q))+(1.4*(GetBonusDMG(myHero))) --Normally if Enemy Health is not below 15%
 
 fuction KS(unit)
 	for i,enemy in pairs(GetEnemyHeroes()) do
-		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage
+		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage then
+			CastTargetSpell(enemy, _Q)
+		end
+	end
+end
