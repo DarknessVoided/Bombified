@@ -116,7 +116,7 @@ PMenu.Misc:Boolean("I", "Use W to interrupt", true)
 			Item()
 			Harass(unit)
 		end
-	end
+	end)
 
 --CallBacks
 OnUpdateBuff(function(unit,buffProc)
@@ -131,7 +131,7 @@ function Combo(unit)
 			CastTargetSpell(unit, _Q)
 		end
 
-		if Ready(_W) and ValidTarget(unit, 600) and PMenu.Combo.W:Value() and if not CC then
+		if Ready(_W) and ValidTarget(unit, 600) and PMenu.Combo.W:Value() and if not DontUseStun then
 			CastTargetSpell(unit, _W)
 		end
 
