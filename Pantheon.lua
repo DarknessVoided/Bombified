@@ -152,12 +152,14 @@ function Harass(unit)
 end
 
 function QDmg()
-	local base = 25+40*(GetCastLevel(myHero, _Q))+(1.4*(GetBonusDMG(myHero))) --Normally if Enemy Health is not below 15%
+	local baseQ = 25+40*(GetCastLevel(myHero, _Q))+(1.4*(GetBonusDMG(myHero))) --Normally if Enemy Health is not below 15%
+	local WDmg = 25+25(GetCastLevel(myHero, _W))+(1.0*(GetBonusAP(myHero))) --Total Damage for Pantheon W
 
 fuction KS(unit)
 	for i,enemy in pairs(GetEnemyHeroes()) do
 		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage then
 			CastTargetSpell(enemy, _Q)
 		end
+		if Ready(_W) and PMenu.KS.W:Value() and GetCurrentHP(enemy) < WDamage
 	end
 end
