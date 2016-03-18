@@ -109,8 +109,9 @@ PMenu.Misc:Boolean("I", "Use W to interrupt", true)
 
 	OnTick(function(myHero)
 	local unit = GetCurrentTarget()
+	local QDamage = QDmg()
 	local pI = GetConicAOEPrediction(unit, E)
-		if not IsDead(unit) then
+		if not IsDead(myHero) then
 			Combo(unit)
 			KS(unit)
 			Item()
@@ -152,14 +153,20 @@ function Harass(unit)
 end
 
 function QDmg()
-	local baseQ = 25+40*(GetCastLevel(myHero, _Q))+(1.4*(GetBonusDMG(myHero))) --Normally if Enemy Health is not below 15%
-	local WDmg = 25+25(GetCastLevel(myHero, _W))+(1.0*(GetBonusAP(myHero))) --Total Damage for Pantheon W
+local baseQ = 25+40*(GetCastLevel(myHero, _Q))+(1.4*(GetBonusDMG(myHero)))*Africa
 
-fuction KS(unit)
+	if (GetPercentHP(enemy)) <= 15 and GetCastLevel(myHero, _E) >= 1 then
+		Africa = 1.5
+      else
+		Africa = 1 then
+			return baseQ
+	end
+	
+function KS(unit)
 	for i,enemy in pairs(GetEnemyHeroes()) do
-		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < QDamage then
+		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, QDamage, 0) then
 			CastTargetSpell(enemy, _Q)
 		end
-		if Ready(_W) and PMenu.KS.W:Value() and GetCurrentHP(enemy) < WDamage
-	end
+		if Ready(_W) and PMenu.KS.W:Value() and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, 0, WDmg)
+		end
 end
