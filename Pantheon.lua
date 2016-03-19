@@ -1,4 +1,5 @@
 --[[1)Harass Mana Manager is not implemented.
+		
     2)KS is not done yet.
     3)Items is not done yet.
     4)Most of it is broken.
@@ -112,10 +113,10 @@ PMenu.Misc:Boolean("I", "Use W to interrupt", true)
 	local QDamage = QDmg()
 	local pI = GetConicAOEPrediction(unit, E)
 		if not IsDead(myHero) then
-			Combo(unit)
-			KS(unit)
-			Item()
-			Harass(unit)
+			Combo(unit) --Not yet
+			KS() -- Done
+			Item() --Not Yet
+			Harass(unit) --Done
 		end
 	end)
 
@@ -168,3 +169,8 @@ function KS()
 		if Ready(_W) and PMenu.KS.W:Value() and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, WDmg)
 		end
 end
+
+function Item()
+	if 
+end
+	
