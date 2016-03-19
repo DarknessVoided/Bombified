@@ -12,7 +12,7 @@ if not pcall(require, "Inspired") then
 	PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
 
-local version = 0.232
+local version = 0.241
 
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -153,20 +153,18 @@ function Harass(unit)
 end
 
 function QDmg()
-local baseQ = 25+40*(GetCastLevel(myHero, _Q))+(1.4*(GetBonusDMG(myHero)))*Africa
-
-	if (GetPercentHP(enemy)) <= 15 and GetCastLevel(myHero, _E) >= 1 then
-		Africa = 1.5
-      else
-		Africa = 1 then
-			return baseQ
+	if GetPercentHP(Unit) <= 15 then 
+  	return (CalcDamage(myHero, Unit, 25+40*GetCastLevel(myHero, _Q)+(GetBaseDamage(myHero) + GetBonusDmg(myHero))*1.40))*1.5
+ 				else 
+  		return CalcDamage(myHero, Unit, 25+40*GetCastLevel(myHero, _Q)+(GetBaseDamage(myHero) + GetBonusDmg(myHero))*1.4)
 	end
+end
 	
-function KS(unit)
+function KS()
 	for i,enemy in pairs(GetEnemyHeroes()) do
-		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, QDamage, 0) then
+		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy)+GetDmgShield(enemy) < CalcDamage(myHero, enemy, QDamage, 0) then
 			CastTargetSpell(enemy, _Q)
 		end
-		if Ready(_W) and PMenu.KS.W:Value() and GetCurrentHP(enemy) < CalcDamage(myHero, enemy, 0, WDmg)
+		if Ready(_W) and PMenu.KS.W:Value() and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, WDmg)
 		end
 end
