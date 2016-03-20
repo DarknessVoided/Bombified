@@ -13,7 +13,7 @@ if not pcall(require, "Inspired") then
     PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
  
-local version = 0.241
+local version = 0.244
  
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -144,7 +144,8 @@ function Harass(unit)
 		if IOW:Mode() == "Harass" then
 			if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value()then
 				CastTargetSpell(unit, _Q)
-			elseif Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and PMenu.Harass.TQ:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value() and if not UnderTurret(unit, enemyTurret) then
+
+			elseif Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and PMenu.Harass.TQ:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value() and not UnderTurret(unit, enemyTurret) then
 				CastTargetSpell(unit, _Q)
 			end
 		end
