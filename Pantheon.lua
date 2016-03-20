@@ -13,7 +13,7 @@ if not pcall(require, "Inspired") then
     PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
  
-local version = 0.244
+local version = 0.241
  
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -173,12 +173,12 @@ end
 function Item()
 for _,unit in pairs(GetEnemyHeroes()) do
 	for i = 1,#Target do
-		if isReady(GetItemSlot(myHero, Target[i]) and ValidTarget(unit, 600)
+		if isReady(GetItemSlot(myHero, Target[i])) and ValidTarget(unit, 600)
 			then CastTargetSpell(unit, Target[i])
 		end
 
 	for i = 1, #NonTarget do
-		if IsReady(GetItemSlot(myHero, NonTarget[i]) and ValidTarget(unit, 100) then
+		if IsReady(GetItemSlot(myHero, NonTarget[i])) and ValidTarget(unit, 100) then
 			CastSpell(Target[i])
 		end
 end
