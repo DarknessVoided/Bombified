@@ -13,7 +13,7 @@ if not pcall(require, "Inspired") then
     PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
  
-local version = 0.246
+local version = 0.250
  
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
