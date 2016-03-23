@@ -182,5 +182,3 @@ for _,unit in pairs(GetEnemyHeroes()) do
 			CastSpell(Target[i])
 		end
 end
-end
-end
