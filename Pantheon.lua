@@ -169,6 +169,7 @@ function KS()
 				CastTargetSpell(enemy, _W)
 			end
 end
+end
  
 function Item()
 for _,unit in pairs(GetEnemyHeroes()) do
@@ -181,4 +182,5 @@ for _,unit in pairs(GetEnemyHeroes()) do
 		if IsReady(GetItemSlot(myHero, NonTarget[i])) and ValidTarget(unit, 100) then
 			CastSpell(Target[i])
 		end
+end
 end
