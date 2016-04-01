@@ -1,8 +1,6 @@
 --[[
-    1)Harass Mana Manager is not implemented.       
-    2)KS is not done yet.
-    3)Items is not done yet.
-    4)Most of it is broken.
+    1) AutoLevel is Broken
+    2) LaneClear is not implemented.
 ]]--
  
 if GetObjectName(GetMyHero()) ~= "Pantheon" then return end
@@ -86,11 +84,12 @@ PMenu:Menu("LastHit", "Last Hit")
 PMenu.LastHit:Boolean("Q", "Use Q", true)
 PMenu.LastHit:Slider("ManaQ", "Stop using Q when mana below", 40, 1, 100, 1)
  
-PMenu:Menu("LaneClear", "Lane Clear")
+--[[PMenu:Menu("LaneClear", "Lane Clear")
 PMenu.LaneClear:Boolean("Q", "Use Q", false)
 PMenu.LaneClear:Boolean("W", "Use W", false)
 PMenu.LaneClear:Boolean("E", "Use E", false)
 PMenu.LaneClear:Slider("LaneMana", "Stop using skill when mana below", 40, 1, 100, 1)
+--]]
  
 PMenu:Menu("KS", "KS")
 PMenu.KS:Boolean("Q", "Use Q", true)
