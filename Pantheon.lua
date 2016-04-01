@@ -12,8 +12,8 @@ require("Inspired")
 if not pcall(require, "Inspired") then
     PrintChat("This script requre Inspired Library. Please download it and place it in the Common folder")
 end
- 
-local version = 0.250
+
+local version = 0.272
  
 function AutoUpdate(data)
     if tonumber(data) > tonumber(version) then
@@ -53,22 +53,22 @@ CHANELLING_SPELLS = {
  
 local unitChanellingSpells = CHANELLING_SPELLS[GetObjectName(unit)]
 local playerTeam = GetTeam(GetMyHero())
-    OnProcessSpell(function(unit, spell)
-        if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == playerTeam then return end
- 
-    if unitChanellingSpells then
-            for _, spellSlot in pairs(unitChanellingSpells) do
-                if PMenu.Misc.I:Value() and spell.name == GetCastName(unit, spellSlot) and ValidTarget(unit, 600) then
-                    CastTargetSpell(unit, _W)
-                end
-            end
-    end
+OnProcessSpell(function(unit, spell)
+	if not unit or GetObjectType(unit) ~= Obj_AI_Hero  or GetTeam(unit) == playerTeam then return end
+ 		if unitChanellingSpells then
+            		for _, spellSlot in pairs(unitChanellingSpells) do
+                		if PMenu.Misc.I:Value() and spell.name == GetCastName(unit, spellSlot) and ValidTarget(unit, 600) then
+                    			CastTargetSpell(unit, _W)
+                		end
+        		 end
+        	end
+    	end
 end)
  
 PrintChat("Panties loaded. Have a good game.")
 PrintChat("Thanks TheLittleNug for testing.")
 PrintChat("Thanks Sxcs for table tutorial.")
- 
+PrintChat("Huge thanks to Drei for fixing every and any errors")
 --Menu--
 PMenu = Menu("Pantheon", "Pantheon")
  
@@ -104,8 +104,8 @@ PMenu.Items:Info("Kappa", "Tiamat, Ravenous,Yomuu GhostBlade")
 PMenu = SubMenu("Misc", "Misc")
 PMenu.Misc:Boolean("AutoLevel", "Use AutoLevel", false)
 PMenu.Misc:Boolean("I", "Use W to interrupt", true)
- 
-    OnTick(function(myHero)
+
+OnTick(function(myHero)
     local unit = GetCurrentTarget()
     local QDamage = QDmg()
     local pI = GetConicAOEPrediction(unit, E)
@@ -115,72 +115,74 @@ PMenu.Misc:Boolean("I", "Use W to interrupt", true)
             Item() --Not Yet
             Harass(unit) --Done
         end
-    end)
+end)
  
 --CallBacks
 OnUpdateBuff(function(unit,buffProc)
-		if unit == GetCurrentTarget() and (buffProc.Type == 5 or buffProc.Type == 8 or buffProc.Type == 10) then
-        DontUseStun = true
-		end
+	if unit == GetCurrentTarget() and (buffProc.Type == 5 or buffProc.Type == 8 or buffProc.Type == 10) then
+        	DontUseStun = true
+	end
 end)
  
 function Combo(unit)
-		if IOW:Mode() == "Combo" then
-			if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Combo.Q:Value() then
-            CastTargetSpell(unit, _Q)
-			end
- 
-			if Ready(_W) and ValidTarget(unit, 600) and PMenu.Combo.W:Value() and not DontUseStun then
-            CastTargetSpell(unit, _W)
-			end
- 
-			if pI and pI.hitChance >= 0.25 and PMenu.Combo.E:Value() then
-            CastSkillShot(_E, pI.castPos)
-			end
+	if IOW:Mode() == "Combo" then
+		if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Combo.Q:Value() then
+            		CastTargetSpell(unit, _Q)
 		end
+ 
+		if Ready(_W) and ValidTarget(unit, 600) and PMenu.Combo.W:Value() and not DontUseStun then
+        		CastTargetSpell(unit, _W)
+		end
+ 
+		if pI and pI.hitChance >= 0.25 and PMenu.Combo.E:Value() then
+            		CastSkillShot(_E, pI.castPos)
+		end
+	end
 end
  
 function Harass(unit)
-		if IOW:Mode() == "Harass" then
-			if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value()then
-				CastTargetSpell(unit, _Q)
+	if IOW:Mode() == "Harass" then
+		if Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value()then
+			CastTargetSpell(unit, _Q)
 
-			elseif Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and PMenu.Harass.TQ:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value() and not UnderTurret(unit, enemyTurret) then
-				CastTargetSpell(unit, _Q)
-			end
+		elseif Ready(_Q) and ValidTarget(unit, 600) and PMenu.Harass.Q:Value() and PMenu.Harass.TQ:Value() and GetPercentMP(myHero) >= PMenu.Harass.ManaQ:Value() and not UnderTurret(unit, enemyTurret) then
+			CastTargetSpell(unit, _Q)
 		end
+	end
 end
  
 function QDmg()
 	if GetPercentHP(Unit) <= 15 then
-    return (CalcDamage(myHero, Unit, 25+40*GetCastLevel(myHero, _Q)+(GetBaseDamage(myHero) + GetBonusDmg(myHero))*1.40))*1.5
-                else
-        return CalcDamage(myHero, Unit, 25+40*GetCastLevel(myHero, _Q)+(GetBaseDamage(myHero) + GetBonusDmg(myHero))*1.4)
-    end
+    		return (CalcDamage(myHero, Unit, 25+40*GetCastLevel(myHero, _Q)+(GetBaseDamage(myHero) + GetBonusDmg(myHero))*1.40))*1.5
+        else
+        	return CalcDamage(myHero, Unit, 25+40*GetCastLevel(myHero, _Q)+(GetBaseDamage(myHero) + GetBonusDmg(myHero))*1.4)
+        end
 end
    
 function KS()
-		for i,enemy in pairs(GetEnemyHeroes()) do
-			if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy)+GetDmgShield(enemy) < CalcDamage(myHero, enemy, QDamage, 0) then
-				CastTargetSpell(enemy, _Q)
-			end
+	for i,enemy in pairs(GetEnemyHeroes()) do
+		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy)+GetDmgShield(enemy) < CalcDamage(myHero, enemy, QDamage, 0) then
+			CastTargetSpell(enemy, _Q)
+		end
 
-			if Ready(_W) and PMenu.KS.W:Value() and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, WDmg) then
-				CastTargetSpell(enemy, _W)
-			end
-end
+		if Ready(_W) and PMenu.KS.W:Value() and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, WDmg) then
+			CastTargetSpell(enemy, _W)
+		end
+	end
 end
  
 function Item()
-for _,unit in pairs(GetEnemyHeroes()) do
-	for i = 1,#Target do
-		if isReady(GetItemSlot(myHero, Target[i])) and ValidTarget(unit, 600)
-			then CastTargetSpell(unit, Target[i])
+	for _,unit in pairs(GetEnemyHeroes()) do
+		for i = 1,#Target do
+			if isReady(GetItemSlot(myHero, Target[i])) and ValidTarget(unit, 600) then
+				CastTargetSpell(unit, Target[i])
+			end
 		end
 
-	for i = 1, #NonTarget do
-		if IsReady(GetItemSlot(myHero, NonTarget[i])) and ValidTarget(unit, 100) then
-			CastSpell(Target[i])
+		for i = 1, #NonTarget do
+			if IsReady(GetItemSlot(myHero, NonTarget[i])) and ValidTarget(unit, 100) then
+				CastSpell(Target[i])
+			end
 		end
-end
+	end
 end
