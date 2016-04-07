@@ -1,5 +1,9 @@
 local version = 0.01
 
+--Callback--
+OnUodat
+
+
 if FileExist(COMMON_PATH.."MixLib.lua") then
  require('MixLib')
  LoadMixLib()
@@ -20,10 +24,7 @@ end
  
 GetWebResultAsync("https://raw.githubusercontent.com/DarknessVoided/Bombified/master/SadisticAmumu.lua", AutoUpdate)
 
-local QData = { delay = 0.25, speed = 2000, width = 80, range = 1100, collision = true, coll = 1, aoe = false, type = "linear" }
-
-
-
+local QData = Spells(_Q, 0.25, 2000, 80, 1100, true, 1, false, "linear", "Amumu Q", Sad.Prediction.Q:Value())
 
 Sad = MenuConfig("Amumu", "Amumu")
 
@@ -34,7 +35,29 @@ Sad.Combo:Boolean("E", "Use E", true)
 Sad.Combo:Boolean("R", "Use R", true)
 Sad.Combo:Slider("RM", "R only when enemy more than", 3, 1, 5, 1)
 
+Sad:Menu("LaneClear", "LaneClear")
+Sad.LanClear:Boolean("W", "Use W to laneclear", true)
+Sad.LaneClear:Boolean("E", "Use E to laneclear", true)
 
+Sad:Menu("Prediction", "Prediction")
+Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1)
 
+function UpdateHitChance()
+    QData:GetHitChance(Sad.Prediction.Q:Value())
+end
 
+OnTick(function(myHero)
+	local target = GetCurrentTarget()
+		Combo()
+		laneclear()
+end)
 
+function Combo()
+	if ValidTarget(target, 1100) and isReady(_Q) then
+		QData:Cast1(target)
+	end
+	
+	if isReady(_R) and EnemiesAround(myHero, 560) then
+		CastSpell(_R)
+	end
+end
