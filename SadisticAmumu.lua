@@ -1,9 +1,18 @@
-local version = 0.01
+local version = 0.02
 
---Callback--
-OnUodat
+------------Callback-------------
+OnCreateObj(object)
+	if GetObjectBaseName(Object) == "Despair_buf.troy" then
+		WActive = true
+	end
+end
 
-
+OnDeleteObj(object)
+	if GetObjectBaseName(Object) == "Despair_buf.troy" then
+		WActive = false
+	end
+end
+---------------------------
 if FileExist(COMMON_PATH.."MixLib.lua") then
  require('MixLib')
  LoadMixLib()
@@ -53,11 +62,22 @@ OnTick(function(myHero)
 end)
 
 function Combo()
-	if ValidTarget(target, 1100) and isReady(_Q) then
+	if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and isReady(_Q) then
 		QData:Cast1(target)
 	end
 	
-	if isReady(_R) and EnemiesAround(myHero, 560) then
+	if isReady(_R) and EnemiesAround(myHero, 560) >= Sad.Combo.RM:Value() and Sad.Combo.R:Value() then
 		CastSpell(_R)
 	end
+	
+	if ValidTarget(target, 300) and isReady(_W) and WActive == false and Sad.Combo.W:Value() then
+		CastSpell(_W)
+	end
+	
+	if EnemiesAround(myHero, 300) = 0 and isReady(_W) and Sad.Combo.W:Value() and WActive == true then
+		CastSpell(_W)
+	end
+end
+
+function laneclear()
 end
