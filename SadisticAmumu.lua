@@ -2,15 +2,15 @@ local version = 0.02
 
 ------------Callback-------------
 OnCreateObj(object)
-	if GetObjectBaseName(Object) == "Despair_buf.troy" then
-		WActive = true
-	end
+    if GetObjectBaseName(Object) == "Despair_buf.troy" then
+        WActive = true
+    end
 end
 
 OnDeleteObj(object)
-	if GetObjectBaseName(Object) == "Despair_buf.troy" then
-		WActive = false
-	end
+    if GetObjectBaseName(Object) == "Despair_buf.troy" then
+        WActive = false
+    end
 end
 ---------------------------
 if FileExist(COMMON_PATH.."MixLib.lua") then
@@ -48,6 +48,10 @@ Sad:Menu("LaneClear", "LaneClear")
 Sad.LanClear:Boolean("W", "Use W to laneclear", true)
 Sad.LaneClear:Boolean("E", "Use E to laneclear", true)
 
+Sad:Menu("KS", "KS")
+Sad.KS:Boolean("E", "Use E to KS", true)
+Sad.KS:Boolean("R", "Use R to KS", false)
+
 Sad:Menu("Prediction", "Prediction")
 Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1)
 
@@ -56,28 +60,35 @@ function UpdateHitChance()
 end
 
 OnTick(function(myHero)
-	local target = GetCurrentTarget()
-		Combo()
-		laneclear()
+        Combo()
+        KillSteal()
+        laneclear()
 end)
 
 function Combo()
-	if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and isReady(_Q) then
-		QData:Cast1(target)
-	end
-	
-	if isReady(_R) and EnemiesAround(myHero, 560) >= Sad.Combo.RM:Value() and Sad.Combo.R:Value() then
-		CastSpell(_R)
-	end
-	
-	if ValidTarget(target, 300) and isReady(_W) and WActive == false and Sad.Combo.W:Value() then
-		CastSpell(_W)
-	end
-	
-	if EnemiesAround(myHero, 300) = 0 and isReady(_W) and Sad.Combo.W:Value() and WActive == true then
-		CastSpell(_W)
-	end
+local target = GetCurrentTarget()
+
+    if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and isReady(_Q) then
+        QData:Cast1(target)
+    end
+    
+    if isReady(_R) and EnemiesAround(myHero, 560) >= Sad.Combo.RM:Value() and Sad.Combo.R:Value() then
+        CastSpell(_R)
+    end
+    
+    if ValidTarget(target, 300) and isReady(_W) and WActive == false and Sad.Combo.W:Value() then
+        CastSpell(_W)
+    end
+    
+    if EnemiesAround(myHero, 300) = 0 and isReady(_W) and Sad.Combo.W:Value() and WActive == true then
+        CastSpell(_W)
+    end
 end
 
 function laneclear()
 end
+
+function KillSteal()
+AmumuEDamage -- 25n+50
+AmumuRDamage -- 100n+500
+    DesoEDamage = 
