@@ -160,11 +160,11 @@ end
    
 function KS()
 	for i,enemy in pairs(GetEnemyHeroes()) do
-		if Ready(_Q) and PMenu.KS.Q:Value() and GetCurrentHP(enemy)+GetDmgShield(enemy) < CalcDamage(myHero, enemy, QDamage, 0) then
+		if Ready(_Q) and PMenu.KS.Q:Value() and ValidTarget(enemy, 600) and GetCurrentHP(enemy)+GetDmgShield(enemy) < CalcDamage(myHero, enemy, QDamage, 0) then
 			CastTargetSpell(enemy, _Q)
 		end
 
-		if Ready(_W) and PMenu.KS.W:Value() and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, WDmg) then
+		if Ready(_W) and ValidTarget(enemy, 600) and PMenu.KS.W:Value() and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, WDmg) then
 			CastTargetSpell(enemy, _W)
 		end
 	end
