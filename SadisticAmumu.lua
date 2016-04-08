@@ -33,6 +33,9 @@ end
  
 GetWebResultAsync("https://raw.githubusercontent.com/DarknessVoided/Bombified/master/SadisticAmumu.lua", AutoUpdate)
 
+PrintChat("Thanks NEET for everything!")
+PrintChat("SadisticAmumu loaded!")
+
 Sad = MenuConfig("Amumu", "Amumu")
 
 Sad:Menu("Combo", "Combo")
@@ -47,7 +50,7 @@ Sad.LanClear:Boolean("W", "Use W to laneclear", true)
 Sad.LaneClear:Boolean("E", "Use E to laneclear", true)
 
 Sad:Menu("Prediction", "Prediction")
-Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1)
+Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1, function() UpdateHitChance() end)
 
 local QData = Spells(_Q, 0.25, 2000, 80, 1100, true, 1, false, "linear", "Amumu Q", Sad.Prediction.Q:Value())
 
