@@ -1,4 +1,4 @@
-local version = 0.02
+local version = 0.04
 
 ------------Callback-------------
 OnCreateObj(object)
@@ -52,6 +52,9 @@ Sad.LaneClear:Boolean("E", "Use E to laneclear", true)
 Sad:Menu("Prediction", "Prediction")
 Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1, function() UpdateHitChance() end)
 
+Sad:Menu("Misc", "Misc")
+Sad.Misc:Boolean("RBlock", "Block R", true)
+
 local QData = Spells(_Q, 0.25, 2000, 80, 1100, true, 1, false, "linear", "Amumu Q", Sad.Prediction.Q:Value())
 
 function UpdateHitChance()
@@ -65,19 +68,19 @@ end)
 
 function Combo()
 local target = GetCurrentTarget()
-	if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and isReady(_Q) and target ~= nil then
+	if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and Ready(_Q) and target ~= nil then
 		QData:Cast1(target)
 	end
 	
-	if isReady(_R) and EnemiesAround(myHero, 560) >= Sad.Combo.RM:Value() and Sad.Combo.R:Value() then
+	if Ready(_R) and EnemiesAround(myHero, 560) >= Sad.Combo.RM:Value() and Sad.Combo.R:Value() then
 		CastSpell(_R)
 	end
 	
-	if ValidTarget(target, 300) and isReady(_W) and WActive == false and Sad.Combo.W:Value() then
+	if ValidTarget(target, 300) and Ready(_W) and WActive == false and Sad.Combo.W:Value() then
 		CastSpell(_W)
 	end
 	
-	if EnemiesAround(myHero, 300) = 0 and isReady(_W) and Sad.Combo.W:Value() and WActive == true then
+	if EnemiesAround(myHero, 300) = 0 and Ready(_W) and Sad.Combo.W:Value() and WActive == true then
 		CastSpell(_W)
 	end
 end
@@ -86,5 +89,16 @@ function laneclear()
 end
 
 function KillSteal()
-local EDmg = 25*(GetCastLevel(myHero, _E))+50
+local EDmg = (25*(GetCastLevel(myHero, _E))+50)+((GetBaseDMG(myHero)+GetBonusAP(myHero))*0.5)
+local RDmg = 
+
+	for i,enemy in pairs(GetEnemyHeroes()) do
+		if Ready(_E) and Sad.KillSteal.E:Value() and ValidTarget(enemy, 350) and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, EDmg)
+			CastSpell(_E)
 end
+
+OnSpellCast(function(spell)
+if spell.spellID == _R and Sad.Misc.RBlock:Value() and EnemiesAround(myHero, 560) == 0 then
+  BlockCast()
+end
+end)
