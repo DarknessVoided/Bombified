@@ -1,4 +1,4 @@
-local version = 0.04
+local version = 0.02
 
 ------------Callback-------------
 OnCreateObj(object)
@@ -54,6 +54,7 @@ Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1, function() UpdateHitCh
 
 Sad:Menu("Misc", "Misc")
 Sad.Misc:Boolean("RBlock", "Block R", true)
+Sad.Misc:DropDown("S", "Skin" Changer", 1, {"Classic", "Pharaoh", "Vancouver", "Emumu", "Re-Gifted", "Almost-Prom King", "Little Knight", "Sad Robot", "Surprised Party"})
 
 local QData = Spells(_Q, 0.25, 2000, 80, 1100, true, 1, false, "linear", "Amumu Q", Sad.Prediction.Q:Value())
 
@@ -68,24 +69,32 @@ end)
 
 function Combo()
 local target = GetCurrentTarget()
-	if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and Ready(_Q) and target ~= nil then
-		QData:Cast1(target)
-	end
+	if Mix:Mode == "Combo"
+		if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and Ready(_Q) and target ~= nil then
+			QData:Cast1(target)
+		end
 	
-	if Ready(_R) and EnemiesAround(myHero, 560) >= Sad.Combo.RM:Value() and Sad.Combo.R:Value() then
-		CastSpell(_R)
-	end
+		if Ready(_R) and EnemiesAround(myHero, 560) >= Sad.Combo.RM:Value() and Sad.Combo.R:Value() then
+			CastSpell(_R)
+		end
 	
-	if ValidTarget(target, 300) and Ready(_W) and WActive == false and Sad.Combo.W:Value() then
-		CastSpell(_W)
-	end
+		if ValidTarget(target, 300) and Ready(_W) and WActive == false and Sad.Combo.W:Value() then
+			CastSpell(_W)
+		end
 	
-	if EnemiesAround(myHero, 300) = 0 and Ready(_W) and Sad.Combo.W:Value() and WActive == true then
-		CastSpell(_W)
+		if EnemiesAround(myHero, 300) = 0 and Ready(_W) and Sad.Combo.W:Value() and WActive == true then
+			CastSpell(_W)
+		end
 	end
 end
 
 function laneclear()
+for _, mob in pairs(minionManager.objects) do
+	if mob ~= nil then
+		if Ready(_E) and ValidTarget(mob, 300) and Sad.LaneClear.E:Value() then
+		CastSpell(_E)
+		end
+	end
 end
 
 function KillSteal()
