@@ -54,17 +54,25 @@ Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1, function() UpdateHitCh
 
 Sad:Menu("Misc", "Misc")
 Sad.Misc:Boolean("RBlock", "Block R", true)
-Sad.Misc:DropDown("S", "Skin" Changer", 1, {"Classic", "Pharaoh", "Vancouver", "Emumu", "Re-Gifted", "Almost-Prom King", "Little Knight", "Sad Robot", "Surprised Party"})
+Sad.Misc:DropDown("S", "Skin Changer", 1, {"Classic", "Pharaoh", "Vancouver", "Emumu", "Re-Gifted", "Almost-Prom King", "Little Knight", "Sad Robot", "Surprised Party", "Turn off"})
 
 local QData = Spells(_Q, 0.25, 2000, 80, 1100, true, 1, false, "linear", "Amumu Q", Sad.Prediction.Q:Value())
 
 function UpdateHitChance()
-    QData:GetHitChance(Sad.Prediction.Q:Value())
+	QData:GetHitChance(Sad.Prediction.Q:Value())
 end
 
 OnTick(function(myHero)
 		Combo()
 		laneclear()
+end)
+
+OnDraw(function(myHero)
+	if Sad.Misc.S:Value() ~= 10 then
+		HeroSkinChanger(myHero, Sad.Misc.S:Value() - 1)
+	elseif Sad.Misc.S:Value() == 10 then
+		HeroSkinChanger(myHero, 0)
+	end
 end)
 
 function Combo()
