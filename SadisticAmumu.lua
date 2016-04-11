@@ -45,9 +45,9 @@ Sad.Combo:Boolean("E", "Use E", true)
 Sad.Combo:Boolean("R", "Use R", true)
 Sad.Combo:Slider("RM", "R only when enemy more than", 3, 1, 5, 1)
 
-Sad:Menu("LaneClear", "LaneClear")
+--[[Sad:Menu("LaneClear", "LaneClear")
 Sad.LanClear:Boolean("W", "Use W to laneclear", true)
-Sad.LaneClear:Boolean("E", "Use E to laneclear", true)
+Sad.LaneClear:Boolean("E", "Use E to laneclear", true)]]--
 
 Sad:Menu("Prediction", "Prediction")
 Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1, function() UpdateHitChance() end)
@@ -96,7 +96,7 @@ local target = GetCurrentTarget()
 	end
 end
 
-function laneclear()
+--[[function laneclear()
 for _, mob in pairs(minionManager.objects) do
 	if mob ~= nil then
 		if Ready(_E) and ValidTarget(mob, 300) and Sad.LaneClear.E:Value() then
@@ -104,6 +104,7 @@ for _, mob in pairs(minionManager.objects) do
 		end
 	end
 end
+]]--
 
 function KillSteal()
 local EDmg = (25*(GetCastLevel(myHero, _E))+50)+((GetBaseDMG(myHero)+GetBonusAP(myHero))*0.5)
@@ -112,6 +113,7 @@ local RDmg =
 	for i,enemy in pairs(GetEnemyHeroes()) do
 		if Ready(_E) and Sad.KillSteal.E:Value() and ValidTarget(enemy, 350) and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, EDmg)
 			CastSpell(_E)
+end
 end
 
 OnSpellCast(function(spell)
