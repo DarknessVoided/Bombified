@@ -47,7 +47,9 @@ Sad.Combo:Slider("RM", "R only when enemy more than", 3, 1, 5, 1)
 
 Sad:Menu("LaneClear", "LaneClear")
 Sad.LanClear:Boolean("W", "Use W to laneclear", true)
+Sad.LaneClear:Slider("NW", "W only when minion more than", 3, 1, 5, 1)
 Sad.LaneClear:Boolean("E", "Use E to laneclear", true)
+Sad.Combo:Slider("NE", "E only when minions more than", 3, 1, 5, 1)
 
 Sad:Menu("Prediction", "Prediction")
 Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1, function() UpdateHitChance() end)
@@ -81,7 +83,7 @@ local target = GetCurrentTarget()
 		if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and Ready(_Q) and target ~= nil then
 			QData:Cast1(target)
 		end
-	
+		
 		if Ready(_R) and EnemiesAround(myHero, 560) >= Sad.Combo.RM:Value() and Sad.Combo.R:Value() then
 			CastSpell(_R)
 		end
@@ -93,6 +95,10 @@ local target = GetCurrentTarget()
 		if EnemiesAround(myHero, 300) = 0 and Ready(_W) and Sad.Combo.W:Value() and WActive == true then
 			CastSpell(_W)
 		end
+		
+		if ValidTarget(target, 350) and Ready(_E) and Sad.Combo.E:Value() then
+			CastSPell(_E)
+		end
 	end
 end
 
@@ -100,17 +106,23 @@ function laneclear()
 	if Mix:Mode == "LaneClear"
 		for _, mob in pairs(minionManager.objects) do
 			if mob ~= nil then
-				if Ready(_E) and ValidTarget(mob, 300) and MinionsAround(myHero, 300) >= 2 and Sad.LaneClear.E:Value() then
+				if Ready(_E) and ValidTarget(mob, 350) and MinionsAround(myHero, 300) >= Sad.LaneClear.NW:Value() and Sad.LaneClear.E:Value() then
 					CastSpell(_E)
 				end
+			
+				if Ready(_W) and ValidTarget(mob, 300) and MinionsAround(myHero, 300) >= Sad.LaneClear.NE:Value() and WActive = false then
+					CastSpell(_W)
+				end
 			end
+		
+		
 		end
 	end
 end
 
 function KillSteal()
 local EDmg = (25*(GetCastLevel(myHero, _E))+50)+((GetBaseDMG(myHero)+GetBonusAP(myHero))*0.5)
-local RDmg = 
+local RDmg = (50*(GetCastLevel(myHero, _R))+50)+(
 
 	for i,enemy in pairs(GetEnemyHeroes()) do
 		if Ready(_E) and Sad.KillSteal.E:Value() and ValidTarget(enemy, 350) and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, EDmg)
