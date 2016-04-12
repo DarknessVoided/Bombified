@@ -66,6 +66,7 @@ end
 
 OnTick(function(myHero)
 		Combo()
+		StopW()
 		laneclear()
 end)
 
@@ -91,13 +92,9 @@ local target = GetCurrentTarget()
 		if ValidTarget(target, 300) and Ready(_W) and WActive == false and Sad.Combo.W:Value() then
 			CastSpell(_W)
 		end
-	
-		if EnemiesAround(myHero, 300) = 0 and Ready(_W) and Sad.Combo.W:Value() and WActive == true then
-			CastSpell(_W)
-		end
 		
 		if ValidTarget(target, 350) and Ready(_E) and Sad.Combo.E:Value() then
-			CastSPell(_E)
+			CastSpell(_E)
 		end
 	end
 end
@@ -117,6 +114,12 @@ function laneclear()
 		
 		
 		end
+	end
+end
+
+function StopW()
+	if (EnemiesAround(myHero, 300) == 0 or MinionsAround(myHero, 300) == 0) and Ready(_W) and WActive == true then
+		CastSpell(_W)
 	end
 end
 
