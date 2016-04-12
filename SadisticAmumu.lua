@@ -97,10 +97,12 @@ local target = GetCurrentTarget()
 end
 
 function laneclear()
-	for _, mob in pairs(minionManager.objects) do
-		if mob ~= nil then
-			if Ready(_E) and ValidTarget(mob, 300) and Sad.LaneClear.E:Value() then
-				CastSpell(_E)
+	if Mix:Mode == "LaneClear"
+		for _, mob in pairs(minionManager.objects) do
+			if mob ~= nil then
+				if Ready(_E) and ValidTarget(mob, 300) and MinionsAround(myHero, 300) >= 2 and Sad.LaneClear.E:Value() then
+					CastSpell(_E)
+				end
 			end
 		end
 	end
