@@ -1,17 +1,17 @@
-local version = 0.45
+local version = 0.46
 
 ------------Callback-------------
-OnCreateObj(object)
+OnCreateObj(function(object)
 	if GetObjectBaseName(Object) == "Despair_buf.troy" then
 		WActive = true
 	end
-end
+end)
 
-OnDeleteObj(object)
+OnDeleteObj(function(object)
 	if GetObjectBaseName(Object) == "Despair_buf.troy" then
 		WActive = false
 	end
-end
+end)
 ---------------------------
 if FileExist(COMMON_PATH.."MixLib.lua") then
  require('MixLib')
