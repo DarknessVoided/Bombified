@@ -80,7 +80,7 @@ end)
 
 function Combo()
 local target = GetCurrentTarget()
-	if Mix:Mode == "Combo"
+	if Mix:Mode == "Combo" then
 		if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and Ready(_Q) and target ~= nil then
 			QData:Cast1(target)
 		end
@@ -100,7 +100,7 @@ local target = GetCurrentTarget()
 end
 
 function laneclear()
-	if Mix:Mode == "LaneClear"
+	if Mix:Mode == "LaneClear" then
 		for _, mob in pairs(minionManager.objects) do
 			if mob ~= nil then
 				if Ready(_E) and ValidTarget(mob, 350) and MinionsAround(myHero, 300) >= Sad.LaneClear.NW:Value() and Sad.LaneClear.E:Value() then
