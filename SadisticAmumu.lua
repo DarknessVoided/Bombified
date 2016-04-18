@@ -1,15 +1,27 @@
-local version = 0.48
+local version = 0.50
 
 ------------Callback-------------
-OnCreateObj(function(object)
+--[[OnCreateObj(function(object)
 	if GetObjectBaseName(Object) == "Despair_buf.troy" then
 		WActive = true
 	end
 end)
 
-OnDeleteObj(function(object)
-	if GetObjectBaseName(Object) == "Despair_buf.troy" then
+OnDeleteObj(object)
+	if GetObjectBaseName(function(Object) == "Despair_buf.troy" then
 		WActive = false
+	end)
+end ]]--
+
+OnUpdateBuff(function(unit,buff)
+	if unit == myHero and buff.Name == "despair" then
+		WActive = true
+	end
+end)
+
+OnRemoveBuff(function(unit,buff)
+	if unit == myHero and buff.Name == "despair" then
+		WActive = true
 	end
 end)
 ---------------------------
@@ -80,7 +92,7 @@ end)
 
 function Combo()
 local target = GetCurrentTarget()
-	if Mix:Mode() == "Combo" then
+	if Mix:Mode() == "Combo"
 		if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and Ready(_Q) and target ~= nil then
 			QData:Cast1(target)
 		end
@@ -100,7 +112,7 @@ local target = GetCurrentTarget()
 end
 
 function laneclear()
-	if Mix:Mode() == "LaneClear" then
+	if Mix:Mode() == "LaneClear"
 		for _, mob in pairs(minionManager.objects) do
 			if mob ~= nil then
 				if Ready(_E) and ValidTarget(mob, 350) and MinionsAround(myHero, 300) >= Sad.LaneClear.NW:Value() and Sad.LaneClear.E:Value() then
