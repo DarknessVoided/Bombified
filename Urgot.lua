@@ -39,21 +39,21 @@ end
 function Mode()
 	if LoadDAC() then
 		if IOW:Mode() == "Combo" then return "Combo"
-      elseif IOW:Mode() == "Harass" then return "Harass"
-      elseif IOW:Mode() == "LaneClear" then return "LaneClear"
-      elseif IOW:Mode() == "LastHit" then return "LastHit"
-     end
+      	elseif IOW:Mode() == "Harass" then return "Harass"
+      	elseif IOW:Mode() == "LaneClear" then return "LaneClear"
+	 elseif IOW:Mode() == "LastHit" then return "LastHit"
+     	end
      
 	if LoadPW() then
 		if PW:Mode() == "Combo" then return "Combo"
-      elseif PW:Mode() == "Harass" then return "Harass"
-      elseif PW:Mode() == "LaneClear" then return "LaneClear"
-      elseif PW:Mode() == "LastHit" then return "LastHit"
-    end
+	elseif PW:Mode() == "Harass" then return "Harass"
+	elseif PW:Mode() == "LaneClear" then return "LaneClear"
+	elseif PW:Mode() == "LastHit" then return "LastHit"
+    	end
      
 	if GoSWalk.CurrentMode == 0 then return "Combo"
-      elseif GoSWalk.CurrentMode == 1 then return "Harass"
-      elseif GoSWalk.CurrentMode == 2 then return "LaneClear"
-      elseif GoSWalk.CurrentMode == 3 then return "LastHit"
-     end
+      	elseif GoSWalk.CurrentMode == 1 then return "Harass"
+      	elseif GoSWalk.CurrentMode == 2 then return "LaneClear"
+      	elseif GoSWalk.CurrentMode == 3 then return "LastHit"
+	end
 end
