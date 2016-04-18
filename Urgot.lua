@@ -8,8 +8,8 @@ Urgot.Combo:Boolean("W", "Use W", true)
 Urgot.Combo:Boolean("E", "Use E", true)
 
 Urgot:Menu("Misc", "Misc")
-Urgot.Misc:List(idk)
-Urgot.Misc:Boolean("Interrupt",
+Urgot.Misc:DropDown(idk)
+Urgot.Misc:Boolean("Interrupt", "Interrupt with ultimate", true)
 
 Urgot:Menu("Predictions", "Prediction")
 Urgot.Predictions:List("P", "Prediction loaded", 1, {"OpenPredict", "GoS", "iPrediction"})
@@ -37,4 +37,23 @@ return QRange
 end
 
 function Mode()
-	
+	if LoadDAC() then
+		if IOW:Mode() == "Combo" then return "Combo"
+      elseif IOW:Mode() == "Harass" then return "Harass"
+      elseif IOW:Mode() == "LaneClear" then return "LaneClear"
+      elseif IOW:Mode() == "LastHit" then return "LastHit"
+     end
+     
+	if LoadPW() then
+		if PW:Mode() == "Combo" then return "Combo"
+      elseif PW:Mode() == "Harass" then return "Harass"
+      elseif PW:Mode() == "LaneClear" then return "LaneClear"
+      elseif PW:Mode() == "LastHit" then return "LastHit"
+    end
+     
+	if GoSWalk.CurrentMode == 0 then return "Combo"
+      elseif GoSWalk.CurrentMode == 1 then return "Harass"
+      elseif GoSWalk.CurrentMode == 2 then return "LaneClear"
+      elseif GoSWalk.CurrentMode == 3 then return "LastHit"
+     end
+end
