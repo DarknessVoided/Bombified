@@ -119,7 +119,7 @@ function laneclear()
 					CastSpell(_E)
 				end
 			
-				if Ready(_W) and ValidTarget(mob, 300) and MinionsAround(myHero, 300) >= Sad.LaneClear.NE:Value() and WActive = false then
+				if Ready(_W) and ValidTarget(mob, 300) and MinionsAround(myHero, 300) >= Sad.LaneClear.NE:Value() and WActive == false then
 					CastSpell(_W)
 				end
 			end
