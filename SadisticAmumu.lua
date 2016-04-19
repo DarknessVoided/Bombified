@@ -1,4 +1,4 @@
-local version = 0.51
+local version = 0.52
 
 ------------Callback-------------
 --[[OnCreateObj(function(object)
@@ -138,10 +138,10 @@ local EDmg = (25*(GetCastLevel(myHero, _E))+50)+((GetBaseDMG(myHero)+GetBonusAP(
 local RDmg = (100*(GetCastLevel(myHero, _R))+50)+((GetBaseDMG(myHero)+GetBonusAP(myHero))*0.8)
 
 	for i,enemy in pairs(GetEnemyHeroes()) do
-		if Ready(_E) and Sad.KillSteal.E:Value() and ValidTarget(enemy, 350) and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, EDmg)
+		if Ready(_E) and Sad.KillSteal.E:Value() and ValidTarget(enemy, 350) and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, EDmg) then
 			CastSpell(_E)
 		end
-		if Ready(_R) and Sad.KillSteal.R:Value() and ValidTarget(enemy, 530) and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, RDmg)
+		if Ready(_R) and Sad.KillSteal.R:Value() and ValidTarget(enemy, 530) and GetCurrentHP(enemy)+GetMagicShield(enemy) < CalcDamage(myHero, enemy, 0, RDmg) then
 			CastSpell(_R)
 		end
 	end
