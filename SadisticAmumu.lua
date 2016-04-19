@@ -1,4 +1,4 @@
-local version = 0.50
+local version = 0.51
 
 ------------Callback-------------
 --[[OnCreateObj(function(object)
