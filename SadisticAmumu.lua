@@ -1,4 +1,4 @@
-local version = 0.52
+local version = 0.53
 
 ------------Callback-------------
 --[[OnCreateObj(function(object)
@@ -58,7 +58,7 @@ Sad.Combo:Boolean("R", "Use R", true)
 Sad.Combo:Slider("RM", "R only when enemy more than", 3, 1, 5, 1)
 
 Sad:Menu("LaneClear", "LaneClear")
-Sad.LanClear:Boolean("W", "Use W to laneclear", true)
+Sad.LaneClear:Boolean("W", "Use W to laneclear", true)
 Sad.LaneClear:Slider("NW", "W only when minion more than", 3, 1, 5, 1)
 Sad.LaneClear:Boolean("E", "Use E to laneclear", true)
 Sad.Combo:Slider("NE", "E only when minions more than", 3, 1, 5, 1)
