@@ -1,4 +1,4 @@
-local version = 0.53
+local version = "0.02"
 
 ------------Callback-------------
 --[[OnCreateObj(function(object)
@@ -21,7 +21,7 @@ end)
 
 OnRemoveBuff(function(unit,buff)
 	if unit == myHero and buff.Name == "despair" then
-		WActive = false
+		WActive = true
 	end
 end)
 ---------------------------
@@ -92,7 +92,7 @@ end)
 
 function Combo()
 local target = GetCurrentTarget()
-	if Mix:Mode() == "Combo" then
+	if Mix:Mode() == "Combo"
 		if ValidTarget(target, 1100) and Sad.Combo.Q:Value() and Ready(_Q) and target ~= nil then
 			QData:Cast1(target)
 		end
@@ -112,14 +112,14 @@ local target = GetCurrentTarget()
 end
 
 function laneclear()
-	if Mix:Mode() == "LaneClear" then
+	if Mix:Mode() == "LaneClear"
 		for _, mob in pairs(minionManager.objects) do
 			if mob ~= nil then
 				if Ready(_E) and ValidTarget(mob, 350) and MinionsAround(myHero, 300) >= Sad.LaneClear.NW:Value() and Sad.LaneClear.E:Value() then
 					CastSpell(_E)
 				end
 			
-				if Ready(_W) and ValidTarget(mob, 300) and MinionsAround(myHero, 300) >= Sad.LaneClear.NE:Value() and WActive == false then
+				if Ready(_W) and ValidTarget(mob, 300) and MinionsAround(myHero, 300) >= Sad.LaneClear.NE:Value() and WActive = false then
 					CastSpell(_W)
 				end
 			end
