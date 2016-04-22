@@ -1,4 +1,4 @@
-local version = "0.54"
+local version = "0.55"
 
 ------------Callback-------------
 --[[OnCreateObj(function(object)
@@ -61,7 +61,7 @@ Sad:Menu("LaneClear", "LaneClear")
 Sad.LaneClear:Boolean("W", "Use W to laneclear", true)
 Sad.LaneClear:Slider("NW", "W only when minion more than", 3, 1, 5, 1)
 Sad.LaneClear:Boolean("E", "Use E to laneclear", true)
-Sad.Combo:Slider("NE", "E only when minions more than", 3, 1, 5, 1)
+Sad.LaneClear:Slider("NE", "E only when minions more than", 3, 1, 5, 1)
 
 Sad:Menu("Prediction", "Prediction")
 Sad.Prediction:Slider("Q", "Q Hit-Chance", 25, 1, 100, 1, function() UpdateHitChance() end)
